@@ -1,18 +1,10 @@
-<script setup>
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
-</script>
-
 <template>
-  <header>
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <NavBottom />
+  <RouterView class="flex justify-center h-screen items-center" />
 </template>
+
+<script setup>
+import { RouterView } from "vue-router";
+import NavBottom from "@/components/partials/NavBottom.vue";
+
+</script>

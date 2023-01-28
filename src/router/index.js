@@ -18,6 +18,7 @@ const router = createRouter({
       component: () => import("../views/AboutView.vue"),
     },
   ],
+  linkExactActiveClass: "border-b-4 border-blue-500",
 });
 
 export default router;
