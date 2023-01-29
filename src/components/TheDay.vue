@@ -7,12 +7,23 @@
           <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div class="overflow-hidden">
               <!--app name-->
-              <div class="py-3 border-b">
+              <div @click="switchPage" class="py-3 border-b">
                 اليومية العصرية
               </div>
 
+              <!--back page-->
+              <table v-if="showBack" id="day-back" class="min-w-full text-center">
+                <tr class="bg-white border-b">
+                  <td colspan="2"
+                      class="font-light px-6 py-2 text-center text-gray-900 text-base mb-4">
+                    <p class="font-medium">مقولة اليوم</p>
+                    <p v-for="hikma in data.events.hikams_back" :key="hikma.key">{{ hikma }}</p>
+                  </td>
+                </tr>
+              </table>
+
               <!--front page -->
-              <table id="day-front" class="min-w-full text-center">
+              <table v-if="!showBack" id="day-front" class="min-w-full text-center">
                 <!--section 1: hijri/gregorian dates in fr/ar-->
                 <tr class="border-b">
                   <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
@@ -119,6 +130,7 @@
 </template>
 
 <script setup>
+import {ref} from "vue";
 
 defineProps({
   data: {
@@ -126,4 +138,10 @@ defineProps({
     required: true,
   },
 });
+
+const showBack = ref(false);
+
+const switchPage = () => {
+  showBack.value = !showBack.value
+}
 </script>
