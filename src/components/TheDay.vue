@@ -48,6 +48,23 @@
                     {{ data.dates.dateHj.monthName.fr }}
                   </td>
                 </tr>
+                <!--section 2: favourites cites-->
+                <tr class="bg-white border-b">
+                  <td class="text-sm text-gray-900 font-light py-2 whitespace-nowrap">
+                    Jacob
+                  </td>
+                  <td class="text-sm text-gray-900 font-light py-2 whitespace-nowrap">
+                    Thornton
+                  </td>
+                </tr>
+                <tr class="bg-white border-b">
+                  <td class="text-sm text-gray-900 font-light py-2 whitespace-nowrap">
+                    Jacob
+                  </td>
+                  <td class="text-sm text-gray-900 font-light py-2 whitespace-nowrap">
+                    Thornton
+                  </td>
+                </tr>
                 <!--section 3: filahi date with salate times-->
                 <tr class="bg-white">
                   <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
