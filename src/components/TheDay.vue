@@ -48,6 +48,43 @@
                     {{ data.dates.dateHj.monthName.fr }}
                   </td>
                 </tr>
+                <!--section 3: filahi date with salate times-->
+                <tr class="bg-white">
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                    {{ data.salate_times.fajr }}
+                  </td>
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-b">
+                    {{ data.dates.dateFl.monthName.ar }}
+                  </td>
+                </tr>
+                <tr class="bg-white">
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                    {{ data.salate_times.chourouq }}
+                  </td>
+                  <td rowspan="5" class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                    {{ data.dates.dateFl.day }}
+                  </td>
+                </tr>
+                <tr class="bg-white">
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                    {{ data.salate_times.dhuhr }}
+                  </td>
+                </tr>
+                <tr class="bg-white">
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                    {{ data.salate_times.asr }}
+                  </td>
+                </tr>
+                <tr class="bg-white">
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                    {{ data.salate_times.maghrib }}
+                  </td>
+                </tr>
+                <tr class="bg-white border-b">
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                    {{ data.salate_times.ishae }}
+                  </td>
+                </tr>
                 <!--front hikams-->
                 <tr class="bg-white">
                   <td colspan="2"
