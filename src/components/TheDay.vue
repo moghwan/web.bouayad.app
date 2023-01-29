@@ -13,6 +13,41 @@
 
               <!--front page -->
               <table id="day-front" class="min-w-full text-center">
+                <!--section 1: hijri/gregorian dates in fr/ar-->
+                <tr class="border-b">
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                    {{ data.dates.dateCr.year }}
+                    {{ data.dates.dateCr.monthName.ar }}
+                  </td>
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                    {{ data.dates.dateHj.year }}
+                    {{ data.dates.dateHj.monthName.ar }}
+                  </td>
+                </tr>
+                <tr class="bg-white">
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                    {{ data.dates.dayName.fr }}
+                  </td>
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                    {{ data.dates.dayName.ar }}
+                  </td>
+                </tr>
+                <tr class="bg-white">
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                    {{ data.dates.dateCr.day }}
+                  </td>
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                    {{ data.dates.dateHj.day }}
+                  </td>
+                </tr>
+                <tr class="bg-white border-b">
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                    {{ data.dates.dateCr.monthName.fr }}
+                  </td>
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                    {{ data.dates.dateHj.monthName.fr }}
+                  </td>
+                </tr>
                 <!--front hikams-->
                 <tr class="bg-white">
                   <td colspan="2"
