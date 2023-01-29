@@ -26,96 +26,126 @@
               <table v-if="!showBack" id="day-front" class="min-w-full text-center">
                 <!--section 1: hijri/gregorian dates in fr/ar-->
                 <tr class="border-b">
-                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                  <td colspan="2" class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
                     {{ data.dates.dateCr.year }}
                     {{ data.dates.dateCr.monthName.ar }}
                   </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                  <td colspan="2" class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                     {{ data.dates.dateHj.year }}
                     {{ data.dates.dateHj.monthName.ar }}
                   </td>
                 </tr>
                 <tr class="bg-white">
-                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                  <td colspan="2" class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
                     {{ data.dates.dayName.fr }}
                   </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                  <td colspan="2" class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                     {{ data.dates.dayName.ar }}
                   </td>
                 </tr>
                 <tr class="bg-white">
-                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                  <td colspan="2" class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
                     {{ data.dates.dateCr.day }}
                   </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                  <td colspan="2" class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                     {{ data.dates.dateHj.day }}
                   </td>
                 </tr>
                 <tr class="bg-white border-b">
-                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                  <td colspan="2" class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
                     {{ data.dates.dateCr.monthName.fr }}
                   </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                  <td colspan="2" class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                     {{ data.dates.dateHj.monthName.fr }}
                   </td>
                 </tr>
                 <!--section 2: favourites cites-->
                 <tr class="bg-white border-b">
                   <td class="text-sm text-gray-900 font-light py-2 whitespace-nowrap">
-                    فاس وجدة
+                    وجدة
                   </td>
                   <td class="text-sm text-gray-900 font-light py-2 whitespace-nowrap">
-                    الرباط مكناس
+                    فاس
+                  </td>
+                  <td class="text-sm text-gray-900 font-light py-2 whitespace-nowrap">
+                    مكناس
+                  </td>
+                  <td class="text-sm text-gray-900 font-light py-2 whitespace-nowrap">
+                    الرباط
                   </td>
                 </tr>
                 <tr class="bg-white border-b">
                   <td class="text-sm text-gray-900 font-light py-2 whitespace-nowrap">
-                    مراكش البيضاء
+                    البيضاء
                   </td>
                   <td class="text-sm text-gray-900 font-light py-2 whitespace-nowrap">
-                    العيون أغادير
+                    مراكش
+                  </td>
+                  <td class="text-sm text-gray-900 font-light py-2 whitespace-nowrap">
+                    أغادير
+                  </td>
+                  <td class="text-sm text-gray-900 font-light py-2 whitespace-nowrap">
+                    العيون
                   </td>
                 </tr>
                 <!--section 3: filahi date with salate times-->
                 <tr class="bg-white">
                   <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
-                    {{ data.salate_times.fajr }} الفجر
+                    {{ data.salate_times.fajr }}
                   </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-b">
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                    الفجر
+                  </td>
+                  <td colspan="2" class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-b">
                     {{ data.dates.dateFl.monthName.ar }}
                   </td>
                 </tr>
                 <tr class="bg-white">
                   <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
-                    {{ data.salate_times.chourouq }} الشروق
+                    {{ data.salate_times.chourouq }}
                   </td>
-                  <td rowspan="5" class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                   الشروق
+                  </td>
+                  <td rowspan="5" colspan="2" class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                     {{ data.dates.dateFl.day }}
                   </td>
                 </tr>
                 <tr class="bg-white">
                   <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
-                    {{ data.salate_times.dhuhr }} الظهر
+                    {{ data.salate_times.dhuhr }}
+                  </td>
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                     الظهر
                   </td>
                 </tr>
                 <tr class="bg-white">
                   <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
-                    {{ data.salate_times.asr }} العصر
+                    {{ data.salate_times.asr }}
+                  </td>
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                    العصر
                   </td>
                 </tr>
                 <tr class="bg-white">
                   <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
-                    {{ data.salate_times.maghrib }} المغرب
+                    {{ data.salate_times.maghrib }}
+                  </td>
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                    المغرب
                   </td>
                 </tr>
                 <tr class="bg-white border-b">
                   <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
-                    {{ data.salate_times.ishae }} العشاء
+                    {{ data.salate_times.ishae }} 
+                  </td>
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
+                    العشاء
                   </td>
                 </tr>
                 <!--front hikams-->
                 <tr class="bg-white">
-                  <td colspan="2"
+                  <td colspan="4"
                       class="text-sm text-gray-900 font-light px-6 py-2 text-center">
                     <p v-for="hikma in data.events.hikams_front" :key="hikma.key">{{ hikma }}</p>
                   </td>
