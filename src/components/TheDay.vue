@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center h-screen items-center">
-    <div class="block rounded-lg shadow-lg bg-white max-w-sm text-center">
+    <div class="block rounded-lg shadow-lg bg-white max-w-sm text-center w-96">
       <!--main layout-->
       <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -62,24 +62,24 @@
                 <!--section 2: favourites cites-->
                 <tr class="bg-white border-b">
                   <td class="text-sm text-gray-900 font-light py-2 whitespace-nowrap">
-                    Jacob
+                    فاس وجدة
                   </td>
                   <td class="text-sm text-gray-900 font-light py-2 whitespace-nowrap">
-                    Thornton
+                    الرباط مكناس
                   </td>
                 </tr>
                 <tr class="bg-white border-b">
                   <td class="text-sm text-gray-900 font-light py-2 whitespace-nowrap">
-                    Jacob
+                    مراكش البيضاء
                   </td>
                   <td class="text-sm text-gray-900 font-light py-2 whitespace-nowrap">
-                    Thornton
+                    العيون أغادير
                   </td>
                 </tr>
                 <!--section 3: filahi date with salate times-->
                 <tr class="bg-white">
                   <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
-                    {{ data.salate_times.fajr }}
+                    {{ data.salate_times.fajr }} الفجر
                   </td>
                   <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-b">
                     {{ data.dates.dateFl.monthName.ar }}
@@ -87,7 +87,7 @@
                 </tr>
                 <tr class="bg-white">
                   <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
-                    {{ data.salate_times.chourouq }}
+                    {{ data.salate_times.chourouq }} الشروق
                   </td>
                   <td rowspan="5" class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                     {{ data.dates.dateFl.day }}
@@ -95,22 +95,22 @@
                 </tr>
                 <tr class="bg-white">
                   <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
-                    {{ data.salate_times.dhuhr }}
+                    {{ data.salate_times.dhuhr }} الظهر
                   </td>
                 </tr>
                 <tr class="bg-white">
                   <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
-                    {{ data.salate_times.asr }}
+                    {{ data.salate_times.asr }} العصر
                   </td>
                 </tr>
                 <tr class="bg-white">
                   <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
-                    {{ data.salate_times.maghrib }}
+                    {{ data.salate_times.maghrib }} المغرب
                   </td>
                 </tr>
                 <tr class="bg-white border-b">
                   <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap border-r">
-                    {{ data.salate_times.ishae }}
+                    {{ data.salate_times.ishae }} العشاء
                   </td>
                 </tr>
                 <!--front hikams-->
