@@ -7,18 +7,18 @@
           <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div class="overflow-hidden">
               <!--app name-->
-              <div @click="switchPage" class="py-3 border-b">
+              <div @click="switchPage" class="pb-1 border-b ff-arabic-style text-3xl">
                 اليومية العصرية
               </div>
 
               <!--back page-->
               <table v-if="showBack" id="day-back" class="h-96 min-w-full">
-                <tr class="bg-white h-7">
+                <tr class=" h-7">
                   <td class="py-2 text-center">
                     <p>مقولة اليوم</p>
                   </td>
                 </tr>
-                <tr class="bg-white">
+                <tr class="">
                   <td>
                     <p class="px-5 font-light leading-7" v-for="hikma in data.events.hikams_back" :key="hikma.key">{{ hikma }}</p>
                   </td>
@@ -40,7 +40,7 @@
                   </td>
                 </tr>
                 <!--day name row-->
-                <tr class="bg-white">
+                <tr class="">
                   <td colspan="2" class="font-light py-2 border-r">
                     {{ data.dates.dayName.fr }}
                   </td>
@@ -49,7 +49,7 @@
                   </td>
                 </tr>
                 <!--day number row-->
-                <tr class="bg-white">
+                <tr class="">
                   <td colspan="2" class="text-7xl font-light py-2 border-r">
                     {{ data.dates.dateCr.day }}
                   </td>
@@ -58,7 +58,7 @@
                   </td>
                 </tr>
                 <!--month name-->
-                <tr class="bg-white border-b">
+                <tr class=" border-b">
                   <td colspan="2" class="font-light py-2 border-r">
                     {{ data.dates.dateCr.monthName.fr }}
                   </td>
@@ -67,36 +67,36 @@
                   </td>
                 </tr>
                 <!--section 2: favourites cites-->
-                <tr class="bg-white border-b">
-                  <td class="font-light py-1 text-sm">
+                <tr class=" border-b">
+                  <td class="font-light py-2 text-sm">
                     وجدة
                   </td>
-                  <td class="font-light py-1 text-sm">
+                  <td class="font-light py-2 text-sm">
                     فاس
                   </td>
-                  <td class="font-light py-1 text-sm">
+                  <td class="font-light py-2 text-sm">
                     مكناس
                   </td>
-                  <td class="font-light py-1 text-sm">
+                  <td class="font-light py-2 text-sm">
                     الرباط
                   </td>
                 </tr>
-                <tr class="bg-white border-b">
-                  <td class="font-light py-1 text-sm">
+                <tr class=" border-b">
+                  <td class="font-light py-2 text-sm">
                     البيضاء
                   </td>
-                  <td class="font-light py-1 text-sm">
+                  <td class="font-light py-2 text-sm">
                     مراكش
                   </td>
-                  <td class="font-light py-1 text-sm">
+                  <td class="font-light py-2 text-sm">
                     أغادير
                   </td>
-                  <td class="font-light py-1 text-sm">
+                  <td class="font-light py-2 text-sm">
                     العيون
                   </td>
                 </tr>
                 <!--section 3: filahi date with salate times-->
-                <tr class="bg-white">
+                <tr class="">
                   <td class="font-light text-sm">
                     {{ data.salate_times.fajr }}
                   </td>
@@ -107,7 +107,7 @@
                     {{ data.dates.dateFl.monthName.ar }}
                   </td>
                 </tr>
-                <tr class="bg-white">
+                <tr class="">
                   <td class="font-light text-sm">
                     {{ data.salate_times.chourouq }}
                   </td>
@@ -118,7 +118,7 @@
                     {{ data.dates.dateFl.day }}
                   </td>
                 </tr>
-                <tr class="bg-white">
+                <tr class="">
                   <td class="font-light text-sm">
                     {{ data.salate_times.dhuhr }}
                   </td>
@@ -126,7 +126,7 @@
                     الظهر
                   </td>
                 </tr>
-                <tr class="bg-white">
+                <tr class="">
                   <td class="font-light text-sm">
                     {{ data.salate_times.asr }}
                   </td>
@@ -134,7 +134,7 @@
                     العصر
                   </td>
                 </tr>
-                <tr class="bg-white">
+                <tr class="">
                   <td class="font-light text-sm">
                     {{ data.salate_times.maghrib }}
                   </td>
@@ -142,7 +142,7 @@
                     المغرب
                   </td>
                 </tr>
-                <tr class="bg-white border-b">
+                <tr class=" border-b">
                   <td class="font-light text-sm">
                     {{ data.salate_times.ishae }}
                   </td>
@@ -151,7 +151,7 @@
                   </td>
                 </tr>
                 <!--front hikams-->
-                <tr class="bg-white">
+                <tr class="">
                   <td colspan="4"
                       class="font-light py-2 text-center">
                     <p v-for="hikma in data.events.hikams_front" :key="hikma.key">{{ hikma }}</p>
