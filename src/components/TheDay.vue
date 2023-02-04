@@ -66,33 +66,15 @@
                     {{ data.dates.dateHj.monthName.fr }}
                   </td>
                 </tr>
-                <!--section 2: favourites cites-->
+                <!--section 2: cites-->
                 <tr class=" border-b">
-                  <td class="font-light py-2 text-sm">
-                    وجدة
-                  </td>
-                  <td class="font-light py-2 text-sm">
-                    فاس
-                  </td>
-                  <td class="font-light py-2 text-sm">
-                    مكناس
-                  </td>
-                  <td class="font-light py-2 text-sm">
-                    الرباط
+                  <td @click="getByCities(city.id)" class="font-light py-2 text-sm" v-for="city in RTLCities.slice(4, 8)" :key="city.id">
+                    {{ city.name }}
                   </td>
                 </tr>
                 <tr class=" border-b">
-                  <td class="font-light py-2 text-sm">
-                    البيضاء
-                  </td>
-                  <td class="font-light py-2 text-sm">
-                    مراكش
-                  </td>
-                  <td class="font-light py-2 text-sm">
-                    أغادير
-                  </td>
-                  <td class="font-light py-2 text-sm">
-                    العيون
+                  <td @click="getByCities(city.id)" class="font-light py-2 text-sm" v-for="city in RTLCities.slice(0, 4)" :key="city.id">
+                    {{ city.name }}
                   </td>
                 </tr>
                 <!--section 3: filahi date with salate times-->
@@ -167,7 +149,7 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import { ref, computed } from "vue";
 
 defineProps({
   data: {
@@ -177,8 +159,28 @@ defineProps({
 });
 
 const showBack = ref(false);
+const cities = ref([
+  { id: 1, name: "الرباط"},
+  { id: 99, name: "مكناس"},
+  { id: 81, name: "فاس"},
+  { id: 31, name: "وجدة"},
+  { id: 156, name: "العيون"},
+  { id: 117, name: "أغادير"},
+  { id: 107, name: "مراكش"},
+  { id: 58, name: "البيضاء"},
+])
+
+const RTLCities = computed(() => {
+  return cities.value.slice(0).reverse()
+})
 
 const switchPage = () => {
   showBack.value = !showBack.value
 }
+
+const getByCities = (cityId) => {
+  console.info(cityId)
+}
+
+
 </script>
