@@ -7,7 +7,7 @@
           <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div class="overflow-hidden">
               <!--app name-->
-              <div @click="switchPage" class="pb-1 border-b ff-arabic-style text-3xl">
+              <div @click="switchPage" class="pb-1 border-b ff-arabic-style text-3xl cursor-pointer">
                 اليومية العصرية
               </div>
 
@@ -20,7 +20,8 @@
                 </tr>
                 <tr class="">
                   <td>
-                    <p class="px-5 font-light leading-7" v-for="hikma in data.events.hikams_back" :key="hikma.key">{{ hikma }}</p>
+                    <p class="px-5 font-light leading-7" v-for="hikma in data.events.hikams_back" :key="hikma.key">
+                      {{ hikma }}</p>
                   </td>
                 </tr>
               </table>
@@ -66,33 +67,21 @@
                     {{ data.dates.dateHj.monthName.fr }}
                   </td>
                 </tr>
-                <!--section 2: favourites cites-->
+                <!--section 2: cites-->
                 <tr class=" border-b">
-                  <td class="font-light py-2 text-sm">
-                    وجدة
-                  </td>
-                  <td class="font-light py-2 text-sm">
-                    فاس
-                  </td>
-                  <td class="font-light py-2 text-sm">
-                    مكناس
-                  </td>
-                  <td class="font-light py-2 text-sm">
-                    الرباط
+                  <td @click="getByCity(city.id)"
+                      :class="selectedCityId === city.id ? 'bg-gray-100': ''"
+                      class="font-light py-2 text-sm cursor-pointer hover:bg-gray-50 transition-all"
+                      v-for="city in RTLCities.slice(4, 8)" :key="city.id">
+                    {{ city.name }}
                   </td>
                 </tr>
                 <tr class=" border-b">
-                  <td class="font-light py-2 text-sm">
-                    البيضاء
-                  </td>
-                  <td class="font-light py-2 text-sm">
-                    مراكش
-                  </td>
-                  <td class="font-light py-2 text-sm">
-                    أغادير
-                  </td>
-                  <td class="font-light py-2 text-sm">
-                    العيون
+                  <td @click="getByCity(city.id)"
+                      :class="selectedCityId === city.id ? 'bg-gray-100': ''"
+                      class="font-light py-2 text-sm cursor-pointer hover:bg-gray-50 transition-all"
+                      v-for="city in RTLCities.slice(0, 4)" :key="city.id">
+                    {{ city.name }}
                   </td>
                 </tr>
                 <!--section 3: filahi date with salate times-->
@@ -100,7 +89,7 @@
                   <td class="font-light text-sm">
                     {{ data.salate_times.fajr }}
                   </td>
-                  <td class="font-light  border-r">
+                  <td class="font-light border-r">
                     الفجر
                   </td>
                   <td colspan="2" class="font-light">
@@ -111,7 +100,7 @@
                   <td class="font-light text-sm">
                     {{ data.salate_times.chourouq }}
                   </td>
-                  <td class="font-light  border-r">
+                  <td class="font-light border-r">
                     الشروق
                   </td>
                   <td rowspan="5" colspan="2" class="font-light text-7xl">
@@ -122,7 +111,7 @@
                   <td class="font-light text-sm">
                     {{ data.salate_times.dhuhr }}
                   </td>
-                  <td class="font-light  border-r">
+                  <td class="font-light border-r">
                     الظهر
                   </td>
                 </tr>
@@ -130,7 +119,7 @@
                   <td class="font-light text-sm">
                     {{ data.salate_times.asr }}
                   </td>
-                  <td class="font-light  border-r">
+                  <td class="font-light border-r">
                     العصر
                   </td>
                 </tr>
@@ -138,7 +127,7 @@
                   <td class="font-light text-sm">
                     {{ data.salate_times.maghrib }}
                   </td>
-                  <td class="font-light  border-r">
+                  <td class="font-light border-r">
                     المغرب
                   </td>
                 </tr>
@@ -146,7 +135,7 @@
                   <td class="font-light text-sm">
                     {{ data.salate_times.ishae }}
                   </td>
-                  <td class="font-light  border-r">
+                  <td class="font-light border-r">
                     العشاء
                   </td>
                 </tr>
@@ -167,18 +156,42 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import { ref, computed } from "vue";
 
 defineProps({
   data: {
     type: Object,
     required: true,
   },
+  selectedCityId: {
+    required: true,
+  }
 });
 
+const emit = defineEmits(['parent-refreshtheday'])
 const showBack = ref(false);
+const cities = ref([
+  {id: 1, name: "الرباط"},
+  {id: 99, name: "مكناس"},
+  {id: 81, name: "فاس"},
+  {id: 31, name: "وجدة"},
+  {id: 156, name: "العيون"},
+  {id: 117, name: "أغادير"},
+  {id: 107, name: "مراكش"},
+  {id: 58, name: "البيضاء"},
+])
+
+const RTLCities = computed(() => {
+  return cities.value.slice(0).reverse()
+})
 
 const switchPage = () => {
   showBack.value = !showBack.value
 }
+
+const getByCity = (cityId) => {
+  emit('parent-refreshtheday', cityId)
+}
+
+
 </script>
