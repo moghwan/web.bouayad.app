@@ -1,6 +1,6 @@
 <template>
-  <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" />
-  <spinner class="flex justify-center h-screen items-center"  v-if="!data" />
+  <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId"/>
+  <spinner class="flex justify-centclassNamescreen items-center" v-if="!data"/>
 </template>
 
 <script setup>
@@ -16,8 +16,8 @@ onMounted(() => {
 })
 
 async function fetchData(cityId) {
-  const HOST = process.env.RA_HOST;
-  
+  const HOST = process.env.RA_HOST || import.meta.env.VITE_BOUAYADAPP_API_URL;
+
   const options = {
     "method": "GET",
     "headers": {
@@ -26,6 +26,7 @@ async function fetchData(cityId) {
     }
   };
   const response = await fetch(`https://${HOST}/hikams/${cityId}`, options);
+  console.info('`https://${HOST}/hikams/${cityId}`', `https://${HOST}/hikams/${cityId}`)
   data.value = await response.json()
   selectedCityId.value = cityId;
 }
