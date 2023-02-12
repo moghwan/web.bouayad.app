@@ -16,7 +16,16 @@ onMounted(() => {
 })
 
 async function fetchData(cityId) {
-  const response = await fetch(`${import.meta.env.VITE_BOUAYADAPP_API_URL}/hikams/${cityId}`);
+  const HOST = process.env.RA_HOST || import.meta.env.VITE_BOUAYADAPP_API_URL;
+  
+  const options = {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": HOST,
+      "x-rapidapi-key": process.env.RA_SECRET
+    }
+  };
+  const response = await fetch(`https://${HOST}/hikams/${cityId}`, options);
   data.value = await response.json()
   selectedCityId.value = cityId;
 }
