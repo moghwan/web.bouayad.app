@@ -16,7 +16,7 @@ onMounted(() => {
 })
 
 async function fetchData(cityId) {
-  const HOST = process.env.RA_HOST || import.meta.env.VITE_BOUAYADAPP_API_URL;
+  const HOST = process.env.RA_HOST;
   
   const options = {
     "method": "GET",
