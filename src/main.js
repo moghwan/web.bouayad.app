@@ -5,6 +5,7 @@ import App from "./App.vue";
 import router from "./router";
 
 import "./assets/sass/main.scss";
+import 'lazysizes';
 
 const app = createApp(App);
 

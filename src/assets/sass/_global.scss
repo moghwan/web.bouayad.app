@@ -1,10 +1,13 @@
 body {
   content: "";
-  background: url('../img/texture.png');
-  background-size: 4rem;
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+body.lazyloaded {
+  background: url('../img/texture.png');
+  background-size: 4rem;
 }
