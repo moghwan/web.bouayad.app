@@ -26,7 +26,6 @@ async function fetchData(cityId) {
     }
   };
   const response = await fetch(`https://${HOST}/hikams/${cityId}`, options);
-  console.info('`https://${HOST}/hikams/${cityId}`', `https://${HOST}/hikams/${cityId}`)
   data.value = await response.json()
   selectedCityId.value = cityId;
 }
