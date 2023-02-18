@@ -16,13 +16,14 @@ onMounted(() => {
 })
 
 async function fetchData(cityId) {
-  const HOST = process.env.RA_HOST || import.meta.env.VITE_BOUAYADAPP_API_URL;
+  const HOST   = process.env.RA_HOST || import.meta.env.VITE_BOUAYADAPP_API_URL;
+  const SECRET = process.env.RA_SECRET || import.meta.env.VITE_BOUAYADAPP_API_SECRET;
 
   const options = {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": HOST,
-      "x-rapidapi-key": process.env.RA_SECRET
+      "x-rapidapi-key": SECRET
     }
   };
   const response = await fetch(`https://${HOST}/hikams/${cityId}`, options);
