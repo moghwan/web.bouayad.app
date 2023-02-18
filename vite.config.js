@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [
       vue(),
       webp({
-        include: fileURLToPath(new URL("./src/assets", import.meta.url)),
+        include: fileURLToPath(new URL("./src", import.meta.url)),
         declude: fileURLToPath(new URL("./src/assets/img/favicon.png", import.meta.url)),
         imageType: ['.png', '.jpg']
       })

@@ -8,9 +8,7 @@ body {
   background-size: 6rem;
 
   &.lazyloaded {
-    background-image: url('../img/texture.png');
-    &.g-webp { background-image: url('../img/texture.webp')}
+    background-image: url('../img/texture.webp');
   }
-  
 }
 
