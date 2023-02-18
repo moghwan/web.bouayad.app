@@ -28,7 +28,11 @@
 
 
 ## Features
-- TBD
+- showing random quotes daily.
+- showing prayer times for the day by selected city.
+
+## Releases
+Please see the [changelog](https://github.com/moghwan/web.bouayad.app/releases) for more details about all releases.
 
 ## Contributing
 - This repo is open to your contributions! Any improvements or a feature request are greatly appreciated.
@@ -41,6 +45,3 @@
 
 ## License
 See the [LICENSE](./LICENSE) file for licensing information.
-
-## Acknowledgements
-- TBD
