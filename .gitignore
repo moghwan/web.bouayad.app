@@ -27,3 +27,6 @@ coverage
 *.sln
 *.sw?
 .env
+
+#generated webp images
+/src/assets/img/*.webp

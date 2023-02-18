@@ -5,9 +5,12 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
+  background-size: 6rem;
+
+  &.lazyloaded {
+    background-image: url('../img/texture.png');
+    &.g-webp { background-image: url('../img/texture.webp')}
+  }
+  
 }
 
-body.lazyloaded {
-  background: url('../img/texture.png');
-  background-size: 4rem;
-}
