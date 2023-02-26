@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://www.bouayad.app" target="blank"><img src="https://github.com/moghwan/web.bouayad.app/blob/master/src/assets/img/favicon.png?raw=true" width="100" alt="Bouayadapp" /></a>
+  <a href="https://www.bouayad.app" target="blank"><img src="./public/android-chrome-192x192.png" width="100" alt="Bouayadapp" /></a>
 </p>
 
 <p align="center">  
@@ -35,6 +35,11 @@
 - Showing random quotes daily
 - Showing prayer times for the day by selected city
 - PWA Ready
+
+Homescreen shortcut |  Splash screen | Separated activity with a custom icon
+:-------------------------:|:-------------------------:|:-------------------------:
+![Screenshot_20230226-233249](https://user-images.githubusercontent.com/2495180/221441537-b4c6a31e-6ff2-4f03-9968-c7952118ea7c.png) |  ![Screenshot_20230226-233202](https://user-images.githubusercontent.com/2495180/221441540-ee8717a9-8eaf-4040-ac3d-19b7a5358299.png)| ![Screenshot_20230226-233147](https://user-images.githubusercontent.com/2495180/221441541-3b8d893c-b871-4905-b831-a456fc754ef3.png)
+
 
 ## Releases
 - A browser extension for a quicker access is alse made, can be downloaded from [Mozilla add-ons](https://addons.mozilla.org/firefox/addon/bouayadapp-%D8%A7%D9%84%D9%8A%D9%88%D9%85%D9%8A%D8%A9-%D8%A7%D9%84%D8%B9%D8%B5%D8%B1%D9%8A%D8%A9/), or load it into chromium based browsers from [source](https://github.com/moghwan/ext.bouayad.app)
