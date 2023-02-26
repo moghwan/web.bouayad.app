@@ -10,6 +10,28 @@ export default defineConfig({
       vue(),
       VitePWA({
         registerType: 'autoUpdate',
+        includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'safari-pinned-tab.svg'],
+        manifest: {
+          name: 'اليومية العصرية',
+          short_name: 'BouayadApp',
+          description: 'اليومية العصرية للحاج بوعياد هي يومية من التراث المغربي تحتوي على مجموعة من الاحاديث والآيات القرآنية اضافة الى فوائد طبية وأقوال مأثورة',
+          theme_color: '#1c6598',
+          icons: [
+            {
+              src: 'android-chrome-192x192.png',
+              sizes: '192x192',
+              type: 'image/png'
+            },
+            {
+              src: 'android-chrome-512x512.png',
+              sizes: '512x512',
+              type: 'image/png'
+            }
+          ]
+        },
+        workbox: {
+          globPatterns: ['**/*.{js,css,html,ico,png,svg}']
+        },
         devOptions: {
           enabled: true
         }
