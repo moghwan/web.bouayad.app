@@ -2,9 +2,13 @@
   <a href="https://www.bouayad.app" target="blank"><img src="https://github.com/moghwan/web.bouayad.app/blob/master/src/assets/img/favicon.png?raw=true" width="100" alt="Bouayadapp" /></a>
 </p>
 
-<p align="center">
-  <img src="https://vercelbadge.vercel.app/api/moghwan/web.bouayad.app" alt="Vercel">
+<p align="center">  
   <img src="https://img.shields.io/github/package-json/v/moghwan/web.bouayad.app" alt="Package version">
+  <a href="https://addons.mozilla.org/firefox/addon/bouayadapp-اليومية-العصرية/">
+    <img src="https://img.shields.io/amo/users/bouayadapp-اليومية-العصرية?label=Firefox%20Users&style=flat&logo=firefox" alt="Firefox addon">
+  </a>
+  
+  <img src="https://vercelbadge.vercel.app/api/moghwan/web.bouayad.app" alt="Vercel">
   <img src="https://img.shields.io/github/commit-activity/m/moghwan/web.bouayad.app?color=red" alt="Git commits activity">
   
   <a href="https://wakatime.com/badge/user/511f0a0a-6747-4b42-8e92-cbc3d9e8f61b/project/783a4238-e268-4d3e-8d44-28d5dcae559c">
@@ -32,7 +36,8 @@
 - showing prayer times for the day by selected city.
 
 ## Releases
-Please see the [changelog](https://github.com/moghwan/web.bouayad.app/releases) for more details about all releases.
+- A browser extension for a quicker access is alse made, can be downloaded from [Mozilla add-ons](https://addons.mozilla.org/firefox/addon/bouayadapp-%D8%A7%D9%84%D9%8A%D9%88%D9%85%D9%8A%D8%A9-%D8%A7%D9%84%D8%B9%D8%B5%D8%B1%D9%8A%D8%A9/), or load it into chromium based browsers from [source](https://github.com/moghwan/ext.bouayad.app).
+- Please see the [changelog](https://github.com/moghwan/web.bouayad.app/releases) for more details about all releases notes.
 
 ## Contributing
 - This repo is open to your contributions! Any improvements or a feature request are greatly appreciated.
