@@ -13,7 +13,7 @@ export default defineConfig({
         includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'safari-pinned-tab.svg'],
         manifest: {
           name: 'اليومية العصرية',
-          short_name: 'BouayadApp',
+          short_name: 'اليومية العصرية',
           description: 'اليومية العصرية للحاج بوعياد هي يومية من التراث المغربي تحتوي على مجموعة من الاحاديث والآيات القرآنية اضافة الى فوائد طبية وأقوال مأثورة',
           theme_color: '#1c6598',
           icons: [
