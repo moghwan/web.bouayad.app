@@ -15,7 +15,7 @@ export default defineConfig({
           name: 'اليومية العصرية',
           short_name: 'اليومية العصرية',
           description: 'اليومية العصرية للحاج بوعياد هي يومية من التراث المغربي تحتوي على مجموعة من الاحاديث والآيات القرآنية اضافة الى فوائد طبية وأقوال مأثورة',
-          theme_color: '#1c6598',
+          theme_color: '#ffffff',
           icons: [
             {
               src: 'android-chrome-192x192.png',
