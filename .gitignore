@@ -27,3 +27,6 @@ coverage
 *.sln
 *.sw?
 .env
+
+# PWA
+dev-dist
