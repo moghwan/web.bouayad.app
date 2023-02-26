@@ -32,16 +32,17 @@
 
 
 ## Features
-- showing random quotes daily.
-- showing prayer times for the day by selected city.
+- Showing random quotes daily
+- Showing prayer times for the day by selected city
+- PWA Ready
 
 ## Releases
-- A browser extension for a quicker access is alse made, can be downloaded from [Mozilla add-ons](https://addons.mozilla.org/firefox/addon/bouayadapp-%D8%A7%D9%84%D9%8A%D9%88%D9%85%D9%8A%D8%A9-%D8%A7%D9%84%D8%B9%D8%B5%D8%B1%D9%8A%D8%A9/), or load it into chromium based browsers from [source](https://github.com/moghwan/ext.bouayad.app).
-- Please see the [changelog](https://github.com/moghwan/web.bouayad.app/releases) for more details about all releases notes.
+- A browser extension for a quicker access is alse made, can be downloaded from [Mozilla add-ons](https://addons.mozilla.org/firefox/addon/bouayadapp-%D8%A7%D9%84%D9%8A%D9%88%D9%85%D9%8A%D8%A9-%D8%A7%D9%84%D8%B9%D8%B5%D8%B1%D9%8A%D8%A9/), or load it into chromium based browsers from [source](https://github.com/moghwan/ext.bouayad.app)
+- Please see the [changelog](https://github.com/moghwan/web.bouayad.app/releases) for more details about all releases notes
 
 ## Contributing
-- This repo is open to your contributions! Any improvements or a feature request are greatly appreciated.
-- The project is still under development, please refer to [project progress](https://github.com/users/moghwan/projects/2) and [CONTRIBUTING.md](./CONTRIBUTING.md).
+- This repo is open to your contributions! Any improvements or a feature request are greatly appreciated
+- The project is still under development, please refer to [project progress](https://github.com/users/moghwan/projects/2) and [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ## Stay in touch
 * Author - [Marwane Chaoui](https://twitter.com/moghwan)
@@ -49,4 +50,4 @@
 * Twitter - [@BouayadApp](https://twitter.com/bouayadapp)
 
 ## License
-See the [LICENSE](./LICENSE) file for licensing information.
+See the [LICENSE](./LICENSE) file for licensing information
