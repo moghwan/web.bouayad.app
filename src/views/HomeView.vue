@@ -1,6 +1,6 @@
 <template>
   <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId"/>
-  <spinner class="flex justify-centclassNamescreen items-center" v-if="!data"/>
+  <spinner class="flex justify-center h-screen items-center" v-if="!data"/>
 </template>
 
 <script setup>
