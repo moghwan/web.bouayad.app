@@ -5,6 +5,6 @@
 
 <script setup>
 import { RouterView } from "vue-router";
-import NavBottom from "@/components/partials/NavBottom.vue";
+// import NavBottom from "@/components/partials/NavBottom.vue";
 
 </script>
