@@ -134,7 +134,7 @@ const { data } = toRefs(props);
 const emit = defineEmits(['parent-refreshtheday'])
 const currentTime = ref(new Date());
 const showBack = ref(false);
-const cities = ref([
+const defaultCities = ref([
   {id: 1, name: "الرباط"},
   {id: 99, name: "مكناس"},
   {id: 81, name: "فاس"},
@@ -146,7 +146,7 @@ const cities = ref([
 ])
 
 const RTLCities = computed(() => {
-  return cities.value.slice(0).reverse()
+  return defaultCities.value.slice(0).reverse()
 })
 
 
@@ -224,7 +224,7 @@ const getSalatesWithClasses = (salawates) => {
 onMounted(() =>{
   setInterval(() => {
     currentTime.value = new Date()
-}, 30 * 1000)
+  }, 1000)
 })
 
 </script>
