@@ -70,8 +70,8 @@
                 <!--section 2: cites-->
                 <tr class="border-b">
                   <td @click="getByCity(city.id)"
-                      :class="selectedCityId === city.id ? 'bg-gray-100': ''"
-                      class="font-light py-2 text-sm cursor-pointer hover:bg-gray-50 transition-all"
+                      :class="selectedCityId === city.id ? 'bg-gray-50': ''"
+                      class="font-light py-2 text-sm cursor-pointer hover:bg-gray-100 transition-all"
                       v-for="city in RTLCities.slice(4, 8)" :key="city.id">
                     {{ city.name }}
                   </td>
@@ -86,61 +86,22 @@
                 </tr>
                 <!--section 3: filahi date with salate times-->
                 <tr>
-                  <td class="font-light text-sm">
-                    {{ data.salate_times.fajr }}
-                  </td>
-                  <td class="font-light border-r">
-                    الفجر
-                  </td>
+                  <salate-element :salate="salateTimesMorning[0]"/>
                   <td colspan="2" class="font-light">
                     {{ data.dates.dateFl.monthName.ar }}
                   </td>
                 </tr>
                 <tr>
-                  <td class="font-light text-sm">
-                    {{ data.salate_times.chourouq }}
-                  </td>
-                  <td class="font-light border-r">
-                    الشروق
-                  </td>
+                  <salate-element :salate="salateTimesMorning[1]"/>
                   <td rowspan="5" colspan="2" class="font-light text-7xl">
                     {{ data.dates.dateFl.day }}
                   </td>
                 </tr>
-                <tr>
-                  <td class="font-light text-sm">
-                    {{ data.salate_times.dhuhr }}
-                  </td>
-                  <td class="font-light border-r">
-                    الظهر
-                  </td>
-                </tr>
-                <tr>
-                  <td class="font-light text-sm">
-                    {{ data.salate_times.asr }}
-                  </td>
-                  <td class="font-light border-r">
-                    العصر
-                  </td>
-                </tr>
-                <tr>
-                  <td class="font-light text-sm">
-                    {{ data.salate_times.maghrib }}
-                  </td>
-                  <td class="font-light border-r">
-                    المغرب
-                  </td>
-                </tr>
-                <tr class="border-b">
-                  <td class="font-light text-sm">
-                    {{ data.salate_times.ishae }}
-                  </td>
-                  <td class="font-light border-r">
-                    العشاء
-                  </td>
+                <tr v-for="salate in salateTimes" :key="salate.name">
+                  <salate-element :salate="salate"/>
                 </tr>
                 <!--front hikams-->
-                <tr>
+                <tr class="border-t">
                   <td colspan="4"
                       class="font-light py-2 text-center">
                     <p v-for="hikma in data.events.hikams_front" :key="hikma.key">{{ hikma }}</p>
@@ -156,9 +117,10 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import {ref, computed, toRefs, onMounted} from "vue";
+import SalateElement from "@/components/partials/salateElement.vue";
 
-defineProps({
+const props = defineProps({
   data: {
     type: Object,
     required: true,
@@ -168,9 +130,11 @@ defineProps({
   }
 });
 
+const { data } = toRefs(props);
 const emit = defineEmits(['parent-refreshtheday'])
+const currentTime = ref(new Date());
 const showBack = ref(false);
-const cities = ref([
+const defaultCities = ref([
   {id: 1, name: "الرباط"},
   {id: 99, name: "مكناس"},
   {id: 81, name: "فاس"},
@@ -182,7 +146,32 @@ const cities = ref([
 ])
 
 const RTLCities = computed(() => {
-  return cities.value.slice(0).reverse()
+  return defaultCities.value.slice(0).reverse()
+})
+
+
+const salateTimesMorning = computed(() => {
+  let { fajr, chourouq } = data.value.salate_times;
+
+  let salateTimes = [
+    { name: "fajr", name_ar: "الفجر", time: fajr },
+    { name: "chourouq", name_ar: "الشروق", time: chourouq },
+  ];
+
+  return getSalatesWithClasses(salateTimes)
+})
+
+const salateTimes = computed(() => {
+  let { dhuhr, asr, maghrib, ishae } = data.value.salate_times;
+
+  let salateTimes = [
+    { name: "dhuhr", name_ar: "الظهر", time: dhuhr },
+    { name: "asr", name_ar: "العصر", time: asr },
+    { name: "maghrib", name_ar: "المغرب", time: maghrib },
+    { name: "ishae", name_ar: "العشاء", time: ishae },
+  ];
+
+  return getSalatesWithClasses(salateTimes)
 })
 
 const switchPage = () => {
@@ -193,5 +182,49 @@ const getByCity = (cityId) => {
   emit('parent-refreshtheday', cityId)
 }
 
+const getSalatesWithClasses = (salawates) => {
+  for (let i = 0; i < salawates.length; i++) {
+    let salate = salawates[i];
+    let [hours, minutes] = salate.time.split(":").map(Number);
+
+    let comparisonTime = new Date();
+    comparisonTime.setHours(hours, minutes);
+
+    const comparisonTime1hB = new Date();
+    comparisonTime1hB.setHours(hours - 1, minutes);
+
+    const comparisonTime20mnA = new Date();
+    comparisonTime20mnA.setHours(hours, minutes + 20);
+
+    if (
+      currentTime.value.getTime() >= comparisonTime.getTime() &&
+      currentTime.value.getTime() < comparisonTime20mnA.getTime()
+    ) {
+      salate.result = "current";
+      salate.class = "bg-red-50 text-red-900"
+    } else if (currentTime.value.getTime() > comparisonTime.getTime()) {
+      salate.result = "passed";
+      salate.class = "bg-gray-50 text-gray-600";
+    } else if (currentTime.value.getTime() < comparisonTime.getTime() && comparisonTime1hB < currentTime.value.getTime()) {
+      salate.result = "next";
+      salate.class = "bg-gray-200";
+    } else if (currentTime.value.getTime() < comparisonTime.getTime()) {
+      salate.result = "later";
+      salate.class = "text-gray-500";
+    } else {
+      salate.result = "default";
+    }
+    
+    salawates[i] = salate;
+  }
+
+  return salawates;
+}
+
+onMounted(() =>{
+  setInterval(() => {
+    currentTime.value = new Date()
+  }, 1000)
+})
 
 </script>
