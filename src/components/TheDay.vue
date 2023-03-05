@@ -86,58 +86,19 @@
                 </tr>
                 <!--section 3: filahi date with salate times-->
                 <tr>
-                  <td class="font-light text-sm">
-                    {{ data.salate_times.fajr }}
-                  </td>
-                  <td class="font-light border-r">
-                    الفجر
-                  </td>
+                  <salate-element :salate="salateTimes[0]"/>
                   <td colspan="2" class="font-light">
                     {{ data.dates.dateFl.monthName.ar }}
                   </td>
                 </tr>
                 <tr>
-                  <td class="font-light text-sm">
-                    {{ data.salate_times.chourouq }}
-                  </td>
-                  <td class="font-light border-r">
-                    الشروق
-                  </td>
+                  <salate-element :salate="salateTimes[1]"/>
                   <td rowspan="5" colspan="2" class="font-light text-7xl">
                     {{ data.dates.dateFl.day }}
                   </td>
                 </tr>
-                <tr>
-                  <td class="font-light text-sm">
-                    {{ data.salate_times.dhuhr }}
-                  </td>
-                  <td class="font-light border-r">
-                    الظهر
-                  </td>
-                </tr>
-                <tr>
-                  <td class="font-light text-sm">
-                    {{ data.salate_times.asr }}
-                  </td>
-                  <td class="font-light border-r">
-                    العصر
-                  </td>
-                </tr>
-                <tr>
-                  <td class="font-light text-sm">
-                    {{ data.salate_times.maghrib }}
-                  </td>
-                  <td class="font-light border-r">
-                    المغرب
-                  </td>
-                </tr>
-                <tr class="border-b">
-                  <td class="font-light text-sm">
-                    {{ data.salate_times.ishae }}
-                  </td>
-                  <td class="font-light border-r">
-                    العشاء
-                  </td>
+                <tr v-for="(salate, index) in salateTimes" :key="salate.name">
+                  <salate-element :salate="salate" v-if="index > 1"/>
                 </tr>
                 <!--front hikams-->
                 <tr>
@@ -156,9 +117,10 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, toRefs } from "vue";
+import SalateElement from "@/components/partials/salateElement.vue";
 
-defineProps({
+const props = defineProps({
   data: {
     type: Object,
     required: true,
@@ -168,6 +130,7 @@ defineProps({
   }
 });
 
+const { data } = toRefs(props);
 const emit = defineEmits(['parent-refreshtheday'])
 const showBack = ref(false);
 const cities = ref([
@@ -185,6 +148,21 @@ const RTLCities = computed(() => {
   return cities.value.slice(0).reverse()
 })
 
+const salateTimes = computed(() => {
+  let { fajr, chourouq, dhuhr, asr, maghrib, ishae } = data.value.salate_times;
+
+  let salateTimes = [
+    { name: "fajr", name_ar: "الفجر", time: fajr },
+    { name: "chourouq", name_ar: "الشروق", time: chourouq },
+    { name: "dhuhr", name_ar: "الظهر", time: dhuhr },
+    { name: "asr", name_ar: "العصر", time: asr },
+    { name: "maghrib", name_ar: "المغرب", time: maghrib },
+    { name: "ishae", name_ar: "العشاء", time: ishae }
+  ];
+
+  return getSalatesWithClasses(salateTimes)
+})
+
 const switchPage = () => {
   showBack.value = !showBack.value
 }
@@ -192,6 +170,28 @@ const switchPage = () => {
 const getByCity = (cityId) => {
   emit('parent-refreshtheday', cityId)
 }
+
+const getSalatesWithClasses = (salawates) => {
+  let currentTime = new Date();
+
+  for (let i = 0; i < salawates.length; i++) {
+    let comparisonTime = new Date();
+    let timeParts = salawates[i].time.split(":");
+    comparisonTime.setHours(timeParts[0]);
+    comparisonTime.setMinutes(timeParts[1]);
+
+    if (currentTime.getTime() > comparisonTime.getTime()) {
+      salawates[i].result = "before";
+    } else if (currentTime.getTime() < comparisonTime.getTime()) {
+      salawates[i].result = "after";
+    } else {
+      salawates[i].result = "equal";
+    }
+  }
+
+  return salawates;
+}
+
 
 
 </script>
