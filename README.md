@@ -15,7 +15,7 @@
     <img src="https://wakatime.com/badge/user/511f0a0a-6747-4b42-8e92-cbc3d9e8f61b/project/783a4238-e268-4d3e-8d44-28d5dcae559c.svg" alt="wakatime">
   </a>
 
-  <img src="https://img.shields.io/github/issues/moghwan/web.bouayad.app?color=purple" alt="Issues">
+  <img src="https://img.shields.io/github/issues-closed/moghwan/web.bouayad.app?color=purple" alt="Issues">
   <img src="https://img.shields.io/github/issues-pr/moghwan/web.bouayad.app?color=lightgrey" alt="Pull requests">
   <img src="https://img.shields.io/github/license/moghwan/web.bouayad.app?color=white" alt="License">
 
