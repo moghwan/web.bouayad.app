@@ -70,8 +70,8 @@
                 <!--section 2: cites-->
                 <tr class="border-b">
                   <td @click="getByCity(city.id)"
-                      :class="selectedCityId === city.id ? 'bg-gray-100': ''"
-                      class="font-light py-2 text-sm cursor-pointer hover:bg-gray-50 transition-all"
+                      :class="selectedCityId === city.id ? 'bg-gray-50': ''"
+                      class="font-light py-2 text-sm cursor-pointer hover:bg-gray-100 transition-all"
                       v-for="city in RTLCities.slice(4, 8)" :key="city.id">
                     {{ city.name }}
                   </td>
@@ -86,22 +86,22 @@
                 </tr>
                 <!--section 3: filahi date with salate times-->
                 <tr>
-                  <salate-element :salate="salateTimes[0]"/>
+                  <salate-element :salate="salateTimesMorning[0]"/>
                   <td colspan="2" class="font-light">
                     {{ data.dates.dateFl.monthName.ar }}
                   </td>
                 </tr>
                 <tr>
-                  <salate-element :salate="salateTimes[1]"/>
+                  <salate-element :salate="salateTimesMorning[1]"/>
                   <td rowspan="5" colspan="2" class="font-light text-7xl">
                     {{ data.dates.dateFl.day }}
                   </td>
                 </tr>
-                <tr v-for="(salate, index) in salateTimes" :key="salate.name">
-                  <salate-element :salate="salate" v-if="index > 1"/>
+                <tr v-for="salate in salateTimes" :key="salate.name">
+                  <salate-element :salate="salate"/>
                 </tr>
                 <!--front hikams-->
-                <tr>
+                <tr class="border-t">
                   <td colspan="4"
                       class="font-light py-2 text-center">
                     <p v-for="hikma in data.events.hikams_front" :key="hikma.key">{{ hikma }}</p>
@@ -117,7 +117,7 @@
 </template>
 
 <script setup>
-import { ref, computed, toRefs } from "vue";
+import {ref, computed, toRefs, onMounted} from "vue";
 import SalateElement from "@/components/partials/salateElement.vue";
 
 const props = defineProps({
@@ -148,16 +148,26 @@ const RTLCities = computed(() => {
   return cities.value.slice(0).reverse()
 })
 
-const salateTimes = computed(() => {
-  let { fajr, chourouq, dhuhr, asr, maghrib, ishae } = data.value.salate_times;
+
+const salateTimesMorning = computed(() => {
+  let { fajr, chourouq } = data.value.salate_times;
 
   let salateTimes = [
     { name: "fajr", name_ar: "الفجر", time: fajr },
     { name: "chourouq", name_ar: "الشروق", time: chourouq },
+  ];
+
+  return getSalatesWithClasses(salateTimes)
+})
+
+const salateTimes = computed(() => {
+  let { dhuhr, asr, maghrib, ishae } = data.value.salate_times;
+
+  let salateTimes = [
     { name: "dhuhr", name_ar: "الظهر", time: dhuhr },
     { name: "asr", name_ar: "العصر", time: asr },
     { name: "maghrib", name_ar: "المغرب", time: maghrib },
-    { name: "ishae", name_ar: "العشاء", time: ishae }
+    { name: "ishae", name_ar: "العشاء", time: ishae },
   ];
 
   return getSalatesWithClasses(salateTimes)
@@ -173,25 +183,49 @@ const getByCity = (cityId) => {
 
 const getSalatesWithClasses = (salawates) => {
   let currentTime = new Date();
-
   for (let i = 0; i < salawates.length; i++) {
     let comparisonTime = new Date();
+    let comparisonTime1hB = new Date();
+    let comparisonTime20mnA = new Date();
     let timeParts = salawates[i].time.split(":");
+    
     comparisonTime.setHours(timeParts[0]);
     comparisonTime.setMinutes(timeParts[1]);
 
-    if (currentTime.getTime() > comparisonTime.getTime()) {
-      salawates[i].result = "before";
+    comparisonTime1hB.setHours(timeParts[0]);
+    comparisonTime1hB.setMinutes(parseInt(timeParts[1]) - 60);
+
+    comparisonTime20mnA.setHours(timeParts[0]);
+    comparisonTime20mnA.setMinutes(parseInt(timeParts[1]) + 20);
+
+
+    if (
+      currentTime.getTime() >= comparisonTime.getTime() &&
+      currentTime.getTime() < comparisonTime20mnA.getTime()
+    ) {
+      salawates[i].result = "current";
+      salawates[i].class = "bg-red-50 animate-pulse text-red-900"
+    } else if (currentTime.getTime() > comparisonTime.getTime()) {
+      salawates[i].result = "passed";
+      salawates[i].class = "bg-gray-50";
+    } else if (currentTime.getTime() < comparisonTime.getTime() && comparisonTime1hB < currentTime.getTime()) {
+      salawates[i].result = "next";
+      salawates[i].class = "animate-pulse bg-orange-50 text-orange-900";
     } else if (currentTime.getTime() < comparisonTime.getTime()) {
-      salawates[i].result = "after";
+      salawates[i].result = "later";
+      salawates[i].class = "text-gray-700";
     } else {
-      salawates[i].result = "equal";
+      salawates[i].result = "default";
     }
   }
 
   return salawates;
 }
 
-
+onMounted(() =>{
+  setInterval(() => {
+    getSalatesWithClasses(salateTimes)
+}, 30 * 1000)
+})
 
 </script>

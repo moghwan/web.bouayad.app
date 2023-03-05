@@ -1,8 +1,8 @@
 <template>
-  <td class="font-light text-sm">
-    {{ salate.time }}
+  <td :class="salate.class">
+    {{ salate.time }} 
   </td>
-  <td class="font-light border-r">
+  <td class="border-r" :class="salate.class">
     {{ salate.name_ar }}
   </td>
 </template>
