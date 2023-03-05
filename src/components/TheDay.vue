@@ -207,7 +207,7 @@ const getSalatesWithClasses = (salawates) => {
       salate.class = "bg-gray-50 text-gray-600";
     } else if (currentTime.value.getTime() < comparisonTime.getTime() && comparisonTime1hB < currentTime.value.getTime()) {
       salate.result = "next";
-      salate.class = "bg-gray-200 animate-pulse";
+      salate.class = "bg-gray-200";
     } else if (currentTime.value.getTime() < comparisonTime.getTime()) {
       salate.result = "later";
       salate.class = "text-gray-500";
