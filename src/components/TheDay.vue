@@ -191,7 +191,7 @@ const getSalatesWithClasses = (salawates) => {
     comparisonTime.setHours(hours, minutes);
 
     const comparisonTime1hB = new Date();
-    comparisonTime1hB.setHours(hours, minutes - 60);
+    comparisonTime1hB.setHours(hours - 1, minutes);
 
     const comparisonTime20mnA = new Date();
     comparisonTime20mnA.setHours(hours, minutes + 20);
@@ -201,16 +201,16 @@ const getSalatesWithClasses = (salawates) => {
       currentTime.value.getTime() < comparisonTime20mnA.getTime()
     ) {
       salate.result = "current";
-      salate.class = "bg-red-50 animate-pulse text-red-900"
+      salate.class = "bg-red-50 text-red-900"
     } else if (currentTime.value.getTime() > comparisonTime.getTime()) {
       salate.result = "passed";
-      salate.class = "bg-gray-50";
+      salate.class = "bg-gray-50 text-gray-600";
     } else if (currentTime.value.getTime() < comparisonTime.getTime() && comparisonTime1hB < currentTime.value.getTime()) {
       salate.result = "next";
-      salate.class = "bg-orange-50 text-orange-900";
+      salate.class = "bg-gray-200 animate-pulse";
     } else if (currentTime.value.getTime() < comparisonTime.getTime()) {
       salate.result = "later";
-      salate.class = "text-gray-600";
+      salate.class = "text-gray-500";
     } else {
       salate.result = "default";
     }
