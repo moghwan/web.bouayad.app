@@ -132,6 +132,7 @@ const props = defineProps({
 
 const { data } = toRefs(props);
 const emit = defineEmits(['parent-refreshtheday'])
+const currentTime = ref(new Date());
 const showBack = ref(false);
 const cities = ref([
   {id: 1, name: "الرباط"},
@@ -182,41 +183,39 @@ const getByCity = (cityId) => {
 }
 
 const getSalatesWithClasses = (salawates) => {
-  let currentTime = new Date();
   for (let i = 0; i < salawates.length; i++) {
+    let salate = salawates[i];
+    let [hours, minutes] = salate.time.split(":").map(Number);
+
     let comparisonTime = new Date();
-    let comparisonTime1hB = new Date();
-    let comparisonTime20mnA = new Date();
-    let timeParts = salawates[i].time.split(":");
-    
-    comparisonTime.setHours(timeParts[0]);
-    comparisonTime.setMinutes(timeParts[1]);
+    comparisonTime.setHours(hours, minutes);
 
-    comparisonTime1hB.setHours(timeParts[0]);
-    comparisonTime1hB.setMinutes(parseInt(timeParts[1]) - 60);
+    const comparisonTime1hB = new Date();
+    comparisonTime1hB.setHours(hours, minutes - 60);
 
-    comparisonTime20mnA.setHours(timeParts[0]);
-    comparisonTime20mnA.setMinutes(parseInt(timeParts[1]) + 20);
-
+    const comparisonTime20mnA = new Date();
+    comparisonTime20mnA.setHours(hours, minutes + 20);
 
     if (
-      currentTime.getTime() >= comparisonTime.getTime() &&
-      currentTime.getTime() < comparisonTime20mnA.getTime()
+      currentTime.value.getTime() >= comparisonTime.getTime() &&
+      currentTime.value.getTime() < comparisonTime20mnA.getTime()
     ) {
-      salawates[i].result = "current";
-      salawates[i].class = "bg-red-50 animate-pulse text-red-900"
-    } else if (currentTime.getTime() > comparisonTime.getTime()) {
-      salawates[i].result = "passed";
-      salawates[i].class = "bg-gray-50";
-    } else if (currentTime.getTime() < comparisonTime.getTime() && comparisonTime1hB < currentTime.getTime()) {
-      salawates[i].result = "next";
-      salawates[i].class = "animate-pulse bg-orange-50 text-orange-900";
-    } else if (currentTime.getTime() < comparisonTime.getTime()) {
-      salawates[i].result = "later";
-      salawates[i].class = "text-gray-700";
+      salate.result = "current";
+      salate.class = "bg-red-50 animate-pulse text-red-900"
+    } else if (currentTime.value.getTime() > comparisonTime.getTime()) {
+      salate.result = "passed";
+      salate.class = "bg-gray-50";
+    } else if (currentTime.value.getTime() < comparisonTime.getTime() && comparisonTime1hB < currentTime.value.getTime()) {
+      salate.result = "next";
+      salate.class = "bg-orange-50 text-orange-900";
+    } else if (currentTime.value.getTime() < comparisonTime.getTime()) {
+      salate.result = "later";
+      salate.class = "text-gray-600";
     } else {
-      salawates[i].result = "default";
+      salate.result = "default";
     }
+    
+    salawates[i] = salate;
   }
 
   return salawates;
@@ -224,7 +223,7 @@ const getSalatesWithClasses = (salawates) => {
 
 onMounted(() =>{
   setInterval(() => {
-    getSalatesWithClasses(salateTimes)
+    currentTime.value = new Date()
 }, 30 * 1000)
 })
 
