@@ -4,8 +4,12 @@
 
 <p align="center">  
   <img src="https://img.shields.io/github/package-json/v/moghwan/web.bouayad.app" alt="Package version">
+  
   <a href="https://addons.mozilla.org/firefox/addon/bouayadapp-اليومية-العصرية/">
     <img src="https://img.shields.io/amo/users/bouayadapp-اليومية-العصرية?label=Firefox%20Users&style=flat&logo=firefox" alt="Firefox addon">
+  </a>
+  <a href="https://chrome.google.com/webstore/detail/bouayadapp-اليومية-العصري/homjiaebdnpmepkeiiipamadbbpkgcij">
+    <img src="https://img.shields.io/chrome-web-store/users/homjiaebdnpmepkeiiipamadbbpkgcij?label=Chrome%20Users&style=flat&logo=googlechrome" alt="Chrome addon">
   </a>
   
   <img src="https://vercelbadge.vercel.app/api/moghwan/web.bouayad.app" alt="Vercel">
