@@ -128,9 +128,7 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-  selectedCityId: {
-    required: true,
-  }
+  selectedCityId: { required: true }
 });
 
 const { data } = toRefs(props);
@@ -138,7 +136,6 @@ const emit = defineEmits(['parent-refreshtheday'])
 const currentTime = ref(new Date());
 const showBack = ref(false);
 const showFirstHikma = ref(true);
-
 const defaultCities = ref([
   {id: 1, name: "الرباط"},
   {id: 99, name: "مكناس"},
@@ -150,21 +147,11 @@ const defaultCities = ref([
   {id: 58, name: "البيضاء"},
 ])
 
-const RTLCities = computed(() => {
-  return defaultCities.value.slice(0).reverse()
-})
+const RTLCities = computed(() => defaultCities.value.slice(0).reverse())
 
-const countHikamsFront = computed(() => {
-  return data.value.events.hikams_front.length;
-})
-
-const firstHikma = computed(() => {
-  return data.value.events.hikams_front[0];  
-})
-
-const secondHikma = computed(() => {
-  return data.value.events.hikams_front[1];  
-})
+const countHikamsFront = computed(() => data.value.events.hikams_front.length)
+const firstHikma = computed(() => data.value.events.hikams_front[0])
+const secondHikma = computed(() => data.value.events.hikams_front[1])
 
 const salateTimesMorning = computed(() => {
   let { fajr, chourouq } = data.value.salate_times;
@@ -190,13 +177,8 @@ const salateTimes = computed(() => {
   return getSalatesWithClasses(salateTimes)
 })
 
-const switchPage = () => {
-  showBack.value = !showBack.value
-}
-
-const getByCity = (cityId) => {
-  emit('parent-refreshtheday', cityId)
-}
+const switchPage = () => showBack.value = !showBack.value;
+const getByCity = (cityId) => emit('parent-refreshtheday', cityId)
 
 const getSalatesWithClasses = (salawates) => {
   for (let i = 0; i < salawates.length; i++) {
