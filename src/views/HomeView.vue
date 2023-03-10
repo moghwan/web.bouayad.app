@@ -1,15 +1,19 @@
 <template>
-  <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId"/>
-  <spinner class="flex justify-center h-screen items-center" v-if="!data"/>
+  <div v-auto-animate="{ duration: 500 }">
+    <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId"/>
+    <spinner class="flex justify-center h-screen items-center" v-if="!data"/>
+  </div>
 </template>
 
 <script setup>
 import {onMounted, ref} from "vue";
 import TheDay from "@/components/TheDay.vue";
 import Spinner from "@/components/partials/SpinnerLoader.vue";
+import {useCityStore} from "@/stores/city"
 
+const store = useCityStore();
 const data = ref(null);
-const selectedCityId = ref(1);
+const selectedCityId = ref(store.cityId);
 
 onMounted(() => {
   fetchData(selectedCityId.value)

@@ -4,8 +4,8 @@
       <!--main layout-->
       <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="overflow-hidden">
+          <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8 overflow-y-hidden">
+            <div class="overflow-hidden" v-auto-animate>
               <!--app name-->
               <div @click="switchPage" class="pb-1 border-b ff-arabic-style text-3xl cursor-pointer">
                 اليومية العصرية
@@ -69,7 +69,7 @@
                 </tr>
                 <!--section 2: cites-->
                 <tr class="border-b">
-                  <td @click="getByCity(city.id)"
+                  <td @click="getByCity(city)"
                       :class="selectedCityId === city.id ? 'bg-gray-50': ''"
                       class="font-light py-2 text-sm cursor-pointer hover:bg-gray-100 transition-all"
                       v-for="city in RTLCities.slice(4, 8)" :key="city.id">
@@ -77,7 +77,7 @@
                   </td>
                 </tr>
                 <tr class="border-b">
-                  <td @click="getByCity(city.id)"
+                  <td @click="getByCity(city)"
                       :class="selectedCityId === city.id ? 'bg-gray-100': ''"
                       class="font-light py-2 text-sm cursor-pointer hover:bg-gray-50 transition-all"
                       v-for="city in RTLCities.slice(0, 4)" :key="city.id">
@@ -103,8 +103,11 @@
                 <!--front hikams-->
                 <tr class="border-t">
                   <td colspan="4"
-                      class="font-light py-2 text-center">
-                    <p v-for="hikma in data.events.hikams_front" :key="hikma.key">{{ hikma }}</p>
+                      class="font-light py-2 text-center"
+                      v-auto-animate
+                  >
+                    <p v-if="(countHikamsFront === 2 && showFirstHikma) || countHikamsFront === 1">{{ firstHikma }}</p>
+                    <p v-if="countHikamsFront === 2 && !showFirstHikma">{{ secondHikma }}</p>
                   </td>
                 </tr>
               </table>
@@ -119,21 +122,22 @@
 <script setup>
 import {ref, computed, toRefs, onMounted} from "vue";
 import SalateElement from "@/components/partials/salateElement.vue";
+import { useCityStore } from "@/stores/city"
 
+const store = useCityStore();
 const props = defineProps({
   data: {
     type: Object,
     required: true,
   },
-  selectedCityId: {
-    required: true,
-  }
+  selectedCityId: { required: true },
 });
 
 const { data } = toRefs(props);
 const emit = defineEmits(['parent-refreshtheday'])
 const currentTime = ref(new Date());
 const showBack = ref(false);
+const showFirstHikma = ref(true);
 const defaultCities = ref([
   {id: 1, name: "الرباط"},
   {id: 99, name: "مكناس"},
@@ -145,10 +149,11 @@ const defaultCities = ref([
   {id: 58, name: "البيضاء"},
 ])
 
-const RTLCities = computed(() => {
-  return defaultCities.value.slice(0).reverse()
-})
+const RTLCities = computed(() => defaultCities.value.slice(0).reverse())
 
+const countHikamsFront = computed(() => data.value.events.hikams_front.length)
+const firstHikma = computed(() => data.value.events.hikams_front[0])
+const secondHikma = computed(() => data.value.events.hikams_front[1])
 
 const salateTimesMorning = computed(() => {
   let { fajr, chourouq } = data.value.salate_times;
@@ -174,12 +179,11 @@ const salateTimes = computed(() => {
   return getSalatesWithClasses(salateTimes)
 })
 
-const switchPage = () => {
-  showBack.value = !showBack.value
-}
+const switchPage = () => showBack.value = !showBack.value;
 
-const getByCity = (cityId) => {
-  emit('parent-refreshtheday', cityId)
+const getByCity = (city) => {
+  store.update(city)
+  emit('parent-refreshtheday', city.id)
 }
 
 const getSalatesWithClasses = (salawates) => {
@@ -225,6 +229,9 @@ onMounted(() =>{
   setInterval(() => {
     currentTime.value = new Date()
   }, 1000)
+  setInterval(() => {
+    showFirstHikma.value = !showFirstHikma.value;
+  }, 3000)
 })
 
 </script>
