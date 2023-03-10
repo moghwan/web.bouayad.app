@@ -69,7 +69,7 @@
                 </tr>
                 <!--section 2: cites-->
                 <tr class="border-b">
-                  <td @click="getByCity(city.id)"
+                  <td @click="getByCity(city)"
                       :class="selectedCityId === city.id ? 'bg-gray-50': ''"
                       class="font-light py-2 text-sm cursor-pointer hover:bg-gray-100 transition-all"
                       v-for="city in RTLCities.slice(4, 8)" :key="city.id">
@@ -77,7 +77,7 @@
                   </td>
                 </tr>
                 <tr class="border-b">
-                  <td @click="getByCity(city.id)"
+                  <td @click="getByCity(city)"
                       :class="selectedCityId === city.id ? 'bg-gray-100': ''"
                       class="font-light py-2 text-sm cursor-pointer hover:bg-gray-50 transition-all"
                       v-for="city in RTLCities.slice(0, 4)" :key="city.id">
@@ -122,13 +122,15 @@
 <script setup>
 import {ref, computed, toRefs, onMounted} from "vue";
 import SalateElement from "@/components/partials/salateElement.vue";
+import { useCityStore } from "@/stores/city"
 
+const store = useCityStore();
 const props = defineProps({
   data: {
     type: Object,
     required: true,
   },
-  selectedCityId: { required: true }
+  selectedCityId: { required: true },
 });
 
 const { data } = toRefs(props);
@@ -178,7 +180,11 @@ const salateTimes = computed(() => {
 })
 
 const switchPage = () => showBack.value = !showBack.value;
-const getByCity = (cityId) => emit('parent-refreshtheday', cityId)
+
+const getByCity = (city) => {
+  store.update(city)
+  emit('parent-refreshtheday', city.id)
+}
 
 const getSalatesWithClasses = (salawates) => {
   for (let i = 0; i < salawates.length; i++) {

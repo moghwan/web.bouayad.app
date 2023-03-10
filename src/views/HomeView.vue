@@ -9,9 +9,11 @@
 import {onMounted, ref} from "vue";
 import TheDay from "@/components/TheDay.vue";
 import Spinner from "@/components/partials/SpinnerLoader.vue";
+import {useCityStore} from "@/stores/city"
 
+const store = useCityStore();
 const data = ref(null);
-const selectedCityId = ref(1);
+const selectedCityId = ref(store.cityId);
 
 onMounted(() => {
   fetchData(selectedCityId.value)
