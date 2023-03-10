@@ -103,8 +103,11 @@
                 <!--front hikams-->
                 <tr class="border-t">
                   <td colspan="4"
-                      class="font-light py-2 text-center">
-                    <p v-for="hikma in data.events.hikams_front" :key="hikma.key">{{ hikma }}</p>
+                      class="font-light py-2 text-center"
+                      v-auto-animate
+                  >
+                    <p v-if="(countHikamsFront === 2 && showFirstHikma) || countHikamsFront === 1">{{ firstHikma }}</p>
+                    <p v-if="countHikamsFront === 2 && !showFirstHikma">{{ secondHikma }}</p>
                   </td>
                 </tr>
               </table>
@@ -134,6 +137,8 @@ const { data } = toRefs(props);
 const emit = defineEmits(['parent-refreshtheday'])
 const currentTime = ref(new Date());
 const showBack = ref(false);
+const showFirstHikma = ref(true);
+
 const defaultCities = ref([
   {id: 1, name: "الرباط"},
   {id: 99, name: "مكناس"},
@@ -149,6 +154,17 @@ const RTLCities = computed(() => {
   return defaultCities.value.slice(0).reverse()
 })
 
+const countHikamsFront = computed(() => {
+  return data.value.events.hikams_front.length;
+})
+
+const firstHikma = computed(() => {
+  return data.value.events.hikams_front[0];  
+})
+
+const secondHikma = computed(() => {
+  return data.value.events.hikams_front[1];  
+})
 
 const salateTimesMorning = computed(() => {
   let { fajr, chourouq } = data.value.salate_times;
@@ -225,6 +241,9 @@ onMounted(() =>{
   setInterval(() => {
     currentTime.value = new Date()
   }, 1000)
+  setInterval(() => {
+    showFirstHikma.value = !showFirstHikma.value;
+  }, 3000)
 })
 
 </script>
