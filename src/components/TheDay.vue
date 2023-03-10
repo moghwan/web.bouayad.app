@@ -5,7 +5,7 @@
       <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="overflow-hidden">
+            <div class="overflow-hidden" v-auto-animate>
               <!--app name-->
               <div @click="switchPage" class="pb-1 border-b ff-arabic-style text-3xl cursor-pointer">
                 اليومية العصرية

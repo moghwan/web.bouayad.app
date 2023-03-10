@@ -9,6 +9,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^1.0.0-beta.6",
     "dotenv": "^16.0.3",
     "pinia": "^2.0.28",
     "vue": "^3.2.45",
