@@ -59,7 +59,7 @@
 
 |                            Splash screen                                                                                       |                                                           In action                                                            |                                             Separated activity                                              |
 |:------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|
-|<img height="600" src="https://user-images.githubusercontent.com/2495180/221441540-ee8717a9-8eaf-4040-ac3d-19b7a5358299.png" >  |                                                   <img height="600" src="https://user-images.githubusercontent.com/2495180/224451926-b2099adf-0645-4a80-a0fb-c4b745689ad0.gif" >                                                   | <img height="600" src="https://user-images.githubusercontent.com/2495180/221441541-3b8d893c-b871-4905-b831-a456fc754ef3.png" > |
+|<img height="500" src="https://user-images.githubusercontent.com/2495180/221441540-ee8717a9-8eaf-4040-ac3d-19b7a5358299.png" >  |                                                   <img height="500" src="https://user-images.githubusercontent.com/2495180/224451926-b2099adf-0645-4a80-a0fb-c4b745689ad0.gif" >                                                   | <img height="500" src="https://user-images.githubusercontent.com/2495180/221441541-3b8d893c-b871-4905-b831-a456fc754ef3.png" > |
 
 
 ## Contributing
