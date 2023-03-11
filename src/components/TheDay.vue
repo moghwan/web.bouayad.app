@@ -12,7 +12,7 @@
               </div>
 
               <!--back page-->
-              <table v-if="showBack" id="day-back" class="h-96 min-w-full w-10">
+              <table v-if="showBack" id="day-back" class="h-96 min-w-full">
                 <tr class="h-7">
                   <td class="py-2 text-center">
                     <p class="text-lg">مقولة اليوم</p>
@@ -28,7 +28,7 @@
               </table>
 
               <!--front page -->
-              <table v-if="!showBack" id="day-front" class="text-lg h-96 min-w-full w-10">
+              <table v-if="!showBack" id="day-front" class="text-lg h-96 min-w-full">
                 <!--section 1: hijri/gregorian dates in fr/ar-->
                 <!--month/year row-->
                 <tr class="border-b">
