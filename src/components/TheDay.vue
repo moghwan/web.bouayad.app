@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center h-screen items-center">
-    <div class="block rounded-lg shadow-lg bg-white max-w-sm text-center w-80">
+    <div class="block rounded-lg shadow-lg bg-white min-w-fit text-center sm:w-96 w-9/12">
       <!--main layout-->
       <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -12,22 +12,23 @@
               </div>
 
               <!--back page-->
-              <table v-if="showBack" id="day-back" class="h-96 min-w-full">
+              <table v-if="showBack" id="day-back" class="h-96 min-w-full w-10">
                 <tr class="h-7">
                   <td class="py-2 text-center">
-                    <p>مقولة اليوم</p>
+                    <p class="text-lg">مقولة اليوم</p>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <p class="px-5 font-light leading-7" v-for="hikma in data.events.hikams_back" :key="hikma.key">
-                      {{ hikma }}</p>
+                    <p class="px-5 text-lg font-light leading-7" v-for="hikma in data.events.hikams_back" :key="hikma.key">
+                      {{ hikma }}
+                    </p>
                   </td>
                 </tr>
               </table>
 
               <!--front page -->
-              <table v-if="!showBack" id="day-front" class="h-96 min-w-full">
+              <table v-if="!showBack" id="day-front" class="text-lg h-96 min-w-full w-10">
                 <!--section 1: hijri/gregorian dates in fr/ar-->
                 <!--month/year row-->
                 <tr class="border-b">
@@ -51,10 +52,10 @@
                 </tr>
                 <!--day number row-->
                 <tr>
-                  <td colspan="2" class="text-7xl font-light py-2 border-r">
+                  <td colspan="2" class="text-8xl font-light py-2 border-r">
                     {{ data.dates.dateCr.day }}
                   </td>
-                  <td colspan="2" class="text-7xl font-light py-2">
+                  <td colspan="2" class="text-8xl font-light py-2">
                     {{ data.dates.dateHj.day }}
                   </td>
                 </tr>
@@ -71,7 +72,7 @@
                 <tr class="border-b">
                   <td @click="getByCity(city)"
                       :class="selectedCityId === city.id ? 'bg-gray-50': ''"
-                      class="font-light py-2 text-sm cursor-pointer hover:bg-gray-100 transition-all"
+                      class="font-light py-2 text-base cursor-pointer hover:bg-gray-100 transition-all"
                       v-for="city in RTLCities.slice(4, 8)" :key="city.id">
                     {{ city.name }}
                   </td>
@@ -79,7 +80,7 @@
                 <tr class="border-b">
                   <td @click="getByCity(city)"
                       :class="selectedCityId === city.id ? 'bg-gray-100': ''"
-                      class="font-light py-2 text-sm cursor-pointer hover:bg-gray-50 transition-all"
+                      class="font-light py-2 text-base cursor-pointer hover:bg-gray-50 transition-all"
                       v-for="city in RTLCities.slice(0, 4)" :key="city.id">
                     {{ city.name }}
                   </td>
@@ -93,7 +94,7 @@
                 </tr>
                 <tr>
                   <salate-element :salate="salateTimesMorning[1]"/>
-                  <td rowspan="5" colspan="2" class="font-light text-7xl">
+                  <td rowspan="5" colspan="2" class="font-light text-8xl">
                     {{ data.dates.dateFl.day }}
                   </td>
                 </tr>
