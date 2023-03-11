@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center h-screen items-center">
-    <div class="block rounded-lg shadow-lg bg-white max-w-sm text-center sm:w-96">
+    <div class="block rounded-lg shadow-lg bg-white max-w-sm text-center w-96">
       <!--main layout-->
       <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
