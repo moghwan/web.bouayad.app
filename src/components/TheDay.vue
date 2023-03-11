@@ -4,7 +4,7 @@
       <!--main layout-->
       <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8 overflow-y-hidden">
+          <div class="pt-2 inline-block min-w-full sm:px-6 lg:px-8 overflow-y-hidden">
             <div class="overflow-hidden" v-auto-animate>
               <!--app name-->
               <div @click="switchPage" class="pb-1 border-b ff-arabic-style text-3xl cursor-pointer">
@@ -86,19 +86,19 @@
                   </td>
                 </tr>
                 <!--section 3: filahi date with salate times-->
-                <tr>
+                <tr class="text-base">
                   <salate-element :salate="salateTimesMorning[0]"/>
                   <td colspan="2" class="font-light">
                     {{ data.dates.dateFl.monthName.ar }}
                   </td>
                 </tr>
-                <tr>
+                <tr class="text-base">
                   <salate-element :salate="salateTimesMorning[1]"/>
                   <td rowspan="5" colspan="2" class="font-light text-8xl">
                     {{ data.dates.dateFl.day }}
                   </td>
                 </tr>
-                <tr v-for="salate in salateTimes" :key="salate.name">
+                <tr class="text-base" v-for="salate in salateTimes" :key="salate.name">
                   <salate-element :salate="salate"/>
                 </tr>
                 <!--front hikams-->
