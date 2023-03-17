@@ -1,10 +1,10 @@
 <template>
   <div class="flex justify-center h-screen items-center">
-    <div class="block rounded-lg shadow-lg bg-white max-w-sm text-center w-80">
+    <div class="block rounded-lg shadow-lg bg-white max-w-sm text-center" :class="!isTooSmall ? 'w-96' : 'w-80'">
       <!--main layout-->
       <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8 overflow-y-hidden">
+          <div class="inline-block min-w-full sm:px-6 lg:px-8 overflow-y-hidden" :class="!isTooSmall ? 'pt-2' : 'py-2'">
             <div class="overflow-hidden" v-auto-animate>
               <!--app name-->
               <div @click="switchPage" class="pb-1 border-b ff-arabic-style text-3xl cursor-pointer">
@@ -15,19 +15,24 @@
               <table v-if="showBack" id="day-back" class="h-96 min-w-full">
                 <tr class="h-7">
                   <td class="py-2 text-center">
-                    <p>مقولة اليوم</p>
+                    <p :class="!isTooSmall ? 'text-lg' : null">مقولة اليوم</p>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <p class="px-5 font-light leading-7" v-for="hikma in data.events.hikams_back" :key="hikma.key">
-                      {{ hikma }}</p>
+                    <p class="px-5 font-light leading-7" 
+                       :class="!isTooSmall ? 'text-lg' : null"
+                       v-for="hikma in data.events.hikams_back" 
+                       :key="hikma.key"
+                    >
+                      {{ hikma }}
+                    </p>
                   </td>
                 </tr>
               </table>
 
               <!--front page -->
-              <table v-if="!showBack" id="day-front" class="h-96 min-w-full">
+              <table v-if="!showBack" id="day-front" class="h-96 min-w-full" :class="!isTooSmall ? 'text-lg' : null">
                 <!--section 1: hijri/gregorian dates in fr/ar-->
                 <!--month/year row-->
                 <tr class="border-b">
@@ -51,10 +56,10 @@
                 </tr>
                 <!--day number row-->
                 <tr>
-                  <td colspan="2" class="text-7xl font-light py-2 border-r">
+                  <td colspan="2" :class="!isTooSmall ? 'text-8xl' : 'text-7xl'" class="font-light py-2 border-r">
                     {{ data.dates.dateCr.day }}
                   </td>
-                  <td colspan="2" class="text-7xl font-light py-2">
+                  <td colspan="2" :class="!isTooSmall ? 'text-8xl' : 'text-7xl'" class="font-light py-2">
                     {{ data.dates.dateHj.day }}
                   </td>
                 </tr>
@@ -70,34 +75,34 @@
                 <!--section 2: cites-->
                 <tr class="border-b">
                   <td @click="getByCity(city)"
-                      :class="selectedCityId === city.id ? 'bg-gray-50': ''"
-                      class="font-light py-2 text-sm cursor-pointer hover:bg-gray-100 transition-all"
+                      :class="[!isTooSmall ? 'text-base' : 'text-sm', selectedCityId === city.id ? 'bg-gray-50': '']"
+                      class="font-light py-2 cursor-pointer hover:bg-gray-100 transition-all"
                       v-for="city in RTLCities.slice(4, 8)" :key="city.id">
                     {{ city.name }}
                   </td>
                 </tr>
                 <tr class="border-b">
                   <td @click="getByCity(city)"
-                      :class="selectedCityId === city.id ? 'bg-gray-100': ''"
-                      class="font-light py-2 text-sm cursor-pointer hover:bg-gray-50 transition-all"
+                      :class="[!isTooSmall ? 'text-base' : 'text-sm', selectedCityId === city.id ? 'bg-gray-50': '']"
+                      class="font-light py-2 cursor-pointer hover:bg-gray-100 transition-all"
                       v-for="city in RTLCities.slice(0, 4)" :key="city.id">
                     {{ city.name }}
                   </td>
                 </tr>
                 <!--section 3: filahi date with salate times-->
-                <tr>
+                <tr :class="!isTooSmall ? 'text-base' : null">
                   <salate-element :salate="salateTimesMorning[0]"/>
                   <td colspan="2" class="font-light">
                     {{ data.dates.dateFl.monthName.ar }}
                   </td>
                 </tr>
-                <tr>
+                <tr :class="!isTooSmall ? 'text-base' : null">
                   <salate-element :salate="salateTimesMorning[1]"/>
-                  <td rowspan="5" colspan="2" class="font-light text-7xl">
+                  <td rowspan="5" colspan="2" class="font-light" :class="!isTooSmall ? 'text-8xl' : 'text-7xl'">
                     {{ data.dates.dateFl.day }}
                   </td>
                 </tr>
-                <tr v-for="salate in salateTimes" :key="salate.name">
+                <tr :class="!isTooSmall ? 'text-lg' : null" v-for="salate in salateTimes" :key="salate.name">
                   <salate-element :salate="salate"/>
                 </tr>
                 <!--front hikams-->
@@ -134,6 +139,7 @@ const props = defineProps({
 });
 
 const { data } = toRefs(props);
+const windowWidth = ref(window.innerWidth)
 const emit = defineEmits(['parent-refreshtheday'])
 const currentTime = ref(new Date());
 const showBack = ref(false);
@@ -225,13 +231,22 @@ const getSalatesWithClasses = (salawates) => {
   return salawates;
 }
 
+const onResize = () => {
+  windowWidth.value = window.innerWidth
+}
+const isTooSmall = computed(() => windowWidth.value <= 500)
+
 onMounted(() =>{
+  window.addEventListener('resize', onResize);
+  
   setInterval(() => {
     currentTime.value = new Date()
   }, 1000)
-  setInterval(() => {
-    showFirstHikma.value = !showFirstHikma.value;
-  }, 3000)
+  if(countHikamsFront.value > 1) {
+    setInterval(() => {
+      showFirstHikma.value = !showFirstHikma.value;
+    }, 3000)
+  }
 })
 
 </script>
