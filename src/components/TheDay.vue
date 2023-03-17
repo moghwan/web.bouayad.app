@@ -90,13 +90,13 @@
                   </td>
                 </tr>
                 <!--section 3: filahi date with salate times-->
-                <tr :class="!isTooSmall ? 'text-base' : null">
+                <tr :class="!isTooSmall ? 'text-lg' : null">
                   <salate-element :salate="salateTimesMorning[0]"/>
                   <td colspan="2" class="font-light">
                     {{ data.dates.dateFl.monthName.ar }}
                   </td>
                 </tr>
-                <tr :class="!isTooSmall ? 'text-base' : null">
+                <tr :class="!isTooSmall ? 'text-lg' : null">
                   <salate-element :salate="salateTimesMorning[1]"/>
                   <td rowspan="5" colspan="2" class="font-light" :class="!isTooSmall ? 'text-8xl' : 'text-7xl'">
                     {{ data.dates.dateFl.day }}
