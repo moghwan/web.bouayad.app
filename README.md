@@ -3,6 +3,7 @@
 </p>
 
 <p align="center">  
+  <img src="https://vercelbadge.vercel.app/api/moghwan/web.bouayad.app" alt="Vercel">
   <img src="https://img.shields.io/github/package-json/v/moghwan/web.bouayad.app" alt="Package version">
 
   <a href="https://addons.mozilla.org/firefox/addon/bouayadapp-اليومية-العصرية/">
@@ -18,13 +19,6 @@
     <img src="https://www.pwa-shields.com/1.0.0/series/classic/white/gray.svg" alt="PWA">
   </a>
 
-  <img src="https://vercelbadge.vercel.app/api/moghwan/web.bouayad.app" alt="Vercel">
-  <img src="https://img.shields.io/github/commit-activity/m/moghwan/web.bouayad.app?color=red" alt="Git commits activity">
-
-  <a href="https://wakatime.com/badge/user/511f0a0a-6747-4b42-8e92-cbc3d9e8f61b/project/783a4238-e268-4d3e-8d44-28d5dcae559c">
-    <img src="https://wakatime.com/badge/user/511f0a0a-6747-4b42-8e92-cbc3d9e8f61b/project/783a4238-e268-4d3e-8d44-28d5dcae559c.svg" alt="wakatime">
-  </a>
-
   <img src="https://img.shields.io/github/license/moghwan/web.bouayad.app?color=white" alt="License">
   <img src="https://img.shields.io/github/issues-closed/moghwan/web.bouayad.app?color=purple" alt="Issues">
 
@@ -32,10 +26,10 @@
     <img src="https://img.shields.io/badge/@bouayadapp-follow-blue.svg?color=9cf&logo=twitter" alt="Twitter">
   </a>
   <a href="https://www.buymeacoffee.com/moghwan">
-    <img src="https://img.shields.io/badge/buymeacoffee-donate-yellow.svg?logo=buymeacoffee" alt="buymeacoffee">
+    <img src="https://img.shields.io/badge/buymeacoffee-support-yellow.svg?logo=buymeacoffee" alt="buymeacoffee">
   </a>
   <a href="https://paypal.me/chaouimar1">
-    <img src="https://img.shields.io/badge/Paypal-donate-navy.svg?logo=paypal" alt="Paypal">
+    <img src="https://img.shields.io/badge/Paypal-support-navy.svg?logo=paypal" alt="Paypal">
   </a>
 </p>
 
