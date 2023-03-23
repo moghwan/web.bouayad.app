@@ -29,7 +29,7 @@
               :class="selected === 0 ? 'text-indigo-600' : 'text-gray-700'"
               class="ml-2 text-sm font-medium transition-all ease-out transition-medium"
             >
-              Home
+              Display mode
             </span>
           </button>
         </li>
@@ -56,7 +56,7 @@
               :class="selected === 1 ? 'text-indigo-600' : 'text-gray-700'"
               class="ml-2 text-sm font-medium transition-all ease-out transition-medium"
             >
-              Popular
+              Ramadan Mode
             </span>
           </button>
         </li>
@@ -88,7 +88,7 @@
               :class="selected === 2 ? 'text-indigo-600' : 'text-gray-700'"
               class="ml-2 text-sm font-medium transition-all ease-out transition-medium"
             >
-              Trending
+              Toggle Salate Times
             </span>
           </button>
         </li>
@@ -120,7 +120,7 @@
               :class="selected === 3 ? 'text-indigo-600' : 'text-gray-700'"
               class="ml-2 text-sm font-medium transition-all ease-out transition-medium"
             >
-              Subscriptions
+              Toggle Dark Mode
             </span>
           </button>
         </li>
@@ -147,7 +147,7 @@
               :class="selected === 4 ? 'text-indigo-600' : 'text-gray-700'"
               class="ml-2 text-sm font-medium transition-all ease-out transition-medium"
             >
-              Bookmarks
+              Progress
             </span>
           </button>
         </li>
@@ -184,7 +184,7 @@
               :class="selected === 5 ? 'text-indigo-600' : 'text-gray-700'"
               class="ml-2 text-sm font-medium transition-all ease-out transition-medium"
             >
-              History
+              Settings
             </span>
           </button>
         </li>
