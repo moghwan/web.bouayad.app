@@ -248,7 +248,7 @@ onMounted(() =>{
   if(countHikamsFront.value > 1) {
     setInterval(() => {
       showFirstHikma.value = !showFirstHikma.value;
-    }, 3000)
+    }, 4000)
   }
 })
 
