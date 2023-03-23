@@ -37,6 +37,8 @@ const props = defineProps({
   selected: { required: true },
   label: {required: true },
   id: {required: true },
+  route: {required: true },
+  icon: {required: true },
 });
 
 const id = toRef(props,'id'); // react to prop
