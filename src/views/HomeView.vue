@@ -1,7 +1,10 @@
 <template>
-  <div v-auto-animate="{ duration: 500 }">
-    <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId"/>
-    <spinner class="flex justify-center h-screen items-center" v-if="!data"/>
+  <div v-auto-animate="{ duration: 500 }" class="grid grid-cols-3 gap-4">
+    <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" :class="!showPanel ? 'col-span-3' : null"/>
+    <div class="col-span-2 text-center h-auto bg-red-100" v-if="data && showPanel">
+      <button @click="showPanel = !showPanel">hide me</button>
+    </div>
+    <spinner class="flex justify-center h-screen items-center col-span-3" v-if="!data"/>
   </div>
 </template>
 
@@ -14,6 +17,7 @@ import {useCityStore} from "@/stores/city"
 const store = useCityStore();
 const data = ref(null);
 const selectedCityId = ref(store.cityId);
+const showPanel = ref(false);
 
 onMounted(() => {
   fetchData(selectedCityId.value)
