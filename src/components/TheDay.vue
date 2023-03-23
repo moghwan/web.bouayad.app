@@ -19,14 +19,13 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>
-                    <p class="px-5 font-light leading-7" 
-                       :class="!isTooSmall ? 'text-lg' : null"
-                       v-for="hikma in data.events.hikams_back" 
-                       :key="hikma.key"
-                    >
-                      {{ hikma }}
-                    </p>
+                  <td v-auto-animate>
+                      <p class="px-5 font-light leading-7" 
+                         :class="!isTooSmall ? 'text-lg' : null"
+                         v-if="(countHikamsBack === 2 && showFirstHikma) || countHikamsBack === 1">{{ firstHikmaB }}</p>
+                      <p class="px-5 font-light leading-7" 
+                         :class="!isTooSmall ? 'text-lg' : null"
+                         v-if="countHikamsBack === 2 && !showFirstHikma">{{ secondHikmaB }}</p>
                   </td>
                 </tr>
               </table>
@@ -111,8 +110,8 @@
                       class="font-light py-2 text-center"
                       v-auto-animate
                   >
-                    <p v-if="(countHikamsFront === 2 && showFirstHikma) || countHikamsFront === 1">{{ firstHikma }}</p>
-                    <p v-if="countHikamsFront === 2 && !showFirstHikma">{{ secondHikma }}</p>
+                    <p v-if="(countHikamsFront === 2 && showFirstHikma) || countHikamsFront === 1">{{ firstHikmaF }}</p>
+                    <p v-if="countHikamsFront === 2 && !showFirstHikma">{{ secondHikmaF }}</p>
                   </td>
                 </tr>
               </table>
@@ -158,8 +157,12 @@ const defaultCities = ref([
 const RTLCities = computed(() => defaultCities.value.slice(0).reverse())
 
 const countHikamsFront = computed(() => data.value.events.hikams_front.length)
-const firstHikma = computed(() => data.value.events.hikams_front[0])
-const secondHikma = computed(() => data.value.events.hikams_front[1])
+const firstHikmaF = computed(() => data.value.events.hikams_front[0])
+const secondHikmaF = computed(() => data.value.events.hikams_front[1])
+
+const countHikamsBack = computed(() => data.value.events.hikams_back.length)
+const firstHikmaB = computed(() => data.value.events.hikams_back[0])
+const secondHikmaB = computed(() => data.value.events.hikams_back[1])
 
 const salateTimesMorning = computed(() => {
   let { fajr, chourouq } = data.value.salate_times;
@@ -245,7 +248,7 @@ onMounted(() =>{
   if(countHikamsFront.value > 1) {
     setInterval(() => {
       showFirstHikma.value = !showFirstHikma.value;
-    }, 3000)
+    }, 4000)
   }
 })
 
