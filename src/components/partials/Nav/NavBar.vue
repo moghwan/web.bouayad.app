@@ -1,19 +1,19 @@
 <template>
-  <div class="flex justify-center bg-gradient-to-r from-gray-200 p-8 absolute items-center h-screen z-10">
+  <div class="lg:flex justify-center bg-gradient-to-r transition-opacity from-white p-8 absolute items-center h-screen z-10 hidden">
     <nav id="nav" class="relative">
       <span
         class="absolute h-10 w-full bg-white rounded-lg shadow ease-out transition-transform transition-medium"
         :style="{ transform: `translateY(calc(100% * ${selected}))` }"
       ></span>
       <ul class="relative">
-        <nav-element
+        <NavElement
             v-for="menuItem in menuItems"
             @parent-selectnavitem="selectNavItem"
             :selected="selected"
             :id="menuItem.id"
             :label="menuItem.label"
             :route="menuItem.route"
-            :icon="menuItem.icon"
+            :name="menuItem.name"
         />
       </ul>
     </nav>
@@ -27,10 +27,10 @@ import NavElement from "./NavElement.vue";
 
 const selected = ref(0)
 const menuItems = [
-  {id: 0, label: "Display mode", route: "#", icon: ""},
-  {id: 1, label: "Ramadan Mode", route: "#", icon: ""},
-  {id: 2, label: "Toggle Salate Times", route: "#", icon: ""},
-  {id: 3, label: "Settings", route: "#", icon: ""},
+  {id: 0, label: "Display mode", route: "#", name: "displaymode"},
+  {id: 1, label: "Ramadan Mode", route: "#", name: "ramadanmode"},
+  {id: 2, label: "Salate Times", route: "#", name: "salatetimes"},
+  {id: 3, label: "Settings", route: "#", name: "settings"},
 ]
 const selectNavItem = (i) => selected.value = i;
 
