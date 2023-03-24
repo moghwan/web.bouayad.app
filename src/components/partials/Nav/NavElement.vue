@@ -6,16 +6,19 @@
         :aria-selected="selected === id"
         class="py-2 px-3 w-full flex items-center focus:outline-none focus-visible:underline"
     >
-      <IconDimensions v-if="name === 'displaymode'" :color="selected === id ? 'gray' : 'black'" />
-      <IconClock2 v-if="name === 'salatetimes'" :color="selected === id ? 'gray' : 'black'" />
-      <IconMoonFilled v-if="name === 'ramadanmode'" :color="selected === id ? 'gray' : 'black'" />
-      <IconSettings v-if="name === 'settings'" :color="selected === id ? 'gray' : 'black'" />
-
       <span
-        :class="selected === id ? '' : 'gray'"
-        class="ml-2 text-sm font-medium transition-all ease-out transition-medium"
+          :class="selected === id ? '' : 'gray'"
+          class="flex ml-auto items-right text-sm font-medium transition-all ease-out transition-medium"
       >
-        {{ label }}
+  
+        <span class="mr-2">
+          {{ label }}
+        </span>
+          
+        <IconDimensions v-if="name === 'displaymode'" :color="selected === id ? 'black' : 'gray'" />
+        <IconClock2 v-if="name === 'salatetimes'" :color="selected === id ? 'black' : 'gray'" />
+        <IconMoonFilled v-if="name === 'ramadanmode'" :color="selected === id ? 'black' : 'gray'" />
+        <IconSettings v-if="name === 'settings'" :color="selected === id ? 'black' : 'gray'" />
       </span>
     </button>
   </li>
