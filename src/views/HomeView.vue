@@ -14,16 +14,14 @@ import {computed, onMounted, ref} from "vue";
 import TheDay from "@/components/TheDay.vue";
 import Spinner from "@/components/partials/SpinnerLoader.vue";
 import {useCityStore} from "@/stores/city"
-import {useDisplayModeStore, useRamadanModeStore, useSalateTimesStore} from "@/stores/settings"
+import {useSettingsStore} from "@/stores/settings"
 import RamadanDashboard from "@/components/RamadanDashboard.vue";
 import SalateTimes from "@/components/SalateTimes.vue";
 
 const store = useCityStore();
 const data = ref(null);
 const selectedCityId = ref(store.cityId);
-const settingsDisplay = useDisplayModeStore();
-const settingsRamadan = useRamadanModeStore();
-const settingsSalateTimes = useSalateTimesStore();
+const settingsStore = useSettingsStore();
 
 onMounted(() => {
   fetchData(selectedCityId.value)
@@ -46,8 +44,8 @@ async function fetchData(cityId) {
 }
 
 const refreshTheDay = (cityId) => cityId ? fetchData(cityId) : fetchData(selectedCityId.value)
-const showPanel = computed(() => settingsDisplay.displayMode)
-const showRamadanDashboard = computed(() => settingsRamadan.showRamadanDashboard)
-const showSalateTimes = computed(() => settingsSalateTimes.showSalateTimes)
+const showPanel = computed(() => settingsStore.displayMode)
+const showRamadanDashboard = computed(() => settingsStore.showRamadanDashboard)
+const showSalateTimes = computed(() => settingsStore.showSalateTimes)
 
 </script>

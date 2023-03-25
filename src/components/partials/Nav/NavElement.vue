@@ -26,12 +26,10 @@
 
 <script setup>
 import { IconDimensions, IconMoonFilled, IconClock2, IconSettings } from '@tabler/icons-vue';
-import {useDisplayModeStore, useRamadanModeStore, useSalateTimesStore} from "@/stores/settings";
+import {useSettingsStore} from "@/stores/settings";
 
 const emit = defineEmits(['parent-selectnavitem'])
-const settingsDisplay = useDisplayModeStore();
-const settingsRamadan = useRamadanModeStore();
-const settingsSalateTimes = useSalateTimesStore();
+const settingsStore = useSettingsStore();
 
 const props = defineProps({
   selected: { required: true },
@@ -43,8 +41,8 @@ const props = defineProps({
 
 const selectItem = (i) => {
     emit('parent-selectnavitem', i);
-    props.name === 'displaymode' ? settingsDisplay.switchMode() : null
-    props.name === 'ramadanmode' ? settingsRamadan.switchVisibility() : null
-    props.name === 'salatetimes' ? settingsSalateTimes.switchVisibility() : null
+    props.name === 'displaymode' ? settingsStore.switchDisplayMode() : null
+    props.name === 'ramadanmode' ? settingsStore.switchVisibilityRamadanDashboard() : null
+    props.name === 'salatetimes' ? settingsStore.switchVisibilitySalateTimes() : null
 }
 </script>
