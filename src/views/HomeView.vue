@@ -1,10 +1,10 @@
 <template>
-  <div v-auto-animate="{ duration: 500 }" class="grid grid-cols-3 gap-4">
-    <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" :class="!showPanel ? 'col-span-3' : null"/>
-    <div class="col-span-2 text-center h-auto bg-red-100" v-if="data && showPanel">
+  <div v-auto-animate="{ duration: 500 }" class="grid grid-cols-6">
+    <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" :class="!showPanel ? 'col-span-6' : 'col-span-2'"/>
+    <div class="col-span-3 text-center h-auto bg-red-100" v-if="data && showPanel">
       <button @click="switchMode">hide me</button>
     </div>
-    <spinner class="flex justify-center h-screen items-center col-span-3" v-if="!data"/>
+    <spinner class="flex justify-center h-screen items-center col-span-6" v-if="!data"/>
   </div>
 </template>
 
