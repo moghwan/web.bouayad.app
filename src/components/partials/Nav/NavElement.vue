@@ -44,5 +44,6 @@ const selectItem = (i) => {
     props.name === 'displaymode' ? settingsStore.switchDisplayMode() : null
     props.name === 'ramadanmode' ? settingsStore.switchVisibilityRamadanDashboard() : null
     props.name === 'salatetimes' ? settingsStore.switchVisibilitySalateTimes() : null
+    props.name === 'settings' ? settingsStore.switchVisibilitySettings() : null
 }
 </script>

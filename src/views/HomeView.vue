@@ -4,6 +4,7 @@
     <div class="col-span-5 text-center  block rounded-lg shadow-lg bg-white h-5/6" v-if="data && showPanel">
         <RamadanDashboard v-if="showRamadanDashboard"/>
         <SalateTimes v-if="showSalateTimes"/>
+        <Settings v-if="showSettings"/>
     </div>
     <spinner class="flex justify-center h-screen items-center col-span-8" v-if="!data"/>
   </div>
@@ -17,6 +18,7 @@ import {useCityStore} from "@/stores/city"
 import {useSettingsStore} from "@/stores/settings"
 import RamadanDashboard from "@/components/RamadanDashboard.vue";
 import SalateTimes from "@/components/SalateTimes.vue";
+import Settings from "@/components/Settings.vue";
 
 const store = useCityStore();
 const data = ref(null);
@@ -47,5 +49,6 @@ const refreshTheDay = (cityId) => cityId ? fetchData(cityId) : fetchData(selecte
 const showPanel = computed(() => settingsStore.displayMode)
 const showRamadanDashboard = computed(() => settingsStore.showRamadanDashboard)
 const showSalateTimes = computed(() => settingsStore.showSalateTimes)
+const showSettings = computed(() => settingsStore.showSettings)
 
 </script>
