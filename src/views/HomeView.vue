@@ -40,11 +40,8 @@ async function fetchData(cityId) {
   selectedCityId.value = cityId;
 }
 
+const refreshTheDay = (cityId) => cityId ? fetchData(cityId) : fetchData(selectedCityId.value)
 const switchMode = () => showPanel.value = settingsDisplay.switchMode()
 const showPanel = computed(() => settingsDisplay.displayMode)
-
-function refreshTheDay(cityId) {
-  cityId ? fetchData(cityId) : fetchData(selectedCityId.value)
-}
 
 </script>
