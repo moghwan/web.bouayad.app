@@ -1,10 +1,11 @@
 <template>
-  <div v-auto-animate="{ duration: 500 }" class="grid grid-cols-6">
-    <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" :class="!showPanel ? 'col-span-6' : 'col-span-2'"/>
-    <div class="col-span-3 text-center h-auto bg-red-100" v-if="data && showPanel">
-      <button @click="switchMode">hide me</button>
+  <div v-auto-animate="{ duration: 500 }" class="grid grid-cols-8 gap-4">
+    <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" :class="!showPanel ? 'col-span-8' : 'col-span-2'"/>
+    <div class="col-span-5 text-center  block rounded-lg shadow-lg bg-white h-5/6" v-if="data && showPanel">
+        <RamadanDashboard v-if="showRamadanDashboard"/>
+        <SalateTimes v-if="showSalateTimes"/>
     </div>
-    <spinner class="flex justify-center h-screen items-center col-span-6" v-if="!data"/>
+    <spinner class="flex justify-center h-screen items-center col-span-8" v-if="!data"/>
   </div>
 </template>
 
@@ -13,12 +14,16 @@ import {computed, onMounted, ref} from "vue";
 import TheDay from "@/components/TheDay.vue";
 import Spinner from "@/components/partials/SpinnerLoader.vue";
 import {useCityStore} from "@/stores/city"
-import {useDisplayModeStore} from "@/stores/settings"
+import {useDisplayModeStore, useRamadanModeStore, useSalateTimesStore} from "@/stores/settings"
+import RamadanDashboard from "@/components/RamadanDashboard.vue";
+import SalateTimes from "@/components/SalateTimes.vue";
 
 const store = useCityStore();
 const data = ref(null);
 const selectedCityId = ref(store.cityId);
 const settingsDisplay = useDisplayModeStore();
+const settingsRamadan = useRamadanModeStore();
+const settingsSalateTimes = useSalateTimesStore();
 
 onMounted(() => {
   fetchData(selectedCityId.value)
@@ -41,7 +46,8 @@ async function fetchData(cityId) {
 }
 
 const refreshTheDay = (cityId) => cityId ? fetchData(cityId) : fetchData(selectedCityId.value)
-const switchMode = () => showPanel.value = settingsDisplay.switchMode()
 const showPanel = computed(() => settingsDisplay.displayMode)
+const showRamadanDashboard = computed(() => settingsRamadan.showRamadanDashboard)
+const showSalateTimes = computed(() => settingsSalateTimes.showSalateTimes)
 
 </script>
