@@ -44,6 +44,9 @@ export default defineConfig({
       }),
   ],
   define: {
+    'displayModes': {
+      'full': false,
+    },
     'process.env': process.env
   },
   resolve: {

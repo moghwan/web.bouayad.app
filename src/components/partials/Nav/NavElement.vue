@@ -26,8 +26,10 @@
 
 <script setup>
 import { IconDimensions, IconMoonFilled, IconClock2, IconSettings } from '@tabler/icons-vue';
+import {useDisplayModeStore} from "@/stores/settings";
 
 const emit = defineEmits(['parent-selectnavitem'])
+const settingsDisplay = useDisplayModeStore();
 
 const props = defineProps({
   selected: { required: true },
@@ -37,5 +39,8 @@ const props = defineProps({
   name: {required: true },
 });
 
-const selectItem = (i) => emit('parent-selectnavitem', i);
+const selectItem = (i) => {
+    emit('parent-selectnavitem', i);
+    props.name === 'displaymode' ? settingsDisplay.switchMode() : null
+}
 </script>

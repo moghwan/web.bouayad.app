@@ -2,22 +2,23 @@
   <div v-auto-animate="{ duration: 500 }" class="grid grid-cols-3 gap-4">
     <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" :class="!showPanel ? 'col-span-3' : null"/>
     <div class="col-span-2 text-center h-auto bg-red-100" v-if="data && showPanel">
-      <button @click="showPanel = !showPanel">hide me</button>
+      <button @click="switchMode">hide me</button>
     </div>
     <spinner class="flex justify-center h-screen items-center col-span-3" v-if="!data"/>
   </div>
 </template>
 
 <script setup>
-import {onMounted, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 import TheDay from "@/components/TheDay.vue";
 import Spinner from "@/components/partials/SpinnerLoader.vue";
 import {useCityStore} from "@/stores/city"
+import {useDisplayModeStore} from "@/stores/settings"
 
 const store = useCityStore();
 const data = ref(null);
 const selectedCityId = ref(store.cityId);
-const showPanel = ref(false);
+const settingsDisplay = useDisplayModeStore();
 
 onMounted(() => {
   fetchData(selectedCityId.value)
@@ -38,6 +39,9 @@ async function fetchData(cityId) {
   data.value = await response.json()
   selectedCityId.value = cityId;
 }
+
+const switchMode = () => showPanel.value = settingsDisplay.switchMode()
+const showPanel = computed(() => settingsDisplay.displayMode)
 
 function refreshTheDay(cityId) {
   cityId ? fetchData(cityId) : fetchData(selectedCityId.value)
