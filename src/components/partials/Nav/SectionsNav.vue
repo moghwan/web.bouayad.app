@@ -1,22 +1,31 @@
 <template>
   <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
     <div class="flex space-x-1 rounded-lg bg-gray-100 p-0.5" role="tablist" aria-orientation="horizontal">
-      <button class="flex items-center rounded-md py-4 px-4 text-sm font-semibold lg:pr-3" type="button">
-        <IconMoonFilled color="gray" />
-        <span class="sr-only lg:not-sr-only lg:ml-2 text-slate-900">رمضان</span>
-      </button>
-      <button class="flex items-center rounded-md py-4 px-4 text-sm font-semibold lg:pr-3 bg-white shadow" type="button">
-        <IconClock2 color="gray" />
-        <span class="sr-only lg:not-sr-only lg:ml-2 text-slate-900">مواقيت الصلوات</span>
-      </button>
+      <SectionsNavElement
+              v-for="menuItem in menuItems"
+              @parent-selectnavitem="selectNavItem"
+              :selected="selected"
+              :id="menuItem.id"
+              :label="menuItem.label"
+              :route="menuItem.route"
+              :name="menuItem.name"
+              :key="menuItem.id"
+          />
     </div>
   </nav>
 </template>
 
 <script setup>
-import { IconMoonFilled, IconClock2 } from '@tabler/icons-vue';
+import SectionsNavElement from "@/components/partials/Nav/SectionsNavElement.vue";
+import {ref} from "vue";
+import {useSettingsStore} from "@/stores/settings";
+
+const settingsStore = useSettingsStore();
+const selected = ref(settingsStore.selectedSection)
+const menuItems = [
+    {id: 1, label: "رمضان", route: "#", name: "ramadanmode"},
+    {id: 2, label: "مواقيت الصلوات", route: "#", name: "salatetimes"},
+]
+const selectNavItem = (i) => selected.value = i;
+
 </script>
-
-<style scoped>
-
-</style>

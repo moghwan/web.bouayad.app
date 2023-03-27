@@ -29,9 +29,7 @@ import NavElement from "./NavElement.vue";
 const selected = ref(0)
 const menuItems = [
   {id: 0, label: "تغيير عرض الشاشة", route: "#", name: "displaymode"},
-  {id: 1, label: "رمضان", route: "#", name: "ramadanmode"},
-  {id: 2, label: "مواقيت الصلوات", route: "#", name: "salatetimes"},
-  {id: 3, label: "الإعدادات", route: "#", name: "settings"},
+  {id: 1, label: "الإعدادات", route: "#", name: "settings"},
 ]
 const selectNavItem = (i) => selected.value = i;
 
