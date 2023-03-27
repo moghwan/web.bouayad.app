@@ -9,9 +9,9 @@
         <SectionsNav class="mt-auto"/>
       </div>
 
-      <button @click="settingsStore.switchDisplayMode()" class="fixed bottom-10 right-8 bg-gray-50 w-12 h-12 rounded-full drop-shadow-lg flex justify-center items-center hover:drop-shadow-xl">
-          <IconLayoutCards color="gray"/>
-      </button>
+<!--      <button @click="settingsStore.switchDisplayMode()" class="fixed bottom-10 right-8 bg-gray-50 w-12 h-12 rounded-full drop-shadow-lg flex justify-center items-center hover:drop-shadow-xl">-->
+<!--          <IconLayoutCards color="gray"/>-->
+<!--      </button>-->
     <spinner class="flex justify-center h-screen items-center col-span-8" v-if="!data"/>
   </div>
 </template>
