@@ -1,11 +1,13 @@
 <template>
   <div v-auto-animate="{ duration: 500 }" class="grid grid-cols-8 gap-4">
     <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" :class="!showPanel ? 'col-span-8' : 'col-span-2'"/>
-    <div class="col-span-5 text-center  block rounded-lg shadow-lg bg-white h-5/6" v-if="data && showPanel">
-        <RamadanDashboard v-if="showRamadanDashboard"/>
-        <SalateTimes v-if="showSalateTimes"/>
-        <Settings v-if="showSettings"/>
-    </div>
+      <div class="col-span-5 flex flex-col items-center rounded-lg shadow-lg bg-white h-5/6 p-5" v-if="data && showPanel">
+        <RamadanDashboard class="flex w-full h-full" v-if="showRamadanDashboard"/>
+        <SalateTimes class="flex w-full h-full" v-if="showSalateTimes"/>
+        <Settings class="flex w-full h-full" v-if="showSettings"/>
+
+        <SectionsNav class="mt-auto"/>
+      </div>
     <spinner class="flex justify-center h-screen items-center col-span-8" v-if="!data"/>
   </div>
 </template>
@@ -16,9 +18,10 @@ import TheDay from "@/components/TheDay.vue";
 import Spinner from "@/components/partials/SpinnerLoader.vue";
 import {useCityStore} from "@/stores/city"
 import {useSettingsStore} from "@/stores/settings"
-import RamadanDashboard from "@/components/RamadanDashboard.vue";
-import SalateTimes from "@/components/SalateTimes.vue";
-import Settings from "@/components/Settings.vue";
+import RamadanDashboard from "@/components/sections/RamadanDashboard.vue";
+import SalateTimes from "@/components/sections/SalateTimes.vue";
+import Settings from "@/components/sections/Settings.vue";
+import SectionsNav from "@/components/partials/Nav/SectionsNav.vue";
 
 const store = useCityStore();
 const data = ref(null);
