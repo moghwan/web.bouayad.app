@@ -6,16 +6,16 @@
             :style="{ transform: `translateY(calc(100% * ${selected}))` }"
       ></span>
       <ul class="relative">
-          <NavElement
-                  v-for="menuItem in menuItems"
-                  @parent-selectnavitem="selectNavItem"
-                  :selected="selected"
-                  :id="menuItem.id"
-                  :label="menuItem.label"
-                  :route="menuItem.route"
-                  :name="menuItem.name"
-                  :key="menuItem.id"
-          />
+        <NavElement
+                v-for="menuItem in menuItems"
+                @parent-selectnavitem="selectNavItem"
+                :selected="selected"
+                :id="menuItem.id"
+                :label="menuItem.label"
+                :route="menuItem.route"
+                :name="menuItem.name"
+                :key="menuItem.id"
+        />
       </ul>
     </nav>
   </div>
