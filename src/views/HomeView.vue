@@ -1,13 +1,17 @@
 <template>
-  <div v-auto-animate="{ duration: 500 }" class="grid grid-cols-8 gap-4">
-    <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" :class="!showPanel ? 'col-span-8' : 'col-span-2'"/>
-      <div class="col-span-5 flex flex-col items-center rounded-lg shadow-lg bg-white h-5/6 p-5" v-if="data && showPanel">
+  <div v-auto-animate="{ duration: 500 }" class="grid grid-cols-12 gap-4">
+    <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" :class="!showPanel ? 'col-span-12' : 'col-span-4'"/>
+      <div class="col-span-7 flex flex-col items-center rounded-lg shadow-lg bg-white h-5/6 p-5" v-if="data && showPanel">
         <RamadanDashboard class="flex w-full h-full" v-if="showRamadanDashboard"/>
         <SalateTimes class="flex w-full h-full" v-if="showSalateTimes"/>
         <Settings class="flex w-full h-full" v-if="showSettings"/>
 
         <SectionsNav class="mt-auto"/>
       </div>
+
+      <button @click="settingsStore.switchDisplayMode()" class="fixed bottom-10 right-8 bg-gray-50 w-12 h-12 rounded-full drop-shadow-lg flex justify-center items-center hover:drop-shadow-xl">
+          <IconLayoutCards color="gray"/>
+      </button>
     <spinner class="flex justify-center h-screen items-center col-span-8" v-if="!data"/>
   </div>
 </template>
@@ -22,6 +26,7 @@ import RamadanDashboard from "@/components/sections/RamadanDashboard.vue";
 import SalateTimes from "@/components/sections/SalateTimes.vue";
 import Settings from "@/components/sections/Settings.vue";
 import SectionsNav from "@/components/partials/Nav/SectionsNav.vue";
+import { IconLayoutCards } from '@tabler/icons-vue';
 
 const store = useCityStore();
 const data = ref(null);

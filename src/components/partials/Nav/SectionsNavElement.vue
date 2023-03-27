@@ -9,12 +9,13 @@
         <span class="sr-only lg:not-sr-only lg:ml-2 text-slate-900">{{ label }}</span>
         <IconMoonFilled v-if="name === 'ramadanmode'" :color="selected === id ? 'black' : 'gray'" />
         <IconClock2 v-if="name === 'salatetimes'" :color="selected === id ? 'black' : 'gray'" />
+        <IconSettings v-if="name === 'settings'" :color="selected === id ? 'black' : 'gray'" />
 
     </button>
 </template>
 
 <script setup>
-import {IconClock2, IconMoonFilled} from "@tabler/icons-vue";
+import {IconClock2, IconMoonFilled, IconSettings} from "@tabler/icons-vue";
 import {useSettingsStore} from "@/stores/settings";
 
 const emit = defineEmits(['parent-selectnavitem'])
@@ -31,9 +32,13 @@ const props = defineProps({
 const selectItem = (i) => {
     emit('parent-selectnavitem', i);
     settingsStore.updateSelectedSection(i)
+    
     settingsStore.hideVisibilitySalateTimes()
     settingsStore.hideVisibilityRamadanDashboard()
+    settingsStore.hideVisibilitySettings()
+    
     props.name === 'ramadanmode' ? settingsStore.showVisibilityRamadanDashboard() : null
     props.name === 'salatetimes' ? settingsStore.showVisibilitySalateTimes() : null
+    props.name === 'settings' ? settingsStore.showVisibilitySettings() : null
 }
 </script>

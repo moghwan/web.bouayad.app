@@ -14,6 +14,8 @@ export const useSettingsStore = defineStore("settings", () => {
         selectedSection.value = id
     }
     const switchDisplayMode = () => displayMode.value = !displayMode.value;
+    // const showDisplayMode = () => displayMode.value = true;
+    // const hideDisplayMode = () => displayMode.value = false;
    
     const switchVisibilityRamadanDashboard = () => showRamadanDashboard.value = !showRamadanDashboard.value;
     const showVisibilityRamadanDashboard = () => showRamadanDashboard.value = true;
@@ -24,12 +26,14 @@ export const useSettingsStore = defineStore("settings", () => {
     const hideVisibilitySalateTimes = () => showSalateTimes.value = false;
    
     const switchVisibilitySettings = () => showSettings.value = !showSettings.value;
+    const showVisibilitySettings = () => showSettings.value = true;
+    const hideVisibilitySettings = () => showSettings.value = false;
     
     return { 
         displayMode, switchDisplayMode,
         showRamadanDashboard, switchVisibilityRamadanDashboard, showVisibilityRamadanDashboard, hideVisibilityRamadanDashboard,
         showSalateTimes, switchVisibilitySalateTimes, showVisibilitySalateTimes, hideVisibilitySalateTimes,
-        showSettings, switchVisibilitySettings,
+        showSettings, switchVisibilitySettings, showVisibilitySettings, hideVisibilitySettings,
         selectedSection, updateSelectedSection,
     };
 });
