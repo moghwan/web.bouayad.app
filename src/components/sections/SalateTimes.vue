@@ -20,12 +20,12 @@
                   </thead>
                   <tbody>
                   <tr :key="salawate.key" v-for="salawate in salawates" class="text-center text-gray-700 border-b border-gray-200 hover:bg-gray-100">
-                      <td class="md:py-2 py-1">{{ salawate.fajr }}</td>
-                      <td class="md:py-2 py-1">{{ salawate.chourouq }}</td>
-                      <td class="md:py-2 py-1">{{ salawate.dhuhr }}</td>
-                      <td class="md:py-2 py-1">{{ salawate.asr }}</td>
-                      <td class="md:py-2 py-1">{{ salawate.maghrib }}</td>
                       <td class="md:py-2 py-1">{{ salawate.ishae }}</td>
+                      <td class="md:py-2 py-1">{{ salawate.maghrib }}</td>
+                      <td class="md:py-2 py-1">{{ salawate.asr }}</td>
+                      <td class="md:py-2 py-1">{{ salawate.dhuhr }}</td>
+                      <td class="md:py-2 py-1">{{ salawate.chourouq }}</td>
+                      <td class="md:py-2 py-1">{{ salawate.fajr }}</td>
                       <td class="md:py-2 py-1 font-bold">{{ salawate.day === 1 ? salawate.monthName : salawate.day }}</td>
                       <td class="md:py-2 py-1 font-bold">{{ salawate.dayHij }}</td>
                       <td class="md:py-2 py-1 bg-gray-100">{{ salawate.dayNameHij }}</td>
