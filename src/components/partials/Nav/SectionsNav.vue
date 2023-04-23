@@ -23,9 +23,9 @@ import {useSettingsStore} from "@/stores/settings";
 const settingsStore = useSettingsStore();
 const selected = ref(settingsStore.selectedSection)
 const menuItems = [
-    {id: 1, label: "رمضان", route: "#", name: "ramadanmode"},
-    {id: 2, label: "مواقيت الصلوات", route: "#", name: "salatetimes"},
-    {id: 3, label: "الإعدادات", route: "#", name: "settings"},
+    {id: 1, label: "مواقيت الصلوات", route: "#", name: "salatetimes"},
+    // {id: 2, label: "رمضان", route: "#", name: "ramadanmode"},
+    // {id: 3, label: "الإعدادات", route: "#", name: "settings"},
 ]
 const selectNavItem = (i) => selected.value = i;
 

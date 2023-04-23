@@ -1,10 +1,68 @@
 <template>
   <div>
-    <IconClock2 color="black" />
-    salate times component
-  </div>
+          <div class="w-full overflow-x-auto">
+              <table class="w-full whitespace-no-wrap">
+                  <thead class="sticky top-0 bg-gray-50">
+                  <tr class="border-b border-gray-200 hover:bg-gray-100">
+                      <th class="px-4 py-3 text-center" colspan="9">مواقيت الصلوات</th>
+                  </tr>
+                  <tr class="text-center font-medium">
+                      <th class="px-4 py-3">العشاء</th>
+                      <th class="px-4 py-3">المغرب</th>
+                      <th class="px-4 py-3">العصر</th>
+                      <th class="px-4 py-3">الظهر</th>
+                      <th class="px-4 py-3">الشروق</th>
+                      <th class="px-4 py-3">الصبح</th>
+                      <th class="px-4 py-3">{{ salawates ? salawates[0].monthName : null }}</th>
+                      <th class="px-4 py-3">{{ salawates ? salawates[0].monthNameHij : null }}</th>
+                      <th class="px-4 py-3">الأيام</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr :key="salawate.key" v-for="salawate in salawates" class="text-center border-b border-gray-200 hover:bg-gray-100">
+                      <td class="px-4 py-3">{{ salawate.fajr }}</td>
+                      <td class="px-4 py-3">{{ salawate.chourouq }}</td>
+                      <td class="px-4 py-3">{{ salawate.dhuhr }}</td>
+                      <td class="px-4 py-3">{{ salawate.asr }}</td>
+                      <td class="px-4 py-3">{{ salawate.maghrib }}</td>
+                      <td class="px-4 py-3">{{ salawate.ishae }}</td>
+                      <td class="px-4 py-3">{{ salawate.day === 1 ? salawate.monthName : salawate.day }}</td>
+                      <td class="px-4 py-3">{{ salawate.dayHij }}</td>
+                      <td class="px-4 py-3">{{ salawate.dayNameHij }}</td>
+                  </tr>
+                  <!-- More rows here -->
+                  </tbody>
+              </table>
+          </div>
+      </div>
+
 </template>
 
 <script setup>
-import {IconClock2} from "@tabler/icons-vue";
+import {onMounted, ref} from "vue";
+import {useCityStore} from "@/stores/city";
+
+const store = useCityStore();
+const selectedCityId = ref(store.cityId);
+const salawates = ref(null);
+
+onMounted(() => {
+    fetchData(selectedCityId.value)
+})
+
+async function fetchData(cityId) {
+    const HOST   = process.env.RA_HOST || import.meta.env.VITE_BOUAYADAPP_API_URL;
+    const SECRET = process.env.RA_SECRET || import.meta.env.VITE_BOUAYADAPP_API_SECRET;
+
+    const options = {
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": HOST,
+            "x-rapidapi-key": SECRET
+        }
+    };
+    const response = await fetch(`https://${HOST}/salates/calendar/${cityId}`, options);
+    salawates.value = await response.json();
+    salawates.value = salawates.value.data;
+}
 </script>

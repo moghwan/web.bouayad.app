@@ -17,6 +17,7 @@
 <script setup>
 import {IconClock2, IconMoonFilled, IconSettings} from "@tabler/icons-vue";
 import {useSettingsStore} from "@/stores/settings";
+import {onMounted} from "vue";
 
 const emit = defineEmits(['parent-selectnavitem'])
 const settingsStore = useSettingsStore();
@@ -41,4 +42,8 @@ const selectItem = (i) => {
     props.name === 'salatetimes' ? settingsStore.showVisibilitySalateTimes() : null
     props.name === 'settings' ? settingsStore.showVisibilitySettings() : null
 }
+
+onMounted(() => {
+    selectItem(settingsStore.selectedSection)
+})
 </script>
