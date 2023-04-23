@@ -1,18 +1,18 @@
 <template>
-  <div v-auto-animate="{ duration: 500 }" class="grid grid-cols-12 gap-4">
-    <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" :class="!showPanel ? 'col-span-12' : 'col-span-4 hidden lg:flex'"/>
-    <div class="col-span-10 col-start-2 lg:col-span-7 flex flex-col items-center rounded-lg shadow-lg bg-white h-5/6" v-if="data && showPanel">
+  <div v-auto-animate="{ duration: 500 }" class="gap-24">
+    <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" :class="!showPanel ? '' : 'hidden xl:flex'"/>
+    <div class="w-full md:w-auto h-screen md:h-5/6 flex flex-col items-center rounded-lg shadow-lg bg-white my-10" v-if="data && showPanel">
       <RamadanDashboard class="flex w-full h-full" v-if="showRamadanDashboard"/>
-      <SalateTimes class="flex w-full h-5/6 max-h-5/6" v-if="showSalateTimes"/>
+      <SalateTimes class="flex w-full h-5/6" v-if="showSalateTimes"/>
       <Settings class="flex w-full h-full" v-if="showSettings"/>
 
-      <SectionsNav class="mt-auto p-5"/>
+      <SectionsNav class="p-5"/>
     </div>
 
     <button @click="settingsStore.switchDisplayMode()" class="fixed bottom-10 right-8 bg-gray-50 w-12 h-12 rounded-full drop-shadow-lg flex justify-center items-center hover:drop-shadow-xl">
         <IconLayoutCards color="gray"/>
     </button>
-    <spinner class="flex justify-center h-screen items-center col-span-8" v-if="!data"/>
+    <spinner class="flex justify-center h-screen items-center" v-if="!data"/>
   </div>
 </template>
 
