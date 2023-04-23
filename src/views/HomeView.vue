@@ -1,5 +1,5 @@
 <template>
-  <div v-auto-animate="{ duration: 500 }" class="gap-24">
+  <div v-auto-animate="{ duration: 500 }" class="gap-16">
     <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" :class="!showPanel ? '' : 'hidden xl:flex'"/>
     <div class="w-full md:w-auto h-screen md:h-5/6 flex flex-col items-center rounded-lg shadow-lg bg-white my-10" v-if="data && showPanel">
       <RamadanDashboard class="flex w-full h-full" v-if="showRamadanDashboard"/>
