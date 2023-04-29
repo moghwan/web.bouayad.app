@@ -19,7 +19,7 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr :key="salawate.key" v-for="salawate in salawates" class="text-center text-gray-700 border-b border-gray-200 hover:bg-gray-100">
+                  <tr :key="salawate.key" v-for="salawate in salawates" class="text-center text-gray-700 border-b border-gray-200 hover:bg-gray-100" :class="isToday(salawate) ? 'bg-gray-100 text-black' : null">
                       <td class="md:py-2 py-1">{{ salawate.ishae }}</td>
                       <td class="md:py-2 py-1">{{ salawate.maghrib }}</td>
                       <td class="md:py-2 py-1">{{ salawate.asr }}</td>
@@ -62,5 +62,10 @@ async function fetchData(cityId) {
     const response = await fetch(`https://${HOST}/salates/calendar/${cityId}`, options);
     salawates.value = await response.json();
     salawates.value = salawates.value.data;
+}
+
+const isToday = (salawate) => {
+    let today = new Date()
+    return today.getDate() === salawate.day && today.getMonth()+1 === salawate.month
 }
 </script>
