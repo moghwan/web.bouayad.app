@@ -28,16 +28,16 @@
   <a href="https://www.buymeacoffee.com/moghwan">
     <img src="https://img.shields.io/badge/buymeacoffee-support-yellow.svg?logo=buymeacoffee" alt="buymeacoffee">
   </a>
-  <a href="https://paypal.me/chaouimar1">
-    <img src="https://img.shields.io/badge/Paypal-support-navy.svg?logo=paypal" alt="Paypal">
-  </a>
 </p>
 
 
-## Features
-- Showing random quotes daily
-- Showing prayer times for the day by selected city
-- PWA Ready
+## Features & Roadmap
+- [x] Showing random quotes daily
+- [x] Showing prayer times for the day by selected city
+- [x] Prayer times for current hijri month
+- [x] Progressive Web App ready
+- [ ] Tracking seen daily hikams
+- [ ] Dark mode
 
 ## Download
 - A browser extension version is also made for a quicker access for these browsers:
@@ -59,6 +59,10 @@
 ## Contributing
 - This repo is open to your contributions! Any improvements or a feature request are greatly appreciated
 - The project is still under development, please refer to [project progress](https://github.com/users/moghwan/projects/2) and [CONTRIBUTING.md](./CONTRIBUTING.md)
+
+## Support
+- This project development is maintained in my free time, giving us a Star is greatly appreciated!
+- If you like this project, please consider [buying a coffee](https://www.buymeacoffee.com/moghwan). You won't be annoyed to do so while using the app or the browser extension!
 
 ## Stay in touch
 * Author - [Marwane Chaoui](https://twitter.com/moghwan)
