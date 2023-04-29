@@ -6,7 +6,7 @@
       :class="selected === id ? 'bg-white shadow' : null"
       class="flex items-center rounded-md py-4 px-4 text-sm font-semibold lg:pr-3"
     >
-        <span class="sr-only lg:not-sr-only lg:ml-2 text-slate-900">{{ label }}</span>
+        <span class="sr-only xl:not-sr-only lg:ml-2 text-slate-900">{{ label }}</span>
         <IconMoonFilled v-if="name === 'ramadanmode'" :color="selected === id ? 'black' : 'gray'" />
         <IconClock2 v-if="name === 'salatetimes'" :color="selected === id ? 'black' : 'gray'" />
         <IconSettings v-if="name === 'settings'" :color="selected === id ? 'black' : 'gray'" />
@@ -17,6 +17,7 @@
 <script setup>
 import {IconClock2, IconMoonFilled, IconSettings} from "@tabler/icons-vue";
 import {useSettingsStore} from "@/stores/settings";
+import {onMounted} from "vue";
 
 const emit = defineEmits(['parent-selectnavitem'])
 const settingsStore = useSettingsStore();
@@ -41,4 +42,8 @@ const selectItem = (i) => {
     props.name === 'salatetimes' ? settingsStore.showVisibilitySalateTimes() : null
     props.name === 'settings' ? settingsStore.showVisibilitySettings() : null
 }
+
+onMounted(() => {
+    selectItem(settingsStore.selectedSection)
+})
 </script>
