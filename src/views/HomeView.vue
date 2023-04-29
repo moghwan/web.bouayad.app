@@ -2,10 +2,7 @@
   <div v-auto-animate="{ duration: 500 }" class="gap-16">
     <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" :class="!showPanel ? '' : 'hidden xl:flex'"/>
     <div class="w-full md:w-auto h-screen md:h-5/6 flex flex-col items-center rounded-lg shadow-lg bg-white my-10" v-if="data && showPanel">
-      <RamadanDashboard class="flex w-full h-full" v-if="showRamadanDashboard"/>
       <SalateTimes class="flex w-full h-5/6" v-if="showSalateTimes"/>
-      <Settings class="flex w-full h-full" v-if="showSettings"/>
-
       <SectionsNav class="p-5"/>
     </div>
 
@@ -22,9 +19,7 @@ import TheDay from "@/components/TheDay.vue";
 import Spinner from "@/components/partials/SpinnerLoader.vue";
 import {useCityStore} from "@/stores/city"
 import {useSettingsStore} from "@/stores/settings"
-import RamadanDashboard from "@/components/sections/RamadanDashboard.vue";
 import SalateTimes from "@/components/sections/SalateTimes.vue";
-import Settings from "@/components/sections/Settings.vue";
 import SectionsNav from "@/components/partials/Nav/SectionsNav.vue";
 import { IconLayoutCards } from '@tabler/icons-vue';
 
@@ -36,6 +31,7 @@ const windowWidth = ref(window.innerWidth)
 
 onMounted(() => {
   fetchData(selectedCityId.value)
+  window.addEventListener('resize', onResize)
 })
 
 async function fetchData(cityId) {
@@ -54,19 +50,11 @@ async function fetchData(cityId) {
   selectedCityId.value = cityId;
 }
 
-const onResize = () => {
-    windowWidth.value = window.innerWidth
-}
+const onResize = () => windowWidth.value = window.innerWidth
 const isTooSmall = computed(() => windowWidth.value <= 500)
-
-onMounted(() =>{
-    window.addEventListener('resize', onResize);
-})
 
 const refreshTheDay = (cityId) => cityId ? fetchData(cityId) : fetchData(selectedCityId.value)
 const showPanel = computed(() => settingsStore.displayMode)
-const showRamadanDashboard = computed(() => settingsStore.showRamadanDashboard)
 const showSalateTimes = computed(() => settingsStore.showSalateTimes)
-const showSettings = computed(() => settingsStore.showSettings)
 
 </script>

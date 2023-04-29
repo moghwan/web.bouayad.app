@@ -46,9 +46,7 @@ const store = useCityStore();
 const selectedCityId = ref(store.cityId);
 const salawates = ref(null);
 
-onMounted(() => {
-    fetchData(selectedCityId.value)
-})
+onMounted(() => fetchData(selectedCityId.value))
 
 async function fetchData(cityId) {
     const HOST   = process.env.RA_HOST || import.meta.env.VITE_BOUAYADAPP_API_URL;
