@@ -1,6 +1,6 @@
 {
   "name": "bouayadapp-front",
-  "version": "0.4.1",
+  "version": "0.6.0",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@formkit/auto-animate": "^1.0.0-beta.6",
+    "@tabler/icons-vue": "^2.11.0",
+    "@vercel/analytics": "^1.0.0",
     "@vueuse/core": "^9.13.0",
     "dotenv": "^16.0.3",
     "pinia": "^2.0.28",

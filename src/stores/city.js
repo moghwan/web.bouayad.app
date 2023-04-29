@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 import { useLocalStorage } from "@vueuse/core"
 
 export const useCityStore = defineStore("selectedCity", () => {
-  const cityId = ref(useLocalStorage('count', 1));
+  const cityId = ref(useLocalStorage('cityId', 1));
   const city = ref({});
 
   function update(newCity) {
