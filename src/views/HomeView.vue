@@ -9,7 +9,7 @@
       <SectionsNav class="p-5"/>
     </div>
 
-    <button @click="settingsStore.switchDisplayMode()" class="fixed bottom-10 right-8 bg-gray-50 w-12 h-12 rounded-full drop-shadow-lg flex justify-center items-center hover:drop-shadow-xl">
+    <button @click="settingsStore.switchDisplayMode()" :class="isTooSmall ? 'hidden' : null" class="fixed bottom-10 right-8 bg-gray-50 w-12 h-12 rounded-full drop-shadow-lg flex justify-center items-center hover:drop-shadow-xl">
         <IconLayoutCards color="gray"/>
     </button>
     <spinner class="flex justify-center h-screen items-center" v-if="!data"/>
@@ -32,6 +32,7 @@ const store = useCityStore();
 const data = ref(null);
 const selectedCityId = ref(store.cityId);
 const settingsStore = useSettingsStore();
+const windowWidth = ref(window.innerWidth)
 
 onMounted(() => {
   fetchData(selectedCityId.value)
@@ -52,6 +53,15 @@ async function fetchData(cityId) {
   data.value = await response.json()
   selectedCityId.value = cityId;
 }
+
+const onResize = () => {
+    windowWidth.value = window.innerWidth
+}
+const isTooSmall = computed(() => windowWidth.value <= 500)
+
+onMounted(() =>{
+    window.addEventListener('resize', onResize);
+})
 
 const refreshTheDay = (cityId) => cityId ? fetchData(cityId) : fetchData(selectedCityId.value)
 const showPanel = computed(() => settingsStore.displayMode)
