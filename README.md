@@ -37,6 +37,7 @@
 - [x] Prayer times for current hijri month
 - [x] Progressive Web App ready
 - [ ] Tracking seen daily hikams
+- [ ] Theming (classic, minimal, by event, ...)
 - [ ] Dark mode
 
 ## Download
