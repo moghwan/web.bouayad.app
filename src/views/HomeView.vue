@@ -3,6 +3,7 @@
     <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" :class="!showPanel ? '' : 'hidden xl:flex'"/>
     <div class="w-full md:w-auto h-screen md:h-5/6 flex flex-col items-center rounded-lg shadow-lg bg-white my-10" v-if="data && showPanel">
       <SalateTimes class="flex w-full h-5/6" v-if="showSalateTimes"/>
+      <Settings class="flex w-full h-full" v-if="showSettings"/>
       <SectionsNav class="p-5"/>
     </div>
 
@@ -20,6 +21,7 @@ import Spinner from "@/components/partials/SpinnerLoader.vue";
 import {useCityStore} from "@/stores/city"
 import {useSettingsStore} from "@/stores/settings"
 import SalateTimes from "@/components/sections/SalateTimes.vue";
+import Settings from "@/components/sections/Settings.vue";
 import SectionsNav from "@/components/partials/Nav/SectionsNav.vue";
 import { IconLayoutCards } from '@tabler/icons-vue';
 
@@ -56,5 +58,6 @@ const isTooSmall = computed(() => windowWidth.value <= 500)
 const refreshTheDay = (cityId) => cityId ? fetchData(cityId) : fetchData(selectedCityId.value)
 const showPanel = computed(() => settingsStore.displayMode)
 const showSalateTimes = computed(() => settingsStore.showSalateTimes)
+const showSettings = computed(() => settingsStore.showSettings)
 
 </script>

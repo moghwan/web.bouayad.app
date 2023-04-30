@@ -6,7 +6,6 @@ export const useSettingsStore = defineStore("settings", () => {
     const selectedSection = ref(useLocalStorage('selectedSection', 1));
     
     const displayMode = ref(useLocalStorage('displayMode', displayModes.isFull));
-    const showRamadanDashboard = ref(useLocalStorage('showRamadanDashboard', false));
     const showSalateTimes = ref(useLocalStorage('showSalateTimes', false));
     const showSettings = ref(useLocalStorage('showSettings', false));
     
@@ -16,10 +15,6 @@ export const useSettingsStore = defineStore("settings", () => {
     const switchDisplayMode = () => displayMode.value = !displayMode.value;
     // const showDisplayMode = () => displayMode.value = true;
     // const hideDisplayMode = () => displayMode.value = false;
-   
-    const switchVisibilityRamadanDashboard = () => showRamadanDashboard.value = !showRamadanDashboard.value;
-    const showVisibilityRamadanDashboard = () => showRamadanDashboard.value = true;
-    const hideVisibilityRamadanDashboard = () => showRamadanDashboard.value = false;
    
     const switchVisibilitySalateTimes = () => showSalateTimes.value = !showSalateTimes.value;
     const showVisibilitySalateTimes = () => showSalateTimes.value = true;
@@ -31,7 +26,6 @@ export const useSettingsStore = defineStore("settings", () => {
     
     return { 
         displayMode, switchDisplayMode,
-        showRamadanDashboard, switchVisibilityRamadanDashboard, showVisibilityRamadanDashboard, hideVisibilityRamadanDashboard,
         showSalateTimes, switchVisibilitySalateTimes, showVisibilitySalateTimes, hideVisibilitySalateTimes,
         showSettings, switchVisibilitySettings, showVisibilitySettings, hideVisibilitySettings,
         selectedSection, updateSelectedSection,
