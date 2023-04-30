@@ -31,12 +31,10 @@ onMounted(() => {
     selectItem(settingsStore.selectedSection)
 })
 
-
 const selectItem = (i) => {
     i === false ? i = 1 : null;
 
     selected.value = i
-    console.info('i', i)
     settingsStore.updateSelectedSection(i)
 
     settingsStore.hideVisibilitySalateTimes()

@@ -1,10 +1,10 @@
 <template>
-  <div v-auto-animate="{ duration: 500 }" class="gap-16">
-    <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" :class="!showPanel ? '' : 'hidden xl:flex'"/>
-    <div class="w-full md:w-auto h-screen md:h-5/6 flex flex-col items-center rounded-lg shadow-lg bg-white my-10" v-if="data && showPanel">
+  <div v-auto-animate="{ duration: 500 }" class="gap-0">
+    <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" :class="!showPanel ? '' : 'hidden xl:flex'" class=" lg:m-10"/>
+    <div class="w-full 2xl:w-3/6 h-screen lg:h-5/6 flex flex-col items-center rounded-lg shadow-lg bg-white lg:m-10" v-if="data && showPanel">
       <SalateTimes class="flex w-full h-5/6" v-if="showSalateTimes"/>
-      <Settings class="flex w-full h-full" v-if="showSettings"/>
-      <SectionsNav class="p-5"/>
+      <Settings class="flex w-full h-5/6" v-if="showSettings"/>
+      <SectionsNav class="mt-10"/>
     </div>
 
     <button @click="settingsStore.switchDisplayMode()" :class="isTooSmall ? 'hidden' : null" class="fixed bottom-10 right-8 bg-gray-50 w-12 h-12 rounded-full drop-shadow-lg flex justify-center items-center hover:drop-shadow-xl">
