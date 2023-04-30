@@ -1,7 +1,7 @@
 <template>
   <div v-auto-animate="{ duration: 500 }" class="gap-0">
     <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" :class="!showPanel ? '' : 'hidden xl:flex'" class=" lg:m-10"/>
-    <div class="w-full 2xl:w-3/6 h-screen lg:h-5/6 flex flex-col items-center rounded-lg shadow-lg bg-white lg:m-10" v-if="data && showPanel">
+    <div class="w-full 2xl:w-7/12 h-screen lg:h-5/6 flex flex-col items-center rounded-lg shadow-lg bg-white lg:m-10" v-if="data && showPanel">
       <SalateTimes class="flex w-full h-5/6" v-if="showSalateTimes"/>
       <Settings class="flex w-full h-5/6" v-if="showSettings"/>
       <SectionsNav class="mt-10"/>
