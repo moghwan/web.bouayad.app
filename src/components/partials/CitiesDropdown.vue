@@ -11,17 +11,17 @@
           <div class="p-3">
               <label for="input-group-search" class="sr-only">بحث</label>
               <div class="relative">
-                  <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <IconSearch class="w-5 h-5 text-gray-500 dark:text-gray-400"/>
+                  <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                    <IconX v-if="cityQuery" @click="cityQuery=''" class="cursor-pointer w-5 h-5 text-gray-500 dark:text-gray-400"/>
                   </div>
-                  <input type="text" id="input-group-search" class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" placeholder="بحث">
+                  <input type="text" v-model="cityQuery" id="input-group-search" placeholder="بحث" class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500">
               </div>
           </div>
           <ul class="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownSearchButton">
-              <li v-for="city in props.cities" :key="city.id">
+              <li v-for="city in filteredCities" :key="city.id">
                   <div class="flex items-center pl-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                       <label :for="'checkbox-item-' + city.id" class="w-full py-2 ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{ city.name_ar }}</label>
-                      <input @change="refreshSelected(city.id)" :id="'checkbox-item-' + city.id" :disabled="!selectedCities.includes(city.id) && disableCheckbox ? disableCheckbox : false" type="checkbox" class="js-city-checkbox-item w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                      <input @change="refreshSelected(city.id)" :id="'checkbox-item-' + city.id" :disabled="!selectedCities.includes(city.id) && disableCheckbox ? disableCheckbox : false" type="checkbox" :checked="selectedCities.includes(city.id)" class="js-city-checkbox-item w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                   </div>
               </li>
           </ul>
@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-import {IconZoomCancel, IconSearch, IconCaretDown} from "@tabler/icons-vue";
+import {IconZoomCancel, IconX, IconCaretDown} from "@tabler/icons-vue";
 import {computed, onMounted, ref} from "vue";
 
 const props = defineProps({
@@ -44,6 +44,7 @@ const props = defineProps({
 
 const clicked = ref(false)
 const selectedCities = ref([]);
+const cityQuery = ref('');
 
 const clearSelected = () => {
   selectedCities.value.splice(0);
@@ -63,5 +64,14 @@ const refreshSelected = (cityId) => {
 }
 
 const disableCheckbox = computed(() => selectedCities.value.length >= 8)
+
+const filteredCities = computed(() => {
+  if(!props.cities) return [];
+  return props.cities.filter(city =>
+    city.name.toLowerCase().includes(cityQuery.value.toLowerCase()) ||
+    city.name_ar.includes(cityQuery.value) ||
+    city.id.toString().includes(cityQuery.value)
+  );
+});
 
 </script>
