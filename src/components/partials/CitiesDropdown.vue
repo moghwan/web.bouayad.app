@@ -17,11 +17,11 @@
                   <input type="text" v-model="cityQuery" id="input-group-search" placeholder="بحث" class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500">
               </div>
           </div>
-          <ul class="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownSearchButton">
+          <ul v-auto-animate class="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownSearchButton">
               <li v-for="city in filteredCities" :key="city.id">
                   <div class="flex items-center pl-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                       <label :for="'checkbox-item-' + city.id" class="w-full py-2 ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{ city.name_ar }}</label>
-                      <input @change="refreshSelected(city.id)" :id="'checkbox-item-' + city.id" :disabled="!selectedCities.includes(city.id) && disableCheckbox ? disableCheckbox : false" type="checkbox" :checked="selectedCities.includes(city.id)" class="js-city-checkbox-item accent-gray-600 w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                      <input @change="refreshSelected(city.id)" :id="'checkbox-item-' + city.id" :disabled="!selectedCities.some(c => c.id === city.id) && disableCheckbox ? disableCheckbox : false" type="checkbox" :checked="selectedCities.some(c => c.id === city.id)" class="js-city-checkbox-item accent-gray-600 w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                   </div>
               </li>
           </ul>
@@ -44,7 +44,7 @@ const props = defineProps({
   cities: { required: true },
 });
 
-const clicked = ref(false)
+const clicked = ref(true)
 const selectedCities = ref(settingsStore.selectedCities);
 const cityQuery = ref('');
 
