@@ -72,20 +72,20 @@
                   </td>
                 </tr>
                 <!--section 2: cites-->
-                <tr class="border-b">
+                <tr class="border-b" v-auto-animate>
                   <td @click="getByCity(city)"
                       :class="[!isTooSmall ? 'text-base' : 'text-sm', selectedCityId === city.id ? 'bg-gray-50': '']"
                       class="font-light py-2 cursor-pointer hover:bg-gray-100 transition-all"
                       v-for="city in RTLCities.slice(4, 8)" :key="city.id">
-                    {{ city.name }}
+                    {{ city.name_ar }}
                   </td>
                 </tr>
-                <tr class="border-b">
+                <tr class="border-b" v-auto-animate>
                   <td @click="getByCity(city)"
                       :class="[!isTooSmall ? 'text-base' : 'text-sm', selectedCityId === city.id ? 'bg-gray-50': '']"
                       class="font-light py-2 cursor-pointer hover:bg-gray-100 transition-all"
                       v-for="city in RTLCities.slice(0, 4)" :key="city.id">
-                    {{ city.name }}
+                    {{ city.name_ar }}
                   </td>
                 </tr>
                 <!--section 3: filahi date with salate times-->
@@ -127,7 +127,9 @@
 import {ref, computed, toRefs, onMounted} from "vue";
 import SalateElement from "@/components/partials/salateElement.vue";
 import { useCityStore } from "@/stores/city"
+import {useSettingsStore} from "@/stores/settings";
 
+const settingsStore = useSettingsStore();
 const store = useCityStore();
 const props = defineProps({
   data: {
@@ -144,18 +146,22 @@ const currentTime = ref(new Date());
 const showBack = ref(false);
 const showFirstHikma = ref(true);
 const defaultCities = ref([
-  {id: 1, name: "الرباط"},
-  {id: 99, name: "مكناس"},
-  {id: 81, name: "فاس"},
-  {id: 31, name: "وجدة"},
-  {id: 156, name: "العيون"},
-  {id: 117, name: "أغادير"},
-  {id: 107, name: "مراكش"},
-  {id: 58, name: "البيضاء"},
+  {id: 1, name_ar: "الرباط"},
+  {id: 99, name_ar: "مكناس"},
+  {id: 81, name_ar: "فاس"},
+  {id: 31, name_ar: "وجدة"},
+  {id: 156, name_ar: "العيون"},
+  {id: 117, name_ar: "أغادير"},
+  {id: 107, name_ar: "مراكش"},
+  {id: 58, name_ar: "البيضاء"},
 ])
+const selectedCities = ref(settingsStore.selectedCities)
 
-const RTLCities = computed(() => defaultCities.value.slice(0).reverse())
-
+const RTLCities = computed(() => {
+  return selectedCities.value.length > 0
+    ? selectedCities.value.slice(0).reverse()
+    : defaultCities.value.slice(0).reverse()
+})
 const countHikamsFront = computed(() => data.value.events.hikams_front.length)
 const firstHikmaF = computed(() => data.value.events.hikams_front[0])
 const secondHikmaF = computed(() => data.value.events.hikams_front[1])
