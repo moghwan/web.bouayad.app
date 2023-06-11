@@ -44,7 +44,7 @@ const props = defineProps({
   cities: { required: true },
 });
 
-const clicked = ref(true)
+const clicked = ref(false)
 const selectedCities = ref(settingsStore.selectedCities);
 const cityQuery = ref('');
 
