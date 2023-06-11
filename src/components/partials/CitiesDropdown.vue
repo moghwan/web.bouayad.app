@@ -36,7 +36,7 @@
 
 <script setup>
 import {IconZoomCancel, IconX, IconCaretDown} from "@tabler/icons-vue";
-import {computed, onMounted, ref} from "vue";
+import {computed, ref} from "vue";
 import {useSettingsStore} from "@/stores/settings";
 const settingsStore = useSettingsStore();
 
@@ -50,6 +50,7 @@ const cityQuery = ref('');
 
 const clearSelected = () => {
   selectedCities.value.splice(0);
+  settingsStore.updateSelectedCities(selectedCities.value);
   
   const checkboxes = document.querySelectorAll('input.js-city-checkbox-item[type="checkbox"]');
   checkboxes.forEach((checkbox) => {
@@ -58,14 +59,20 @@ const clearSelected = () => {
 }
 
 const refreshSelected = (cityId) => {
-  selectedCities.value.includes(cityId) 
-    ? selectedCities.value.splice(selectedCities.value.indexOf(cityId), 1) 
-    : selectedCities.value.length < 8 
-        ? selectedCities.value.push(cityId) 
-        : null
+  const selectedCity = props.cities.find(city => city.id === cityId);
 
-  settingsStore.selectedCities = selectedCities.value;
-}
+  if (selectedCity) {
+    const cityIndex = selectedCities.value.findIndex(city => city.id === cityId);
+
+    if (cityIndex !== -1) {
+      selectedCities.value.splice(cityIndex, 1);
+    } else if (selectedCities.value.length < 8) {
+      selectedCities.value.push({ id: cityId, name_ar: selectedCity.name_ar, name: selectedCity.name });
+    }
+
+    settingsStore.updateSelectedCities(selectedCities.value);
+  }
+};
 
 const disableCheckbox = computed(() => selectedCities.value.length >= 8)
 
