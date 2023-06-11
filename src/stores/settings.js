@@ -4,6 +4,7 @@ import { useLocalStorage } from "@vueuse/core"
 
 export const useSettingsStore = defineStore("settings", () => {
     const selectedSection = ref(useLocalStorage('selectedSection', 1));
+    const selectedCities = ref(useLocalStorage('selectedCities', []));
     
     const displayMode = ref(useLocalStorage('displayMode', displayModes.isFull));
     const showSalateTimes = ref(useLocalStorage('showSalateTimes', false));
@@ -11,6 +12,9 @@ export const useSettingsStore = defineStore("settings", () => {
     
     const updateSelectedSection = (id) => {
         selectedSection.value = id
+    }
+    const updateSelectedCities = (cities) => {
+        selectedCities.value = cities
     }
     const switchDisplayMode = () => displayMode.value = !displayMode.value;
     // const showDisplayMode = () => displayMode.value = true;
@@ -29,5 +33,6 @@ export const useSettingsStore = defineStore("settings", () => {
         showSalateTimes, switchVisibilitySalateTimes, showVisibilitySalateTimes, hideVisibilitySalateTimes,
         showSettings, switchVisibilitySettings, showVisibilitySettings, hideVisibilitySettings,
         selectedSection, updateSelectedSection,
+        selectedCities, updateSelectedCities,
     };
 });

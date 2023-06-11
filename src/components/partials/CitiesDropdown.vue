@@ -21,7 +21,7 @@
               <li v-for="city in filteredCities" :key="city.id">
                   <div class="flex items-center pl-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                       <label :for="'checkbox-item-' + city.id" class="w-full py-2 ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{ city.name_ar }}</label>
-                      <input @change="refreshSelected(city.id)" :id="'checkbox-item-' + city.id" :disabled="!selectedCities.includes(city.id) && disableCheckbox ? disableCheckbox : false" type="checkbox" :checked="selectedCities.includes(city.id)" class="js-city-checkbox-item w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                      <input @change="refreshSelected(city.id)" :id="'checkbox-item-' + city.id" :disabled="!selectedCities.includes(city.id) && disableCheckbox ? disableCheckbox : false" type="checkbox" :checked="selectedCities.includes(city.id)" class="js-city-checkbox-item accent-gray-600 w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                   </div>
               </li>
           </ul>
@@ -37,13 +37,15 @@
 <script setup>
 import {IconZoomCancel, IconX, IconCaretDown} from "@tabler/icons-vue";
 import {computed, onMounted, ref} from "vue";
+import {useSettingsStore} from "@/stores/settings";
+const settingsStore = useSettingsStore();
 
 const props = defineProps({
   cities: { required: true },
 });
 
 const clicked = ref(false)
-const selectedCities = ref([]);
+const selectedCities = ref(settingsStore.selectedCities);
 const cityQuery = ref('');
 
 const clearSelected = () => {
@@ -61,6 +63,8 @@ const refreshSelected = (cityId) => {
     : selectedCities.value.length < 8 
         ? selectedCities.value.push(cityId) 
         : null
+
+  settingsStore.selectedCities = selectedCities.value;
 }
 
 const disableCheckbox = computed(() => selectedCities.value.length >= 8)
