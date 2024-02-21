@@ -57,7 +57,7 @@
 |<img height="500" src="https://user-images.githubusercontent.com/2495180/221441540-ee8717a9-8eaf-4040-ac3d-19b7a5358299.png" >  |                                                   <img height="500" src="https://user-images.githubusercontent.com/2495180/224451926-b2099adf-0645-4a80-a0fb-c4b745689ad0.gif" >                                                   | <img height="500" src="https://user-images.githubusercontent.com/2495180/221441541-3b8d893c-b871-4905-b831-a456fc754ef3.png" > |
 
 ## Transparency warning
-Production deployments on Vercel may use third-party tools to measure site performance, and the app uses their official package [@vercel/analytics](https://www.npmjs.com/package/@vercel/analytics).
+Production deployments on Vercel may use third-party tools to measure site performance, and the app uses Google Analytics.
 The app itself does not collect any data (eg. when you're running it on your own machine).
 
 ## Contributing
