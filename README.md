@@ -3,10 +3,26 @@
 </p>
 
 <p align="center">  
+  
+  <img src="https://img.shields.io/github/license/moghwan/web.bouayad.app?color=white" alt="License">
   <img src="https://vercelbadge.vercel.app/api/moghwan/web.bouayad.app" alt="Vercel">
   <img src="https://img.shields.io/github/package-json/v/moghwan/web.bouayad.app" alt="Package version">
+  <a href="https://web.bouayad.app">
+    <img src="https://www.pwa-shields.com/1.0.0/series/classic/white/gray.svg" alt="PWA">
+  </a>
+  
+  <img src="https://img.shields.io/github/issues-closed/moghwan/web.bouayad.app?color=purple" alt="Issues">
+  <a href="https://github.com/moghwan/web.bouayad.app/releases.atom">
+    <img alt="Release RSS Feed" src="https://img.shields.io/badge/rss-releases-ffa500?logo=rss" />
+  </a>
+  <a href="https://github.com/moghwan/web.bouayad.app/commits/master.atom">
+    <img alt="Master Commits RSS Feed" src="https://img.shields.io/badge/rss-commits-ffa500?logo=rss" />
+  </a>
 
-  <a href="https://addons.mozilla.org/firefox/addon/bouayadapp-اليومية-العصرية/">
+  <br>
+
+  
+   <a href="https://addons.mozilla.org/firefox/addon/bouayadapp-اليومية-العصرية/">
     <img src="https://img.shields.io/amo/users/bouayadapp-اليومية-العصرية?label=Firefox%20Users&style=flat&logo=firefox" alt="Firefox addon">
   </a>
   <a href="https://microsoftedge.microsoft.com/addons/detail/bouayadapp-%D8%A7%D9%84%D9%8A%D9%88%D9%85%D9%8A%D8%A9-%D8%A7%D9%84%D8%B9%D8%B5/hjkanamopcgpejnjckfkocleokagaeak">
@@ -15,13 +31,6 @@
   <a href="https://chrome.google.com/webstore/detail/bouayadapp-اليومية-العصري/homjiaebdnpmepkeiiipamadbbpkgcij">
     <img src="https://img.shields.io/chrome-web-store/users/homjiaebdnpmepkeiiipamadbbpkgcij?label=Chrome%20Users&style=flat&logo=googlechrome" alt="Chrome addon">
   </a>
-  <a href="https://web.bouayad.app">
-    <img src="https://www.pwa-shields.com/1.0.0/series/classic/white/gray.svg" alt="PWA">
-  </a>
-
-  <img src="https://img.shields.io/github/license/moghwan/web.bouayad.app?color=white" alt="License">
-  <img src="https://img.shields.io/github/issues-closed/moghwan/web.bouayad.app?color=purple" alt="Issues">
-
   <a href="https://twitter.com/bouayadapp">
     <img src="https://img.shields.io/badge/@bouayadapp-follow-blue.svg?color=9cf&logo=twitter" alt="Twitter">
   </a>
@@ -38,7 +47,6 @@
 - [x] Progressive Web App ready
 - [ ] Tracking seen daily hikams
 - [ ] Theming (classic, minimal, by event, ...)
-- [ ] Dark mode
 
 ## Download
 - A browser extension version is also made for a quicker access for these browsers:
