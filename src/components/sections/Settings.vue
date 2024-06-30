@@ -5,8 +5,8 @@
       </div>
       <div class="flex flex-col bg-white h-full rounded-lg p-12">
         <div class="flex flex-row align-middle justify-between">
-          <span>إختر المدن المفظلة لديك (في حدود 8 مدن)</span>
           <CitiesDropdown :cities="cities"/>
+          <span>إختر المدن المفضلة لديك (في حدود 8 مدن)</span>
         </div>
       </div>
   </div>

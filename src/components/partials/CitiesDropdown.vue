@@ -1,13 +1,17 @@
 <template>
-  <div dir="rtl">
+  <div>
 
-      <button id="dropdownSearchButton" @click="clicked = !clicked" data-dropdown-toggle="dropdownSearch" data-dropdown-placement="bottom" class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800" type="button">
+      <button id="dropdownSearchButton"
+              @click="clicked = !clicked"
+              data-dropdown-toggle="dropdownSearch"
+              data-dropdown-placement="bottom"
+              class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800" type="button">
         اختيار المدن
         <IconCaretDown class="w-5 h-5"/>
       </button>
 
       <!-- Dropdown menu -->
-      <div id="dropdownSearch" class="z-10 bg-white rounded-lg shadow w-60 dark:bg-gray-700" v-show="clicked">
+      <div dir="rtl" id="dropdownSearch" class="z-10 bg-white rounded-lg shadow w-60 dark:bg-gray-700" v-show="clicked">
           <div class="p-3">
               <label for="input-group-search" class="sr-only">بحث</label>
               <div class="relative">
