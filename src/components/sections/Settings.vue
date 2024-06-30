@@ -3,8 +3,11 @@
       <div class="flex flex-row justify-center p-5 pt-0">
           الإعدادات
       </div>
-      <div class="flex flex-col bg-white h-full rounded-lg">
-        <CitiesDropdown :cities="cities"/>
+      <div class="flex flex-col bg-white h-full rounded-lg p-12">
+        <div class="flex flex-row align-middle justify-between">
+          <span>إختر المدن المفظلة لديك (في حدود 8 مدن)</span>
+          <CitiesDropdown :cities="cities"/>
+        </div>
       </div>
   </div>
 </template>
