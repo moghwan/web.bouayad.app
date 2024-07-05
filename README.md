@@ -6,15 +6,14 @@
   
   <img src="https://img.shields.io/github/license/moghwan/web.bouayad.app?color=white" alt="License">
   <img src="https://vercelbadge.vercel.app/api/moghwan/web.bouayad.app" alt="Vercel">
-  <img src="https://img.shields.io/github/package-json/v/moghwan/web.bouayad.app" alt="Package version">
+  <a href="https://github.com/moghwan/web.bouayad.app/releases">
+    <img src="https://img.shields.io/github/package-json/v/moghwan/web.bouayad.app" alt="Package version">
+  </a>
   <a href="https://web.bouayad.app">
     <img src="https://www.pwa-shields.com/1.0.0/series/classic/white/gray.svg" alt="PWA">
   </a>
   
   <img src="https://img.shields.io/github/issues-closed/moghwan/web.bouayad.app?color=purple" alt="Issues">
-  <a href="https://github.com/moghwan/web.bouayad.app/releases.atom">
-    <img alt="Release RSS Feed" src="https://img.shields.io/badge/rss-releases-ffa500?logo=rss" />
-  </a>
   <a href="https://github.com/moghwan/web.bouayad.app/commits/master.atom">
     <img alt="Master Commits RSS Feed" src="https://img.shields.io/badge/rss-commits-ffa500?logo=rss" />
   </a>
@@ -31,8 +30,12 @@
   <a href="https://chrome.google.com/webstore/detail/bouayadapp-اليومية-العصري/homjiaebdnpmepkeiiipamadbbpkgcij">
     <img src="https://img.shields.io/chrome-web-store/users/homjiaebdnpmepkeiiipamadbbpkgcij?label=Chrome%20Users&style=flat&logo=googlechrome" alt="Chrome addon">
   </a>
+
   <a href="https://twitter.com/bouayadapp">
-    <img src="https://img.shields.io/badge/@bouayadapp-follow-blue.svg?color=9cf&logo=twitter" alt="Twitter">
+    <img src="https://img.shields.io/badge/@bouayadapp-follow-blue.svg?color=9cf" alt="X">
+  </a>
+  <a href="https://twitter.com/messages/compose?recipient_id=890594413034057729&text=Thanks%20for%20@Bouayadapp!">
+    <img src="https://img.shields.io/badge/say thanks!-X-black.svg?color=000&logo=twitter" alt="Twitter">
   </a>
   <a href="https://www.buymeacoffee.com/moghwan">
     <img src="https://img.shields.io/badge/buymeacoffee-support-yellow.svg?logo=buymeacoffee" alt="buymeacoffee">
