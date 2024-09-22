@@ -30,6 +30,7 @@ async function fetchData() {
             "x-rapidapi-key": SECRET
         }
     };
+    // todo: Use Nuxt's useFetch or useAsyncData composables
     const response = await fetch(`https://${HOST}/cities`, options);
     cities.value = await response.json();
     cities.value = cities.value.data;

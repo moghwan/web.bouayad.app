@@ -47,6 +47,7 @@ async function fetchData(cityId) {
       "x-rapidapi-key": SECRET
     }
   };
+  // todo: Use Nuxt's useFetch or useAsyncData composables
   const response = await fetch(`https://${HOST}/hikams/${cityId}`, options);
   data.value = await response.json()
   selectedCityId.value = cityId;

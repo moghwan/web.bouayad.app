@@ -59,6 +59,7 @@ async function fetchData(cityId) {
             "x-rapidapi-key": SECRET
         }
     };
+    // todo: Use Nuxt's useFetch or useAsyncData composables
     const response = await fetch(`https://${HOST}/salates/calendar/${cityId}`, options);
     salawates.value = await response.json();
     salawates.value = salawates.value.data;
