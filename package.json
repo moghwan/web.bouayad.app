@@ -3,16 +3,18 @@
   "version": "0.7.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@formkit/auto-animate": "^1.0.0-beta.6",
     "@tabler/icons-vue": "^2.11.0",
     "@vueuse/core": "^9.13.0",
     "dotenv": "^16.0.3",
+    "nuxt": "^3.13.2",
     "pinia": "^2.0.28",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
