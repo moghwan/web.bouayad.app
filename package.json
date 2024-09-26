@@ -14,13 +14,13 @@
     "@pinia/nuxt": "^0.5.4",
     "@tabler/icons-vue": "^2.11.0",
     "@vueuse/core": "^9.13.0",
-    "dotenv": "^16.0.3",
     "nuxt": "^3.13.2",
     "pinia": "^2.2.2",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.12.1",
     "@rushstack/eslint-patch": "^1.1.4",
     "@vitejs/plugin-vue": "^4.0.0",
     "autoprefixer": "^10.4.13",
