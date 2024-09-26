@@ -24,6 +24,7 @@ import SalateTimes from "@/components/sections/SalateTimes.vue";
 import Settings from "@/components/sections/Settings.vue";
 import SectionsNav from "@/components/partials/Nav/SectionsNav.vue";
 import { IconLayoutCards } from '@tabler/icons-vue';
+import { vAutoAnimate } from '@formkit/auto-animate'
 
 const store = useCityStore();
 const data = ref(null);

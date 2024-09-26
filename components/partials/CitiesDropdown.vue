@@ -42,6 +42,7 @@
 import {IconZoomCancel, IconX, IconCaretDown} from "@tabler/icons-vue";
 import {computed, ref} from "vue";
 import {useSettingsStore} from "@/stores/settings";
+import { vAutoAnimate } from '@formkit/auto-animate'
 const settingsStore = useSettingsStore();
 
 const props = defineProps({
