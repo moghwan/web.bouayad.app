@@ -125,9 +125,9 @@
 
 <script setup>
 import {ref, computed, toRefs, onMounted} from "vue";
-import SalateElement from "@/components/partials/salateElement.vue";
-import { useCityStore } from "@/stores/city"
-import { useSettingsStore } from "@/stores/settings";
+import SalateElement from "~/components/partials/salateElement.vue";
+import { useCityStore } from "~/stores/city"
+import { useSettingsStore } from "~/stores/settings";
 import { vAutoAnimate } from '@formkit/auto-animate'
 
 const settingsStore = useSettingsStore();

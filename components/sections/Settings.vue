@@ -14,7 +14,7 @@
 
 <script setup>
 import {onMounted, ref} from "vue";
-import CitiesDropdown from "@/components/partials/CitiesDropdown.vue";
+import CitiesDropdown from "~/components/partials/CitiesDropdown.vue";
 const cities = ref(null);
 
 onMounted(() => fetchData())

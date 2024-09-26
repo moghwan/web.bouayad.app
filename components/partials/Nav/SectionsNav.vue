@@ -16,9 +16,9 @@
 </template>
 
 <script setup>
-import SectionsNavElement from "@/components/partials/Nav/SectionsNavElement.vue";
+import SectionsNavElement from "~/components/partials/Nav/SectionsNavElement.vue";
 import {onMounted, ref} from "vue";
-import {useSettingsStore} from "@/stores/settings";
+import {useSettingsStore} from "~/stores/settings";
 
 const settingsStore = useSettingsStore();
 const selected = ref(settingsStore.selectedSection)

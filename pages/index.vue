@@ -8,7 +8,7 @@
     </div>
 
     <button @click="settingsStore.switchDisplayMode()" :class="isTooSmall ? 'hidden' : null" class="fixed bottom-10 right-8 bg-gray-50 w-12 h-12 rounded-full drop-shadow-lg flex justify-center items-center hover:drop-shadow-xl">
-        <IconLayoutCards color="gray"/>
+      <IconLayoutCards color="gray"/>
     </button>
     <spinner class="flex justify-center h-screen items-center" v-if="!data"/>
   </div>
@@ -16,13 +16,13 @@
 
 <script setup>
 import {computed, onMounted, ref} from "vue";
-import TheDay from "@/components/TheDay.vue";
-import Spinner from "@/components/partials/SpinnerLoader.vue";
-import {useCityStore} from "@/stores/city"
-import {useSettingsStore} from "@/stores/settings"
-import SalateTimes from "@/components/sections/SalateTimes.vue";
-import Settings from "@/components/sections/Settings.vue";
-import SectionsNav from "@/components/partials/Nav/SectionsNav.vue";
+import TheDay from "~/components/TheDay.vue";
+import Spinner from "~/components/partials/SpinnerLoader.vue";
+import {useCityStore} from "~/stores/city"
+import {useSettingsStore} from "~/stores/settings"
+import SalateTimes from "~/components/sections/SalateTimes.vue";
+import Settings from "~/components/sections/Settings.vue";
+import SectionsNav from "~/components/partials/Nav/SectionsNav.vue";
 import { IconLayoutCards } from '@tabler/icons-vue';
 import { vAutoAnimate } from '@formkit/auto-animate'
 
@@ -38,8 +38,8 @@ onMounted(() => {
 })
 
 async function fetchData(cityId) {
-  const HOST   = process.env.RA_HOST || import.meta.env.VITE_BOUAYADAPP_API_URL;
-  const SECRET = process.env.RA_SECRET || import.meta.env.VITE_BOUAYADAPP_API_SECRET;
+  const HOST   = process.env.RA_HOST || import.meta.env.NUXT_PUBLIC_BOUAYADAPP_API_URL;
+  const SECRET = process.env.RA_SECRET || import.meta.env.NUXT_PUBLIC_BOUAYADAPP_API_SECRET;
 
   const options = {
     "method": "GET",

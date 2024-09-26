@@ -40,7 +40,7 @@
 
 <script setup>
 import {onMounted, ref} from "vue";
-import {useCityStore} from "@/stores/city";
+import {useCityStore} from "~/stores/city";
 
 const store = useCityStore();
 const selectedCityId = ref(store.cityId);
