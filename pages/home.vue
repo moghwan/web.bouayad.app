@@ -29,7 +29,7 @@ const store = useCityStore();
 const data = ref(null);
 const selectedCityId = ref(store.cityId);
 const settingsStore = useSettingsStore();
-const windowWidth = ref(window.innerWidth)
+const windowWidth = ref(window?.innerWidth)
 
 onMounted(() => {
   fetchData(selectedCityId.value)
@@ -53,7 +53,7 @@ async function fetchData(cityId) {
   selectedCityId.value = cityId;
 }
 
-const onResize = () => windowWidth.value = window.innerWidth
+const onResize = () => windowWidth.value= window.innerWidth
 const isTooSmall = computed(() => windowWidth.value <= 500)
 
 const refreshTheDay = (cityId) => cityId ? fetchData(cityId) : fetchData(selectedCityId.value)
