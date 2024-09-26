@@ -16,8 +16,7 @@
     "@vueuse/core": "^9.13.0",
     "nuxt": "^3.13.2",
     "pinia": "^2.2.2",
-    "vue": "^3.2.45",
-    "vue-router": "^4.1.6"
+    "vue": "^3.2.45"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.12.1",
