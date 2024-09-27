@@ -6,7 +6,8 @@ export const useSettingsStore = defineStore("settings", () => {
     const selectedSection = ref(useLocalStorage('selectedSection', 1));
     const selectedCities = ref(useLocalStorage('selectedCities', []));
     
-    const displayMode = ref(useLocalStorage('displayMode', displayModes.isFull));
+    // const displayMode = ref(useLocalStorage('displayMode', displayModes.isFull));
+    const displayMode = ref(useLocalStorage('displayMode', false));
     const showSalateTimes = ref(useLocalStorage('showSalateTimes', false));
     const showSettings = ref(useLocalStorage('showSettings', false));
     
