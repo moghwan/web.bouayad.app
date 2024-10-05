@@ -26,6 +26,7 @@ import SectionsNav from "~/components/partials/Nav/SectionsNav.vue";
 import { IconLayoutCards } from '@tabler/icons-vue';
 import { vAutoAnimate } from '@formkit/auto-animate'
 import {useFetch} from "nuxt/app";
+const runtimeConfig = useRuntimeConfig()
 
 const store = useCityStore();
 const data = ref(null);
@@ -39,19 +40,25 @@ onMounted(() => {
 })
 
 async function fetchData(cityId) {
-  const HOST   = process.env.RA_HOST || import.meta.env.NUXT_PUBLIC_BOUAYADAPP_API_URL;
-  const SECRET = process.env.RA_SECRET || import.meta.env.NUXT_PUBLIC_BOUAYADAPP_API_SECRET;
+  const HOST   =  runtimeConfig.public.apiHost
+  const SECRET = runtimeConfig.apiSecret || ""
 
   data.value = await useFetch(`${HOST}/hikams/${cityId}`, {
-    onRequest({ request, options }) {
-      // Set the request headers
-      options.headers = options.headers || {
-        "x-rapidapi-host": HOST,
-        "x-rapidapi-key": SECRET
-      }
+    headers: {
+      'x-rapidapi-host': HOST,
+      'x-rapidapi-key': SECRET,
     },
+    // onRequest({ request, options }) {
+    //   // Set the request headers
+    //   options.headers = options.headers || {
+    //     "x-rapidapi-host": HOST,
+    //     "x-rapidapi-key": SECRET
+    //   }
+    //   // options.headers.authorization = '...'
+    // },
   },
   ).then(res => res.data);
+  // data.value = await response.json()
   selectedCityId.value = cityId;
 }
 
