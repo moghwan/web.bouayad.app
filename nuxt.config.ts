@@ -12,5 +12,13 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/tailwindcss',
   ],
+  runtimeConfig: {
+    // The private keys which are only available within server-side
+    apiSecret: process.env.BOUAYADAPP_API_SECRET,
+    // Keys within public, will be also exposed to the client-side
+    public: {
+      apiHost: process.env.BOUAYADAPP_API_URL,
+    }
+  },
   compatibilityDate: '2024-09-22',
 })
