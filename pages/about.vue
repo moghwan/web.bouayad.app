@@ -1,6 +1,8 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <nuxt-link to="/">back home</nuxt-link>
   </div>
 </template>
 
+<script setup>
+</script>
