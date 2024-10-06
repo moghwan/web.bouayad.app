@@ -26,10 +26,11 @@ import SectionsNav from "~/components/partials/Nav/SectionsNav.vue";
 import { IconLayoutCards } from '@tabler/icons-vue';
 import { vAutoAnimate } from '@formkit/auto-animate'
 import {useFetch} from "nuxt/app";
-const runtimeConfig = useRuntimeConfig()
 
 const store = useCityStore();
 const data = ref(null);
+const error = ref(null);
+const isFetching = ref(null);
 const selectedCityId = ref(store.cityId);
 const settingsStore = useSettingsStore();
 const windowWidth = ref(window?.innerWidth)
@@ -40,25 +41,14 @@ onMounted(() => {
 })
 
 async function fetchData(cityId) {
-  const HOST   =  runtimeConfig.public.apiHost
-  const SECRET = runtimeConfig.apiSecret || ""
+  const response = await useFetch(`/api/hikams/${cityId}`);
 
-  data.value = await useFetch(`${HOST}/hikams/${cityId}`, {
-    headers: {
-      'x-rapidapi-host': HOST,
-      'x-rapidapi-key': SECRET,
-    },
-    // onRequest({ request, options }) {
-    //   // Set the request headers
-    //   options.headers = options.headers || {
-    //     "x-rapidapi-host": HOST,
-    //     "x-rapidapi-key": SECRET
-    //   }
-    //   // options.headers.authorization = '...'
-    // },
-  },
-  ).then(res => res.data);
-  // data.value = await response.json()
+  ({
+    data: data.value,
+    error: error.value,
+    isFetching: isFetching.value,
+  } = await response);
+
   selectedCityId.value = cityId;
 }
 
