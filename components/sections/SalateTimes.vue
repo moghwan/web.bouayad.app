@@ -6,6 +6,7 @@
                   <tr class="border-b border-gray-200 hover:bg-gray-100">
                       <th class="font-light px-4 py-3 text-center" colspan="9">مواقيت الصلوات</th>
                   </tr>
+<!--                 {{ salawates }}-->
                   <tr class="text-center">
                       <th class="font-light xl:px-7 md:px-6 py-3">العشاء</th>
                       <th class="font-light xl:px-7 md:px-6 py-3">المغرب</th>
@@ -13,8 +14,12 @@
                       <th class="font-light xl:px-7 md:px-6 py-3">الظهر</th>
                       <th class="font-light xl:px-7 md:px-6 py-3">الشروق</th>
                       <th class="font-light xl:px-7 md:px-6 py-3">الصبح</th>
-                      <th class="font-light xl:px-7 md:px-6 py-3">{{ salawates ? salawates[0].monthName : null }}</th>
-                      <th class="font-light xl:px-7 md:px-6 py-3">{{ salawates ? salawates[0].monthNameHij : null }}</th>
+                      <th class="font-light xl:px-7 md:px-6 py-3">
+<!--                        {{ salawates ? salawates[0].monthName : null }}-->
+                      </th>
+                      <th class="font-light xl:px-7 md:px-6 py-3">
+<!--                        {{ salawates ? salawates[0].monthNameHij : null }}-->
+                      </th>
                       <th class="font-light xl:px-7 md:px-6 py-3">الأيام</th>
                   </tr>
                   </thead>
@@ -45,24 +50,23 @@ import {useCityStore} from "~/stores/city";
 const store = useCityStore();
 const selectedCityId = ref(store.cityId);
 const salawates = ref(null);
+const error = ref(null);
+const isFetching = ref(null);
 
 onMounted(() => fetchData(selectedCityId.value))
 
 async function fetchData(cityId) {
-    const HOST   = process.env.RA_HOST || import.meta.env.VITE_BOUAYADAPP_API_URL;
-    const SECRET = process.env.RA_SECRET || import.meta.env.VITE_BOUAYADAPP_API_SECRET;
+  const response = await useFetch(`/api/salates/calendar/${cityId}`);
 
-    const options = {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": HOST,
-            "x-rapidapi-key": SECRET
-        }
-    };
-    // todo: Use Nuxt's useFetch or useAsyncData composables
-    const response = await fetch(`https://${HOST}/salates/calendar/${cityId}`, options);
-    salawates.value = await response.json();
-    salawates.value = salawates.value.data;
+  ({
+    salawates: salawates.value,
+    error: error.value,
+    isFetching: isFetching.value,
+  } = await response);
+
+  console.info(salawates.value[0]);
+
+  selectedCityId.value = cityId;
 }
 
 const isToday = (salawate) => {
