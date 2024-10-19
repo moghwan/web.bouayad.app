@@ -22,12 +22,12 @@ const isFetching = ref(null);
 onMounted(() => fetchData())
 
 async function fetchData() {
-  const response = await useFetch(`/api/cities`);
+  const { data, error } = await useFetch(`/api/cities`);
 
-  ({
-    cities: cities.value,
-    error: error.value,
-    isFetching: isFetching.value,
-  } = await response);
+  if (!error.value) {
+    cities.value = data.value?.data || null;
+  } else {
+    console.error('Error fetching cities:', error.value);
+  }
 }
 </script>

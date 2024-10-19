@@ -6,7 +6,6 @@
                   <tr class="border-b border-gray-200 hover:bg-gray-100">
                       <th class="font-light px-4 py-3 text-center" colspan="9">مواقيت الصلوات</th>
                   </tr>
-<!--                 {{ salawates }}-->
                   <tr class="text-center">
                       <th class="font-light xl:px-7 md:px-6 py-3">العشاء</th>
                       <th class="font-light xl:px-7 md:px-6 py-3">المغرب</th>
@@ -14,12 +13,8 @@
                       <th class="font-light xl:px-7 md:px-6 py-3">الظهر</th>
                       <th class="font-light xl:px-7 md:px-6 py-3">الشروق</th>
                       <th class="font-light xl:px-7 md:px-6 py-3">الصبح</th>
-                      <th class="font-light xl:px-7 md:px-6 py-3">
-<!--                        {{ salawates ? salawates[0].monthName : null }}-->
-                      </th>
-                      <th class="font-light xl:px-7 md:px-6 py-3">
-<!--                        {{ salawates ? salawates[0].monthNameHij : null }}-->
-                      </th>
+                      <th class="font-light xl:px-7 md:px-6 py-3">{{ salawates ? salawates[0].monthName : null }}</th>
+                      <th class="font-light xl:px-7 md:px-6 py-3">{{ salawates ? salawates[0].monthNameHij : null }}</th>
                       <th class="font-light xl:px-7 md:px-6 py-3">الأيام</th>
                   </tr>
                   </thead>
@@ -50,23 +45,17 @@ import {useCityStore} from "~/stores/city";
 const store = useCityStore();
 const selectedCityId = ref(store.cityId);
 const salawates = ref(null);
-const error = ref(null);
-const isFetching = ref(null);
 
 onMounted(() => fetchData(selectedCityId.value))
 
 async function fetchData(cityId) {
-  const response = await useFetch(`/api/salates/calendar/${cityId}`);
+  const { data, error } = await useFetch(`/api/salates/calendar/${cityId}`);
 
-  ({
-    salawates: salawates.value,
-    error: error.value,
-    isFetching: isFetching.value,
-  } = await response);
-
-  console.info(salawates.value[0]);
-
-  selectedCityId.value = cityId;
+  if (!error.value) {
+    salawates.value = data.value?.data || null;
+  } else {
+    console.error('Error fetching salawates:', error.value);
+  }
 }
 
 const isToday = (salawate) => {
