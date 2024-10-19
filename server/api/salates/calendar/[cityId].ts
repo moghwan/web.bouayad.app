@@ -12,8 +12,7 @@ export default defineEventHandler(async (event) => {
       },
     });
 
-    return response.data;
-    // return response.data;
+    return response;
   } catch (error) {
     // Handle any error that occurs during the API request
     return {
