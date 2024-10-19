@@ -8,7 +8,7 @@
     </div>
 
     <button @click="settingsStore.switchDisplayMode()" :class="isTooSmall ? 'hidden' : null" class="fixed bottom-10 right-8 bg-gray-50 w-12 h-12 rounded-full drop-shadow-lg flex justify-center items-center hover:drop-shadow-xl">
-        <IconLayoutCards color="gray"/>
+      <IconLayoutCards color="gray"/>
     </button>
     <spinner class="flex justify-center h-screen items-center" v-if="!data"/>
   </div>
@@ -16,20 +16,24 @@
 
 <script setup>
 import {computed, onMounted, ref} from "vue";
-import TheDay from "@/components/TheDay.vue";
-import Spinner from "@/components/partials/SpinnerLoader.vue";
-import {useCityStore} from "@/stores/city"
-import {useSettingsStore} from "@/stores/settings"
-import SalateTimes from "@/components/sections/SalateTimes.vue";
-import Settings from "@/components/sections/Settings.vue";
-import SectionsNav from "@/components/partials/Nav/SectionsNav.vue";
+import TheDay from "~/components/TheDay.vue";
+import Spinner from "~/components/partials/SpinnerLoader.vue";
+import {useCityStore} from "~/stores/city"
+import {useSettingsStore} from "~/stores/settings"
+import SalateTimes from "~/components/sections/SalateTimes.vue";
+import Settings from "~/components/sections/Settings.vue";
+import SectionsNav from "~/components/partials/Nav/SectionsNav.vue";
 import { IconLayoutCards } from '@tabler/icons-vue';
+import { vAutoAnimate } from '@formkit/auto-animate'
+import {useFetch} from "nuxt/app";
 
 const store = useCityStore();
 const data = ref(null);
+const error = ref(null);
+const isFetching = ref(null);
 const selectedCityId = ref(store.cityId);
 const settingsStore = useSettingsStore();
-const windowWidth = ref(window.innerWidth)
+const windowWidth = ref(window?.innerWidth)
 
 onMounted(() => {
   fetchData(selectedCityId.value)
@@ -37,22 +41,18 @@ onMounted(() => {
 })
 
 async function fetchData(cityId) {
-  const HOST   = process.env.RA_HOST || import.meta.env.VITE_BOUAYADAPP_API_URL;
-  const SECRET = process.env.RA_SECRET || import.meta.env.VITE_BOUAYADAPP_API_SECRET;
+  const response = await useFetch(`/api/hikams/${cityId}`);
 
-  const options = {
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-host": HOST,
-      "x-rapidapi-key": SECRET
-    }
-  };
-  const response = await fetch(`https://${HOST}/hikams/${cityId}`, options);
-  data.value = await response.json()
+  ({
+    data: data.value,
+    error: error.value,
+    isFetching: isFetching.value,
+  } = await response);
+
   selectedCityId.value = cityId;
 }
 
-const onResize = () => windowWidth.value = window.innerWidth
+const onResize = () => windowWidth.value= window.innerWidth
 const isTooSmall = computed(() => windowWidth.value <= 500)
 
 const refreshTheDay = (cityId) => cityId ? fetchData(cityId) : fetchData(selectedCityId.value)

@@ -40,7 +40,7 @@
 
 <script setup>
 import {onMounted, ref} from "vue";
-import {useCityStore} from "@/stores/city";
+import {useCityStore} from "~/stores/city";
 
 const store = useCityStore();
 const selectedCityId = ref(store.cityId);
@@ -49,19 +49,13 @@ const salawates = ref(null);
 onMounted(() => fetchData(selectedCityId.value))
 
 async function fetchData(cityId) {
-    const HOST   = process.env.RA_HOST || import.meta.env.VITE_BOUAYADAPP_API_URL;
-    const SECRET = process.env.RA_SECRET || import.meta.env.VITE_BOUAYADAPP_API_SECRET;
+  const { data, error } = await useFetch(`/api/salates/calendar/${cityId}`);
 
-    const options = {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": HOST,
-            "x-rapidapi-key": SECRET
-        }
-    };
-    const response = await fetch(`https://${HOST}/salates/calendar/${cityId}`, options);
-    salawates.value = await response.json();
-    salawates.value = salawates.value.data;
+  if (!error.value) {
+    salawates.value = data.value?.data || null;
+  } else {
+    console.error('Error fetching salawates:', error.value);
+  }
 }
 
 const isToday = (salawate) => {
