@@ -49,17 +49,8 @@ const salawates = ref(null);
 onMounted(() => fetchData(selectedCityId.value))
 
 async function fetchData(cityId) {
-    const HOST   = process.env.RA_HOST || import.meta.env.VITE_BOUAYADAPP_API_URL;
-    const SECRET = process.env.RA_SECRET || import.meta.env.VITE_BOUAYADAPP_API_SECRET;
-
-    const options = {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": HOST,
-            "x-rapidapi-key": SECRET
-        }
-    };
-    const response = await fetch(`https://${HOST}/salates/calendar/${cityId}`, options);
+    const HOST   = process.env.BA_HOST || import.meta.env.VITE_BOUAYADAPP_API_URL;
+    const response = await fetch(`https://${HOST}/salates/calendar/${cityId}`);
     salawates.value = await response.json();
     salawates.value = salawates.value.data;
 }
