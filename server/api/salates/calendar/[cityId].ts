@@ -5,14 +5,7 @@ export default defineEventHandler(async (event) => {
   let url = `${config.public.apiHost}/salates/calendar/${cityId}`;
 
   try {
-    const response = await $fetch(url, {
-      headers: {
-        'x-rapidapi-host': config.public.apiHost,
-        'x-rapidapi-key': config.apiSecret || '',
-      },
-    });
-
-    return response;
+    return await $fetch(url);
   } catch (error) {
     // Handle any error that occurs during the API request
     return {

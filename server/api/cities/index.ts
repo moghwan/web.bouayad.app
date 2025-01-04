@@ -3,14 +3,7 @@ export default defineEventHandler(async (event) => {
   let url = `${config.public.apiHost}/cities`;
 
   try {
-    const response = await $fetch(url, {
-      headers: {
-        'x-rapidapi-host': config.public.apiHost,
-        'x-rapidapi-key': config.apiSecret || '',
-      },
-    });
-
-    return response;
+    return await $fetch(url);
   } catch (error) {
     return {
       error: true,
