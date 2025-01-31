@@ -10,10 +10,10 @@ export const useSettingsStore = defineStore("settings", () => {
     const showSalateTimes = ref(useLocalStorage('showSalateTimes', false));
     const showSettings = ref(useLocalStorage('showSettings', false));
     
-    const updateSelectedSection = (id) => {
+    const updateSelectedSection = (id: any) => {
         selectedSection.value = id
     }
-    const updateSelectedCities = (cities) => {
+    const updateSelectedCities = (cities: any) => {
         selectedCities.value = cities
     }
     const switchDisplayMode = () => displayMode.value = !displayMode.value;
