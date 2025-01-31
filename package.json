@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@formkit/auto-animate": "^1.0.0-beta.6",
-    "@pinia/nuxt": "^0.5.4",
+    "@pinia/nuxt": "^0.5.5",
     "@tabler/icons-vue": "^2.11.0",
     "@vueuse/core": "^9.13.0",
     "nuxt": "^3.13.2",
