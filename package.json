@@ -1,23 +1,25 @@
 {
-  "name": "bouayadapp-front",
-  "version": "0.7.0",
+  "name": "bouayadapp-web",
+  "version": "0.8.0-beta",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@formkit/auto-animate": "^1.0.0-beta.6",
+    "@pinia/nuxt": "^0.5.5",
     "@tabler/icons-vue": "^2.11.0",
     "@vueuse/core": "^9.13.0",
-    "dotenv": "^16.0.3",
-    "pinia": "^2.0.28",
-    "vue": "^3.2.45",
-    "vue-router": "^4.1.6"
+    "nuxt": "^3.13.2",
+    "pinia": "^2.2.2",
+    "vue": "^3.2.45"
   },
   "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.12.1",
     "@rushstack/eslint-patch": "^1.1.4",
     "@vitejs/plugin-vue": "^4.0.0",
     "autoprefixer": "^10.4.13",

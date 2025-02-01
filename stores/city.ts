@@ -6,7 +6,7 @@ export const useCityStore = defineStore("selectedCity", () => {
   const cityId = ref(useLocalStorage('cityId', 1));
   const city = ref({});
 
-  function update(newCity) {
+  function update(newCity: any) {
     city.value = newCity;
     cityId.value = newCity.id;
   }

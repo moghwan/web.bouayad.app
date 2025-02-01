@@ -20,12 +20,12 @@
                 </tr>
                 <tr>
                   <td v-auto-animate>
-                      <p class="px-5 font-light leading-7" 
-                         :class="!isTooSmall ? 'text-lg' : null"
-                         v-if="(countHikamsBack === 2 && showFirstHikma) || countHikamsBack === 1">{{ firstHikmaB }}</p>
-                      <p class="px-5 font-light leading-7" 
-                         :class="!isTooSmall ? 'text-lg' : null"
-                         v-if="countHikamsBack === 2 && !showFirstHikma">{{ secondHikmaB }}</p>
+                    <p class="px-5 font-light leading-7"
+                       :class="!isTooSmall ? 'text-lg' : null"
+                       v-if="(countHikamsBack === 2 && showFirstHikma) || countHikamsBack === 1">{{ firstHikmaB }}</p>
+                    <p class="px-5 font-light leading-7"
+                       :class="!isTooSmall ? 'text-lg' : null"
+                       v-if="countHikamsBack === 2 && !showFirstHikma">{{ secondHikmaB }}</p>
                   </td>
                 </tr>
               </table>
@@ -74,7 +74,7 @@
                 <!--section 2: cites-->
                 <tr class="border-b" v-auto-animate>
                   <td @click="getByCity(city)"
-                      :class="[!isTooSmall ? 'text-base' : 'text-sm', selectedCityId === city.id ? 'bg-gray-50': '']"
+                      :class="[!isTooSmall ? 'text-base' : 'text-sm', selectedCityId === city.id ? 'font-semibold': '']"
                       class="font-light py-2 cursor-pointer hover:bg-gray-100 transition-all"
                       v-for="city in RTLCities.slice(4, 8)" :key="city.id">
                     {{ city.name_ar }}
@@ -82,7 +82,7 @@
                 </tr>
                 <tr class="border-b" v-auto-animate>
                   <td @click="getByCity(city)"
-                      :class="[!isTooSmall ? 'text-base' : 'text-sm', selectedCityId === city.id ? 'bg-gray-50': '']"
+                      :class="[!isTooSmall ? 'text-base' : 'text-sm', selectedCityId === city.id ? 'font-semibold': '']"
                       class="font-light py-2 cursor-pointer hover:bg-gray-100 transition-all"
                       v-for="city in RTLCities.slice(0, 4)" :key="city.id">
                     {{ city.name_ar }}
@@ -125,9 +125,9 @@
 
 <script setup>
 import {ref, computed, toRefs, onMounted} from "vue";
-import SalateElement from "@/components/partials/salateElement.vue";
-import { useCityStore } from "@/stores/city"
-import {useSettingsStore} from "@/stores/settings";
+import {useCityStore} from "~/stores/city"
+import {useSettingsStore} from "~/stores/settings";
+import {vAutoAnimate} from '@formkit/auto-animate'
 
 const settingsStore = useSettingsStore();
 const store = useCityStore();
@@ -136,10 +136,13 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-  selectedCityId: { required: true },
+  selectedCityId: {required: true},
 });
 
-const { data } = toRefs(props);
+// const data = toRefs(props.data);
+const {data} = toRefs(props);
+// const data = ref(props.data);
+
 const windowWidth = ref(window.innerWidth)
 const emit = defineEmits(['parent-refreshtheday'])
 const currentTime = ref(new Date());
@@ -159,8 +162,8 @@ const selectedCities = ref(settingsStore.selectedCities)
 
 const RTLCities = computed(() => {
   return selectedCities.value.length > 0
-    ? selectedCities.value.slice(0).reverse()
-    : defaultCities.value.slice(0).reverse()
+      ? selectedCities.value.slice(0).reverse()
+      : defaultCities.value.slice(0).reverse()
 })
 const countHikamsFront = computed(() => data.value.events.hikams_front.length)
 const firstHikmaF = computed(() => data.value.events.hikams_front[0])
@@ -171,24 +174,24 @@ const firstHikmaB = computed(() => data.value.events.hikams_back[0])
 const secondHikmaB = computed(() => data.value.events.hikams_back[1])
 
 const salateTimesMorning = computed(() => {
-  let { fajr, chourouq } = data.value.salate_times;
+  let {fajr, chourouq} = data.value.salate_times;
 
   let salateTimes = [
-    { name: "fajr", name_ar: "الفجر", time: fajr },
-    { name: "chourouq", name_ar: "الشروق", time: chourouq },
+    {name: "fajr", name_ar: "الفجر", time: fajr},
+    {name: "chourouq", name_ar: "الشروق", time: chourouq},
   ];
 
   return getSalatesWithClasses(salateTimes)
 })
 
 const salateTimes = computed(() => {
-  let { dhuhr, asr, maghrib, ishae } = data.value.salate_times;
+  let {dhuhr, asr, maghrib, ishae} = data.value.salate_times;
 
   let salateTimes = [
-    { name: "dhuhr", name_ar: "الظهر", time: dhuhr },
-    { name: "asr", name_ar: "العصر", time: asr },
-    { name: "maghrib", name_ar: "المغرب", time: maghrib },
-    { name: "ishae", name_ar: "العشاء", time: ishae },
+    {name: "dhuhr", name_ar: "الظهر", time: dhuhr},
+    {name: "asr", name_ar: "العصر", time: asr},
+    {name: "maghrib", name_ar: "المغرب", time: maghrib},
+    {name: "ishae", name_ar: "العشاء", time: ishae},
   ];
 
   return getSalatesWithClasses(salateTimes)
@@ -216,8 +219,8 @@ const getSalatesWithClasses = (salawates) => {
     comparisonTime20mnA.setHours(hours, minutes + 20);
 
     if (
-      currentTime.value.getTime() >= comparisonTime.getTime() &&
-      currentTime.value.getTime() < comparisonTime20mnA.getTime()
+        currentTime.value.getTime() >= comparisonTime.getTime() &&
+        currentTime.value.getTime() < comparisonTime20mnA.getTime()
     ) {
       salate.result = "current";
       salate.class = "bg-red-50 text-red-900"
@@ -233,7 +236,7 @@ const getSalatesWithClasses = (salawates) => {
     } else {
       salate.result = "default";
     }
-    
+
     salawates[i] = salate;
   }
 
@@ -245,13 +248,13 @@ const onResize = () => {
 }
 const isTooSmall = computed(() => windowWidth.value <= 500)
 
-onMounted(() =>{
+onMounted(() => {
   window.addEventListener('resize', onResize);
-  
+
   setInterval(() => {
     currentTime.value = new Date()
   }, 1000)
-  if(countHikamsFront.value > 1) {
+  if (countHikamsFront.value > 1) {
     setInterval(() => {
       showFirstHikma.value = !showFirstHikma.value;
     }, 4000)
