@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     return await $fetch(url);
-  } catch (error) {
+  } catch (error: any) {
     return {
       error: true,
       message: 'Error fetching data from external API',

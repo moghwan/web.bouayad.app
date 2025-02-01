@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
   try {
     // Replace with your external API URL
      return await $fetch(url);
-  } catch (error) {
+  } catch (error: any) {
     // Handle any error that occurs during the API request
     return {
       error: true,

@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     return await $fetch(url);
-  } catch (error) {
+  } catch (error: any) {
     // Handle any error that occurs during the API request
     return {
       error: true,
