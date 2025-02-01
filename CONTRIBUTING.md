@@ -22,15 +22,6 @@ This Vue 3 project was initialized with Vite.
 ```sh
 $ npm install
 ```
-- create the `.env` file:
-```sh
-$ cp .env.example .env
-```
-- add your secret key to the `.env` file after subscribing to the API hosted in [RapidAPI Hub](https://rapidapi.com/chaouimar2/api/bouayadapi/) (it's free):
-```
-VITE_BOUAYADAPP_API_URL=bouayadapi.p.rapidapi.com
-VITE_BOUAYADAPP_API_SECRET=${your_secret}
-```
 
 ### Commonly used NPM scripts
 ```sh
