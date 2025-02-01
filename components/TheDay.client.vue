@@ -74,7 +74,7 @@
                 <!--section 2: cites-->
                 <tr class="border-b" v-auto-animate>
                   <td @click="getByCity(city)"
-                      :class="[!isTooSmall ? 'text-base' : 'text-sm', selectedCityId === city.id ? 'bg-gray-50': '']"
+                      :class="[!isTooSmall ? 'text-base' : 'text-sm', selectedCityId === city.id ? 'font-semibold': '']"
                       class="font-light py-2 cursor-pointer hover:bg-gray-100 transition-all"
                       v-for="city in RTLCities.slice(4, 8)" :key="city.id">
                     {{ city.name_ar }}
@@ -82,7 +82,7 @@
                 </tr>
                 <tr class="border-b" v-auto-animate>
                   <td @click="getByCity(city)"
-                      :class="[!isTooSmall ? 'text-base' : 'text-sm', selectedCityId === city.id ? 'bg-gray-50': '']"
+                      :class="[!isTooSmall ? 'text-base' : 'text-sm', selectedCityId === city.id ? 'font-semibold': '']"
                       class="font-light py-2 cursor-pointer hover:bg-gray-100 transition-all"
                       v-for="city in RTLCities.slice(0, 4)" :key="city.id">
                     {{ city.name_ar }}
@@ -124,7 +124,7 @@
 </template>
 
 <script setup>
-import {ref, computed, toRefs, onMounted} from "vue";
+import {ref, computed, watch, toRefs, onMounted} from "vue";
 import SalateElement from "~/components/partials/salateElement.vue";
 import { useCityStore } from "~/stores/city"
 import { useSettingsStore } from "~/stores/settings";
@@ -140,7 +140,10 @@ const props = defineProps({
   selectedCityId: { required: true },
 });
 
+// const data = toRefs(props.data);
 const { data } = toRefs(props);
+// const data = ref(props.data);
+
 const windowWidth = ref(window.innerWidth)
 const emit = defineEmits(['parent-refreshtheday'])
 const currentTime = ref(new Date());

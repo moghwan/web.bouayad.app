@@ -1,6 +1,6 @@
 <template>
-  <div v-auto-animate="{ duration: 500 }" class="gap-0">
-    <TheDay v-if="data" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" :class="!showPanel || isTooSmall ? '' : 'hidden xl:flex'" class=" lg:m-10"/>
+  <div v-auto-animate="{ duration: 400 }" class="gap-0">
+    <TheDay v-if="data" :key="selectedCityId" :data="data" @parent-refreshtheday="refreshTheDay" :selectedCityId="selectedCityId" :class="!showPanel || isTooSmall ? '' : 'hidden xl:flex'" class=" lg:m-10"/>
     <div class="w-full 2xl:w-7/12 h-screen lg:h-5/6 flex flex-col items-center rounded-lg shadow-lg bg-white lg:m-10" v-if="data && showPanel && !isTooSmall">
       <SalateTimes class="flex w-full h-5/6" v-if="showSalateTimes"/>
       <Settings class="flex w-full h-5/6" v-if="showSettings"/>
@@ -16,7 +16,7 @@
 
 <script setup>
 import {computed, onMounted, ref} from "vue";
-import TheDay from "~/components/TheDay.vue";
+import TheDay from "~/components/TheDay.client.vue";
 import Spinner from "~/components/partials/SpinnerLoader.vue";
 import {useCityStore} from "~/stores/city"
 import {useSettingsStore} from "~/stores/settings"
@@ -41,21 +41,26 @@ onMounted(() => {
 })
 
 async function fetchData(cityId) {
-  const response = await useFetch(`/api/hikams/${cityId}`);
+  try {
+    const response = await useFetch(`/api/hikams/${cityId}`);
+    ({
+      data: data.value,
+      error: error.value,
+      isFetching: isFetching.value,
+    } = await response);
+    selectedCityId.value = cityId;
 
-  ({
-    data: data.value,
-    error: error.value,
-    isFetching: isFetching.value,
-  } = await response);
-
-  selectedCityId.value = cityId;
+  } catch (err) {
+    console.error('Error fetching data:', err);
+  }
 }
 
 const onResize = () => windowWidth.value= window.innerWidth
 const isTooSmall = computed(() => windowWidth.value <= 500)
 
-const refreshTheDay = (cityId) => cityId ? fetchData(cityId) : fetchData(selectedCityId.value)
+const refreshTheDay = async (cityId) => {
+  await fetchData(cityId ? cityId : selectedCityId.value);
+};
 const showPanel = computed(() => settingsStore.displayMode)
 const showSalateTimes = computed(() => settingsStore.showSalateTimes)
 const showSettings = computed(() => settingsStore.showSettings)
