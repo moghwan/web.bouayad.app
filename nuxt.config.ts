@@ -3,6 +3,25 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   css: ['~/assets/sass/main.scss'],
 
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
+    {
+      path: '~/components/partials/Nav',
+      pathPrefix: false,
+    },
+    {
+      path: '~/components/partials',
+      pathPrefix: false,
+    },
+    {
+      path: '~/components/sections',
+      pathPrefix: false,
+    },
+  ],
+
   postcss: {
     plugins: {
       tailwindcss: {},

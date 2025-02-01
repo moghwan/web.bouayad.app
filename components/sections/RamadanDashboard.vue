@@ -1,6 +1,6 @@
 <template>
   <div>
-    <IconMoonFilled color="black" />
+    <IconMoonFilled color="black"/>
     Ramadan component
   </div>
 </template>
