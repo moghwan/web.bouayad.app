@@ -19,6 +19,13 @@ const online = useOnline()
 const showStatusBar = ref(false)
 const emit = defineEmits(['parent-refreshtheday'])
 
+// check online status on mounted and show only if offline
+onMounted(() => {
+  if (!online.value) {
+    showStatusBar.value = true
+  }
+})
+
 watch(online, () => {
   showStatusBar.value = true // Show the status bar
   if (online.value) {
