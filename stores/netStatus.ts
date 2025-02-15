@@ -1,15 +1,12 @@
-import { ref } from "vue";
-import { defineStore } from "pinia";
+import {ref} from "vue";
+import {defineStore} from "pinia";
 
 export const useNetStatusStore = defineStore("netStatus", () => {
-
   const status = ref(true);
 
-  function update(newStatus: any) {
-    // console.info('old status', status.value);
-    // console.info('new status', newStatus);
+  function update(newStatus: boolean) {
     status.value = newStatus;
   }
 
-  return { status, update};
+  return {status, update};
 });
