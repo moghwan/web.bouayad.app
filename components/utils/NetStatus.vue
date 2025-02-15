@@ -14,13 +14,16 @@
 <script setup>
 import {useOnline} from '@vueuse/core'
 import {ref, watch} from 'vue'
+import {useNetStatusStore} from '@/stores/netStatus';
 
+const netStatusStore = useNetStatusStore();
 const online = useOnline()
 const showStatusBar = ref(false)
 const emit = defineEmits(['parent-refreshtheday'])
 
 // check online status on mounted and show only if offline
 onMounted(() => {
+  netStatusStore.update(!!online.value)
   if (!online.value) {
     showStatusBar.value = true
   }
@@ -28,6 +31,7 @@ onMounted(() => {
 
 watch(online, () => {
   showStatusBar.value = true // Show the status bar
+  netStatusStore.update(!!online.value)
   if (online.value) {
     setTimeout(() => {
       showStatusBar.value = false // Hide the status bar after 3 seconds

@@ -54,4 +54,8 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
+
+  // plugins: [
+  //   '~/plugins/pinia',
+  // ],
 })
