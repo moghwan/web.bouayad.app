@@ -30,3 +30,9 @@ coverage
 
 # PWA
 dev-dist
+
+# Nuxt
+.nuxt
+.output
+.nitro
+.cache
