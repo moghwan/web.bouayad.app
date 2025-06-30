@@ -7,4 +7,68 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// Apply theme variables to common elements
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+}
+
+p, span, div {
+  color: var(--text-primary);
+}
+
+a {
+  color: var(--accent-color);
+}
+
+// Override Tailwind classes with CSS variables
+.bg-white {
+  background-color: var(--bg-primary) !important;
+}
+
+.bg-gray-100 {
+  background-color: var(--bg-secondary) !important;
+}
+
+.hover\:bg-gray-100:hover {
+  background-color: var(--bg-secondary) !important;
+}
+
+.text-gray-700 {
+  color: var(--text-primary) !important;
+}
+
+.text-gray-500, .text-gray-600 {
+  color: var(--text-secondary) !important;
+}
+
+.border, .border-b, .border-r, .border-t {
+  border-color: var(--border-color) !important;
+}
+
+.border-gray-200 {
+  border-color: var(--border-color) !important;
+}
+
+// TheDay component specific overrides
+.bg-red-50 {
+  background-color: rgba(254, 202, 202, 0.2) !important;
+}
+
+.text-red-900 {
+  color: #ef4444 !important;
+}
+
+.bg-gray-50 {
+  background-color: var(--bg-secondary) !important;
+  opacity: 0.7;
+}
+
+.bg-gray-200 {
+  background-color: var(--bg-secondary) !important;
+  opacity: 0.9;
 }
