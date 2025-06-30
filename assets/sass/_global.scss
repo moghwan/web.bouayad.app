@@ -72,3 +72,27 @@ a {
   background-color: var(--bg-secondary) !important;
   opacity: 0.9;
 }
+
+// AMOLED dark mode specific styles for better contrast
+html.dark.amoled {
+  // Add borders to key components
+  .rounded-lg, .rounded-md, .rounded-xl {
+    border: 1px solid var(--border-color);
+  }
+
+  // Enhance button visibility
+  button {
+    border: 0.5px solid var(--border-color);
+  }
+
+  // Add subtle border to navigation elements
+  nav {
+    border: 0.5px solid var(--border-color);
+  }
+
+  // Ensure icons are visible but not too bright, except for navigation icons
+  svg:not(.dark\:text-white) {
+    stroke: var(--text-secondary);
+    fill: var(--text-secondary);
+  }
+}
