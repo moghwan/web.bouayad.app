@@ -12,8 +12,23 @@ export default defineNuxtPlugin({
           // Try with vueuse prefix
           theme = localStorage.getItem('vueuse-theme');
         }
-        // Default to system if not found
-        theme = theme ? JSON.parse(theme) : 'system';
+        // Default to system if not found or if parsing fails
+        if (theme) {
+          try {
+            // Check if the theme is a simple string without quotes
+            if (theme === 'system' || theme === 'light' || theme === 'dark' || theme === 'amoled') {
+              // Use it directly
+            } else {
+              // Try to parse it as JSON
+              theme = JSON.parse(theme);
+            }
+          } catch (e) {
+            console.warn('Invalid theme format in localStorage, using default:', e);
+            theme = 'system';
+          }
+        } else {
+          theme = 'system';
+        }
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
         // Determine if dark mode should be active

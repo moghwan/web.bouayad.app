@@ -1,17 +1,15 @@
+import { SalateTime, ApiError } from '~/types/api';
+import { fetchExternalApi, formatApiError } from '~/server/utils/api';
+
 export default defineEventHandler(async (event) => {
   const { cityId } = getRouterParams(event);
   const config = useRuntimeConfig();
 
-  let url = `${config.public.apiHost}/salates/calendar/${cityId}`;
+  const url = `${config.public.apiHost}/salates/calendar/${cityId}`;
 
   try {
-    return await $fetch(url);
-  } catch (error: any) {
-    // Handle any error that occurs during the API request
-    return {
-      error: true,
-      message: 'Error fetching data from external API',
-      details: error.message,
-    };
+    return await fetchExternalApi<SalateTime[]>(url);
+  } catch (error) {
+    return formatApiError(error);
   }
 });

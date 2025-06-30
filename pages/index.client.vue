@@ -20,48 +20,57 @@
 </template>
 
 <script setup>
-import {computed, onMounted, ref} from "vue";
-import {useFetch} from "nuxt/app";
+import {computed, onMounted, ref, watch} from "vue";
 import {useCityStore} from "~/stores/city"
 import {useSettingsStore} from "~/stores/settings"
+import {useApi} from "~/composables/useApi";
 import {IconLayoutCards} from '@tabler/icons-vue';
 import {vAutoAnimate} from '@formkit/auto-animate'
 import {useNetStatusStore} from '@/stores/netStatus';
+import {SCREEN_BREAKPOINTS} from '~/constants';
 
 const store = useCityStore();
-const data = ref(null);
-const error = ref(null);
-const isFetching = ref(null);
 const selectedCityId = ref(store.cityId);
 const settingsStore = useSettingsStore();
 const windowWidth = ref(window?.innerWidth)
 const netStatusStore = useNetStatusStore();
 
+// Use the API composable to fetch hikams data
+const { 
+  data, 
+  error, 
+  isLoading, 
+  refresh: refreshData 
+} = useApi(
+  computed(() => `/api/hikams/${selectedCityId.value}`),
+  {
+    immediate: true,
+    watch: true,
+    transform: (data) => data
+  }
+);
+
 onMounted(() => {
-  fetchData(selectedCityId.value)
   window.addEventListener('resize', onResize)
 })
 
-async function fetchData(cityId) {
-  try {
-    const response = await useFetch(`/api/hikams/${cityId}`);
-    ({
-      data: data.value,
-      error: error.value,
-      isFetching: isFetching.value,
-    } = await response);
-    selectedCityId.value = cityId;
-
-  } catch (err) {
-    console.error('Error fetching data:', err);
+// Watch for changes in the network status
+watch(() => netStatusStore.status, (newStatus) => {
+  if (newStatus) {
+    // Force refresh when network comes back online
+    refreshData({ force: true });
   }
-}
+});
 
 const onResize = () => windowWidth.value = window.innerWidth
-const isTooSmall = computed(() => windowWidth.value <= 500)
+const isTooSmall = computed(() => windowWidth.value <= SCREEN_BREAKPOINTS.SMALL)
 
 const refreshTheDay = async (cityId) => {
-  await fetchData(cityId ? cityId : selectedCityId.value);
+  if (cityId) {
+    selectedCityId.value = cityId;
+  }
+  // Force refresh when manually triggered
+  await refreshData({ force: true });
 };
 
 const showPanel = computed(() => settingsStore.displayMode)

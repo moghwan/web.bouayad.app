@@ -1,14 +1,13 @@
+import { City, ApiError } from '~/types/api';
+import { fetchExternalApi, formatApiError } from '~/server/utils/api';
+
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
-  let url = `${config.public.apiHost}/cities`;
+  const url = `${config.public.apiHost}/cities`;
 
   try {
-    return await $fetch(url);
-  } catch (error: any) {
-    return {
-      error: true,
-      message: 'Error fetching data from external API',
-      details: error.message,
-    };
+    return await fetchExternalApi<City[]>(url);
+  } catch (error) {
+    return formatApiError(error);
   }
 });
