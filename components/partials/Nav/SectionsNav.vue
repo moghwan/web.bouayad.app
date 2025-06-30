@@ -1,6 +1,6 @@
 <template>
   <nav class="isolate inline-flex -space-x-px rounded-xl" aria-label="Pagination">
-    <div class="flex space-x-1 rounded-lg bg-gray-100 p-1.5" role="tablist" aria-orientation="horizontal">
+    <div class="flex space-x-1 rounded-lg bg-gray-100 dark:bg-gray-800 p-1.5" role="tablist" aria-orientation="horizontal">
       <SectionsNavElement
           v-for="menuItem in menuItems"
           @click="selectItem(menuItem.id)"

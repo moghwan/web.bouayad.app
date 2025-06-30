@@ -74,7 +74,10 @@
                 <!--section 2: cites-->
                 <tr class="border-b" v-auto-animate>
                   <td @click="getByCity(city)"
-                      :class="[!isTooSmall ? 'text-base' : 'text-sm', selectedCityId === city.id ? 'font-semibold': '']"
+                      :class="[
+                        !isTooSmall ? 'text-base' : 'text-sm', 
+                        selectedCityId === city.id ? 'font-semibold bg-gray-50 dark:bg-gray-800': ''
+                      ]"
                       class="font-light py-2 cursor-pointer hover:bg-gray-100 transition-all"
                       v-for="city in RTLCities.slice(4, 8)" :key="city.id">
                     {{ city.name_ar }}
@@ -82,7 +85,10 @@
                 </tr>
                 <tr class="border-b" v-auto-animate>
                   <td @click="getByCity(city)"
-                      :class="[!isTooSmall ? 'text-base' : 'text-sm', selectedCityId === city.id ? 'font-semibold': '']"
+                      :class="[
+                        !isTooSmall ? 'text-base' : 'text-sm', 
+                        selectedCityId === city.id ? 'font-semibold bg-gray-50 dark:bg-gray-800': ''
+                      ]"
                       class="font-light py-2 cursor-pointer hover:bg-gray-100 transition-all"
                       v-for="city in RTLCities.slice(0, 4)" :key="city.id">
                     {{ city.name_ar }}
