@@ -1,3 +1,6 @@
+import { HikamData, ApiError } from '~/types/api';
+import { fetchExternalApi, formatApiError } from '~/server/utils/api';
+
 export default defineEventHandler(async (event) => {
   const { cityId, month, day } = getRouterParams(event);
   const config = useRuntimeConfig();
@@ -9,14 +12,8 @@ export default defineEventHandler(async (event) => {
   if (day) url += `/${day}`;
 
   try {
-    // Replace with your external API URL
-     return await $fetch(url);
-  } catch (error: any) {
-    // Handle any error that occurs during the API request
-    return {
-      error: true,
-      message: 'Error fetching data from external API',
-      details: error.message,
-    };
+    return await fetchExternalApi<HikamData>(url);
+  } catch (error) {
+    return formatApiError(error);
   }
 });

@@ -15,6 +15,7 @@
 import {useOnline} from '@vueuse/core'
 import {ref, watch} from 'vue'
 import {useNetStatusStore} from '@/stores/netStatus';
+import {NETWORK_STATUS_HIDE_DELAY} from '~/constants';
 
 const netStatusStore = useNetStatusStore();
 const online = useOnline()
@@ -33,8 +34,8 @@ watch(online, () => {
   netStatusStore.update(!!online.value)
   if (online.value) {
     setTimeout(() => {
-      showStatusBar.value = false // Hide the status bar after 3 seconds
-    }, 3000)
+      showStatusBar.value = false // Hide the status bar after delay
+    }, NETWORK_STATUS_HIDE_DELAY)
 
     emit('parent-refreshtheday')
     console.info('emit sent')

@@ -133,7 +133,8 @@
 import {ref, computed, toRefs, onMounted} from "vue";
 import {useCityStore} from "~/stores/city"
 import {useSettingsStore} from "~/stores/settings";
-import {vAutoAnimate} from '@formkit/auto-animate'
+import {vAutoAnimate} from '@formkit/auto-animate';
+import {HIKAM_ROTATION_INTERVAL, SCREEN_BREAKPOINTS} from '~/constants';
 
 const settingsStore = useSettingsStore();
 const store = useCityStore();
@@ -252,7 +253,7 @@ const getSalatesWithClasses = (salawates) => {
 const onResize = () => {
   windowWidth.value = window.innerWidth
 }
-const isTooSmall = computed(() => windowWidth.value <= 500)
+const isTooSmall = computed(() => windowWidth.value <= SCREEN_BREAKPOINTS.SMALL)
 
 onMounted(() => {
   window.addEventListener('resize', onResize);
@@ -263,7 +264,7 @@ onMounted(() => {
   if (countHikamsFront.value > 1) {
     setInterval(() => {
       showFirstHikma.value = !showFirstHikma.value;
-    }, 4000)
+    }, HIKAM_ROTATION_INTERVAL)
   }
 })
 

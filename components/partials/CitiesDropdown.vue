@@ -53,7 +53,8 @@
 import {computed, ref} from "vue";
 import {useSettingsStore} from "~/stores/settings";
 import {IconZoomCancel, IconX, IconCaretDown} from "@tabler/icons-vue";
-import {vAutoAnimate} from '@formkit/auto-animate'
+import {vAutoAnimate} from '@formkit/auto-animate';
+import {MAX_SELECTED_CITIES} from '~/constants';
 
 const settingsStore = useSettingsStore();
 
@@ -83,7 +84,7 @@ const refreshSelected = (cityId) => {
 
     if (cityIndex !== -1) {
       selectedCities.value.splice(cityIndex, 1);
-    } else if (selectedCities.value.length < 8) {
+    } else if (selectedCities.value.length < MAX_SELECTED_CITIES) {
       selectedCities.value.push({id: cityId, name_ar: selectedCity.name_ar, name: selectedCity.name});
     }
 
@@ -91,7 +92,7 @@ const refreshSelected = (cityId) => {
   }
 };
 
-const disableCheckbox = computed(() => selectedCities.value.length >= 8)
+const disableCheckbox = computed(() => selectedCities.value.length >= MAX_SELECTED_CITIES)
 
 const filteredCities = computed(() => {
   if (!props.cities) return [];
