@@ -3,9 +3,8 @@
 </p>
 
 <p align="center">  
-  
+
   <img src="https://img.shields.io/badge/Cloudflare-Pages-F38020?logo=Cloudflare&logoColor=white" alt="Cloudflare">
-  <img src="https://img.shields.io/github/license/moghwan/web.bouayad.app?color=white" alt="License">
   <a href="https://github.com/moghwan/web.bouayad.app/releases">
     <img src="https://img.shields.io/github/package-json/v/moghwan/web.bouayad.app" alt="Package version">
   </a>
@@ -13,7 +12,7 @@
   <a href="https://web.bouayad.app">
     <img src="https://www.pwa-shields.com/1.0.0/series/classic/white/gray.svg" alt="PWA">
   </a>
-  
+  <img src="https://img.shields.io/github/license/moghwan/web.bouayad.app?color=white" alt="License">  
   <img src="https://img.shields.io/github/issues-closed/moghwan/web.bouayad.app?color=purple" alt="Issues">
   <a href="https://github.com/moghwan/web.bouayad.app/releases.atom">
     <img alt="Releases RSS Feed" src="https://img.shields.io/badge/rss-releases-ffa500?logo=rss" />
@@ -21,7 +20,7 @@
 
   <br>
 
-  
+
    <a href="https://addons.mozilla.org/firefox/addon/bouayadapp-اليومية-العصرية/">
     <img src="https://img.shields.io/amo/users/bouayadapp-اليومية-العصرية?label=Firefox%20Users&style=flat&logo=firefox" alt="Firefox addon">
   </a>
@@ -53,6 +52,13 @@
 - [ ] Occasional themes by events type (national, religion, global)
 - [ ] Tracking seen daily hikams
 
+## Screenshots
+
+|                                                         Splash screen (PWA)                                                          |                                                           In action                                                            |                                                       Separated activity (PWA)                                                       |
+|:------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|
+| <img height="500" src="https://user-images.githubusercontent.com/2495180/221441540-ee8717a9-8eaf-4040-ac3d-19b7a5358299.png" > | <img height="500" src="https://user-images.githubusercontent.com/2495180/224451926-b2099adf-0645-4a80-a0fb-c4b745689ad0.gif" > | <img height="500" src="https://user-images.githubusercontent.com/2495180/221441541-3b8d893c-b871-4905-b831-a456fc754ef3.png" > |
+|                                                          Tablet mode                                                           |                                                       Amoled/Dark modes                                                        |                                                        Theming options                                                         |
+| <img height="500" src="https://github.com/user-attachments/assets/562d10ae-15ca-4cee-a57b-1063566d5784" > | <img height="500" src="https://github.com/user-attachments/assets/31596286-4bc1-41b6-9e79-646942b64c41" > | <img height="500" src="https://github.com/user-attachments/assets/4d27fdf6-ebf7-4c1e-8cab-eb91221c2249" > |
 ## Download
 - A browser extension version is also made for a quicker access for these browsers:
 
@@ -63,14 +69,8 @@
 ## Releases
 - Please see the [changelog](https://github.com/moghwan/web.bouayad.app/releases) for more details about all releases notes, [RSS feed](https://github.com/moghwan/web.bouayad.app/releases.atom) is also available.
 
-## Screenshots
-
-|                            Splash screen                                                                                       |                                                           In action                                                            |                                             Separated activity                                              |
-|:------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|
-|<img height="500" src="https://user-images.githubusercontent.com/2495180/221441540-ee8717a9-8eaf-4040-ac3d-19b7a5358299.png" >  |                                                   <img height="500" src="https://user-images.githubusercontent.com/2495180/224451926-b2099adf-0645-4a80-a0fb-c4b745689ad0.gif" >                                                   | <img height="500" src="https://user-images.githubusercontent.com/2495180/221441541-3b8d893c-b871-4905-b831-a456fc754ef3.png" > |
-
 ## Transparency warning
-Production deployments on Cloudflare Pages may use third-party tools to measure site performance, and the app uses Google Analytics.
+Production & development deployments on Cloudflare Pages may use third-party tools to measure site performance, and the app uses Google Analytics.
 The app itself does not collect any data (eg. when you're running it on your own machine).
 
 ## Contributing
