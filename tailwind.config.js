@@ -8,6 +8,7 @@ module.exports = {
     "./nuxt.config.{js,ts}",
     "./app.vue",
   ],
+  darkMode: 'class',
   safelist: [
     {
       pattern: /bg-+/, // You can display all the colors that you need

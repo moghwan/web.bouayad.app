@@ -1,0 +1,29 @@
+:root {
+  // Light mode variables
+  --bg-primary: #ffffff;
+  --bg-secondary: #f3f4f6;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --border-color: #e5e7eb;
+  --accent-color: #3b82f6;
+}
+
+// Dark mode variables
+.dark {
+  --bg-primary: #1f2937;
+  --bg-secondary: #111827;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --border-color: #374151;
+  --accent-color: #60a5fa;
+}
+
+// AMOLED dark mode variables
+.dark.amoled {
+  --bg-primary: #000000;
+  --bg-secondary: #0f0f0f;
+  --text-primary: #ffffff;
+  --text-secondary: #a3a3a3;
+  --border-color: #3a3a3a;
+  --accent-color: #60a5fa;
+}

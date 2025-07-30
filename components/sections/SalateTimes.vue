@@ -20,6 +20,7 @@
         </thead>
         <tbody>
         <tr :key="salawate.key" v-for="salawate in salawates"
+            v-memo="[salawate.day, salawate.month, isToday(salawate)]"
             class="text-center text-gray-700 border-b border-gray-200 hover:bg-gray-100"
             :class="isToday(salawate) ? 'bg-gray-100 text-black' : null">
           <td class="md:py-2 py-1">{{ salawate.ishae }}</td>
@@ -41,24 +42,30 @@
 </template>
 
 <script setup>
-import {onMounted, ref} from "vue";
-import {useCityStore} from "~/stores/city";
+import { ref, computed, watch } from "vue";
+import { useCityStore } from "~/stores/city";
+import { useApi } from "~/composables/useApi";
 
 const store = useCityStore();
 const selectedCityId = ref(store.cityId);
-const salawates = ref(null);
 
-onMounted(() => fetchData(selectedCityId.value))
-
-async function fetchData(cityId) {
-  const {data, error} = await useFetch(`/api/salates/calendar/${cityId}`);
-
-  if (!error.value) {
-    salawates.value = data.value?.data || null;
-  } else {
-    console.error('Error fetching salawates:', error.value);
+// Use the API composable to fetch prayer times
+const { data: apiData, error, isLoading } = useApi(
+  computed(() => `/api/salates/calendar/${selectedCityId.value}`),
+  {
+    immediate: true,
+    watch: true,
+    transform: (data) => data
   }
-}
+);
+
+// Extract salawates from the API response
+const salawates = computed(() => apiData.value?.data || null);
+
+// Watch for changes in the selected city ID
+watch(() => store.cityId, (newCityId) => {
+  selectedCityId.value = newCityId;
+});
 
 const isToday = (salawate) => {
   let today = new Date()

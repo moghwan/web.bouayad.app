@@ -74,7 +74,10 @@
                 <!--section 2: cites-->
                 <tr class="border-b" v-auto-animate>
                   <td @click="getByCity(city)"
-                      :class="[!isTooSmall ? 'text-base' : 'text-sm', selectedCityId === city.id ? 'font-semibold': '']"
+                      :class="[
+                        !isTooSmall ? 'text-base' : 'text-sm', 
+                        selectedCityId === city.id ? 'font-semibold bg-gray-50 dark:bg-gray-800': ''
+                      ]"
                       class="font-light py-2 cursor-pointer hover:bg-gray-100 transition-all"
                       v-for="city in RTLCities.slice(4, 8)" :key="city.id">
                     {{ city.name_ar }}
@@ -82,7 +85,10 @@
                 </tr>
                 <tr class="border-b" v-auto-animate>
                   <td @click="getByCity(city)"
-                      :class="[!isTooSmall ? 'text-base' : 'text-sm', selectedCityId === city.id ? 'font-semibold': '']"
+                      :class="[
+                        !isTooSmall ? 'text-base' : 'text-sm', 
+                        selectedCityId === city.id ? 'font-semibold bg-gray-50 dark:bg-gray-800': ''
+                      ]"
                       class="font-light py-2 cursor-pointer hover:bg-gray-100 transition-all"
                       v-for="city in RTLCities.slice(0, 4)" :key="city.id">
                     {{ city.name_ar }}
@@ -127,7 +133,8 @@
 import {ref, computed, toRefs, onMounted} from "vue";
 import {useCityStore} from "~/stores/city"
 import {useSettingsStore} from "~/stores/settings";
-import {vAutoAnimate} from '@formkit/auto-animate'
+import {vAutoAnimate} from '@formkit/auto-animate';
+import {HIKAM_ROTATION_INTERVAL, SCREEN_BREAKPOINTS} from '~/constants';
 
 const settingsStore = useSettingsStore();
 const store = useCityStore();
@@ -246,7 +253,7 @@ const getSalatesWithClasses = (salawates) => {
 const onResize = () => {
   windowWidth.value = window.innerWidth
 }
-const isTooSmall = computed(() => windowWidth.value <= 500)
+const isTooSmall = computed(() => windowWidth.value <= SCREEN_BREAKPOINTS.SMALL)
 
 onMounted(() => {
   window.addEventListener('resize', onResize);
@@ -257,7 +264,7 @@ onMounted(() => {
   if (countHikamsFront.value > 1) {
     setInterval(() => {
       showFirstHikma.value = !showFirstHikma.value;
-    }, 4000)
+    }, HIKAM_ROTATION_INTERVAL)
   }
 })
 
